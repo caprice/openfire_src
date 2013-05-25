@@ -16,6 +16,7 @@ import org.xmpp.packet.JID;
 import org.xmpp.packet.Message;
 
 public class UserIQHandler extends IQHandler {
+
     private static final String MODULE_NAME = "user handler";
 
     private static final String NAME_SPACE = "wetodo:user";

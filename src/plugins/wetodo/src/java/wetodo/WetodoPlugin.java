@@ -6,7 +6,6 @@ import org.jivesoftware.openfire.IQRouter;
 import org.jivesoftware.openfire.XMPPServer;
 import org.jivesoftware.openfire.container.Plugin;
 import org.jivesoftware.openfire.container.PluginManager;
-import org.jivesoftware.openfire.handler.IQHandler;
 
 public class WetodoPlugin implements Plugin {
 
@@ -14,10 +13,11 @@ public class WetodoPlugin implements Plugin {
     }
 
     public void initializePlugin(PluginManager manager, File pluginDirectory) {
-        System.out.println("Hello World!!!!");
-        IQHandler myHandler = new UserIQHandler();
+        System.out.println("Hello World!!!!!");
         IQRouter iqRouter = XMPPServer.getInstance().getIQRouter();
-        iqRouter.addHandler(myHandler);
+
+        iqRouter.addHandler(new UserIQHandler());
+        iqRouter.addHandler(new RegisterIQHandler());
     }
 
     public void destroyPlugin() {
