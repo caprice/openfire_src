@@ -1,7 +1,3 @@
-.classpath
-.project
 bin/
 work/
 target/
-openfire_src.iml
-.idea/
