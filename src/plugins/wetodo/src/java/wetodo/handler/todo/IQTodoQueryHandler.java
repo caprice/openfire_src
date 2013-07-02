@@ -1,4 +1,4 @@
-package wetodo.wetodo.handler.todo;
+package wetodo.handler.todo;
 
 public class IQTodoQueryHandler {
 }

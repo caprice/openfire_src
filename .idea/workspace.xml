@@ -10,7 +10,8 @@
     <file path="/MUCPersistenceManager.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1372486743065" ignored="false" />
     <file path="/WetodoPlugin.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1372454929694" ignored="false" />
     <file path="/plugin.xml" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1372445304949" ignored="false" />
-    <file path="/fragment.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1372787754943" ignored="false" />
+    <file path="/fragment.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1372788457257" ignored="false" />
+    <file path="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/wetodo/manager/group/TodoManager.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1372788061665" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,6 +110,13 @@
         <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/wetodo/handler/todo/IQTodoAddHandler.java" />
         <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/wetodo/handler/todo/IQTodoCompleteHandler.java" />
         <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/wetodo/handler/todo/IQTodoDelHandler.java" />
+        <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/wetodo/manager/group/TodoManager.java" />
+        <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/group/IQGroupAddHandler.java" />
+        <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/todo/IQTodoDelHandler.java" />
+        <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/manager/GroupManager.java" />
+        <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/model/Group.java" />
+        <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/model/Todo.java" />
+        <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/manager/TodoManager.java" />
       </list>
     </option>
   </component>
@@ -262,8 +270,14 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="wetodo.manager" />
+      <recent name="wetodo.model" />
+      <recent name="wetodo.handler.group" />
+      <recent name="wetodo.wetodo.manager.group" />
       <recent name="wetodo.wetodo.handler.todo" />
-      <recent name="wetodo.wetodo.handler.group" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/todo" />
     </key>
   </component>
   <component name="RunManager">
@@ -477,23 +491,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/UserIQHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="13" selection-start="652" selection-end="652" vertical-scroll-proportion="0.11029412">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/org/jivesoftware/admin/AuthCheckFilterTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="31" selection-start="163" selection-end="163" vertical-scroll-proportion="0.20903955" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/security/client.truststore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="3" column="7" selection-start="77" selection-end="77" vertical-scroll-proportion="0.088757396">
@@ -534,50 +531,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/RegisterIQHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="40" selection-start="590" selection-end="590" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/wetodo/handler/todo/IQTodoQueryHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="0" selection-start="73" selection-end="73" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/wetodo/handler/todo/IQTodoDelHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="13" selection-start="50" selection-end="50" vertical-scroll-proportion="0.055350553">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/wetodo/handler/todo/IQTodoCompleteHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="12" selection-start="49" selection-end="49" vertical-scroll-proportion="0.055350553">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/wetodo/handler/todo/IQTodoAddHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="13" selection-start="50" selection-end="50" vertical-scroll-proportion="0.055350553">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/wetodo/handler/group/IQGroupAddHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="13" selection-start="51" selection-end="51" vertical-scroll-proportion="0.055350553">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/WetodoPlugin.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="34" column="29" selection-start="1413" selection-end="1419" vertical-scroll-proportion="-0.51039696">
@@ -585,6 +538,64 @@
             <element signature="class#JoinGroupsSessionEventListener#0;class#WetodoPlugin#0" expanded="false" />
             <element signature="method#initializePlugin#0;class#WetodoPlugin#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/todo/IQTodoDelHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="13" selection-start="43" selection-end="43" vertical-scroll-proportion="0.055350553">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/group/IQGroupAddHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="13" selection-start="44" selection-end="44" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/todo/IQTodoCompleteHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="0" selection-start="69" selection-end="69" vertical-scroll-proportion="0.11070111">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/model/Group.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="13" selection-start="36" selection-end="36" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/model/Todo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="11" selection-start="34" selection-end="34" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/RegisterIQHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="13" selection-start="278" selection-end="278" vertical-scroll-proportion="0.05904059">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/manager/TodoManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="13" selection-start="38" selection-end="38" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/manager/GroupManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="13" selection-start="38" selection-end="38" vertical-scroll-proportion="0.055350553">
+          <folding />
         </state>
       </provider>
     </entry>
