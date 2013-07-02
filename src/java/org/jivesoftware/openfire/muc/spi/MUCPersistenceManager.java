@@ -89,10 +89,10 @@ public class MUCPersistenceManager {
                     "canInvite=?, roomPassword=?, canDiscoverJID=?, logEnabled=?, rolesToBroadcast=?, " +
                     "useReservedNick=?, canChangeNick=?, canRegister=? WHERE roomID=?";
     private static final String ADD_ROOM =
-            "INSERT INTO ofMucRoom (serviceID, roomID, creationDate, modificationDate, name, naturalName, " +
+            "INSERT INTO ofMucRoom (serviceID, roomID, roomJID, creationDate, modificationDate, name, naturalName, " +
                     "description, lockedDate, emptyDate, canChangeSubject, maxUsers, publicRoom, moderated, " +
                     "membersOnly, canInvite, roomPassword, canDiscoverJID, logEnabled, subject, " +
-                    "rolesToBroadcast, useReservedNick, canChangeNick, canRegister) VALUES (?,?,?,?,?,?,?,?,?," +
+                    "rolesToBroadcast, useReservedNick, canChangeNick, canRegister) VALUES (?,?,?,?,?,?,?,?,?,?," +
                     "?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     private static final String UPDATE_SUBJECT =
             "UPDATE ofMucRoom SET subject=? WHERE roomID=?";
@@ -125,6 +125,18 @@ public class MUCPersistenceManager {
     private static final String ADD_CONVERSATION_LOG =
             "INSERT INTO ofMucConversationLog (roomID,sender,nickname,logTime,subject,body) " +
                     "VALUES (?,?,?,?,?,?)";
+    private static final String LOAD_ROOMNAME_BY_ROOMID =
+            "SELECT name FROM ofMucRoom where roomID=?";
+    private static final String LOAD_SERVICEID_BY_ROOMID =
+            "SELECT serviceID FROM ofMucRoom where roomID=?";
+    private static final String LOAD_ROOMINFO_BY_ROOMJID =
+            "SELECT serviceID,name,naturalName,description FROM ofMucRoom where roomJID=?";
+    private static final String LOAD_JIDS_BY_ROOMID =
+            "SELECT JID FROM roomMember where roomID=?";
+    private static final String LOAD_ROOMIDS_BY_JID =
+            "SELECT roomJID from roomMember where jid=?";
+    private static final String LOAD_NICKNAME_BY_JID=
+            "SELECT nickname from roomMember where jid=?";
 
     /* Map of subdomains to their associated properties */
     private static ConcurrentHashMap<String, MUCServiceProperties> propertyMaps = new ConcurrentHashMap<String, MUCServiceProperties>();
@@ -333,32 +345,33 @@ public class MUCPersistenceManager {
                 pstmt = con.prepareStatement(ADD_ROOM);
                 pstmt.setLong(1, XMPPServer.getInstance().getMultiUserChatManager().getMultiUserChatServiceID(room.getMUCService().getServiceName()));
                 pstmt.setLong(2, room.getID());
-                pstmt.setString(3, StringUtils.dateToMillis(room.getCreationDate()));
-                pstmt.setString(4, StringUtils.dateToMillis(room.getModificationDate()));
-                pstmt.setString(5, room.getName());
-                pstmt.setString(6, room.getNaturalLanguageName());
-                pstmt.setString(7, room.getDescription());
-                pstmt.setString(8, StringUtils.dateToMillis(room.getLockedDate()));
+                pstmt.setString(3,room.getJID().toBareJID());
+                pstmt.setString(4, StringUtils.dateToMillis(room.getCreationDate()));
+                pstmt.setString(5, StringUtils.dateToMillis(room.getModificationDate()));
+                pstmt.setString(6, room.getName());
+                pstmt.setString(7, room.getNaturalLanguageName());
+                pstmt.setString(8, room.getDescription());
+                pstmt.setString(9, StringUtils.dateToMillis(room.getLockedDate()));
                 Date emptyDate = room.getEmptyDate();
                 if (emptyDate == null) {
-                    pstmt.setString(9, null);
+                    pstmt.setString(10, null);
                 } else {
-                    pstmt.setString(9, StringUtils.dateToMillis(emptyDate));
+                    pstmt.setString(10, StringUtils.dateToMillis(emptyDate));
                 }
-                pstmt.setInt(10, (room.canOccupantsChangeSubject() ? 1 : 0));
-                pstmt.setInt(11, room.getMaxUsers());
-                pstmt.setInt(12, (room.isPublicRoom() ? 1 : 0));
-                pstmt.setInt(13, (room.isModerated() ? 1 : 0));
-                pstmt.setInt(14, (room.isMembersOnly() ? 1 : 0));
-                pstmt.setInt(15, (room.canOccupantsInvite() ? 1 : 0));
-                pstmt.setString(16, room.getPassword());
-                pstmt.setInt(17, (room.canAnyoneDiscoverJID() ? 1 : 0));
-                pstmt.setInt(18, (room.isLogEnabled() ? 1 : 0));
-                pstmt.setString(19, room.getSubject());
-                pstmt.setInt(20, marshallRolesToBroadcast(room));
-                pstmt.setInt(21, (room.isLoginRestrictedToNickname() ? 1 : 0));
-                pstmt.setInt(22, (room.canChangeNickname() ? 1 : 0));
-                pstmt.setInt(23, (room.isRegistrationEnabled() ? 1 : 0));
+                pstmt.setInt(11, (room.canOccupantsChangeSubject() ? 1 : 0));
+                pstmt.setInt(12, room.getMaxUsers());
+                pstmt.setInt(13, (room.isPublicRoom() ? 1 : 0));
+                pstmt.setInt(14, (room.isModerated() ? 1 : 0));
+                pstmt.setInt(15, (room.isMembersOnly() ? 1 : 0));
+                pstmt.setInt(16, (room.canOccupantsInvite() ? 1 : 0));
+                pstmt.setString(17, room.getPassword());
+                pstmt.setInt(18, (room.canAnyoneDiscoverJID() ? 1 : 0));
+                pstmt.setInt(19, (room.isLogEnabled() ? 1 : 0));
+                pstmt.setString(20, room.getSubject());
+                pstmt.setInt(21, marshallRolesToBroadcast(room));
+                pstmt.setInt(22, (room.isLoginRestrictedToNickname() ? 1 : 0));
+                pstmt.setInt(23, (room.canChangeNickname() ? 1 : 0));
+                pstmt.setInt(24, (room.isRegistrationEnabled() ? 1 : 0));
                 pstmt.executeUpdate();
             }
         } catch (SQLException sqle) {
@@ -1247,26 +1260,26 @@ public class MUCPersistenceManager {
     }
 
     ////////////////////////////////////////////////////////////
-    public static List<String> getRoomIDsByUserJid(String userJid) {
+    public static List<String> getRoomJidsByUserJid(String userJid) {
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
-        List<String> roomIDs = new ArrayList<String>();
+        List<String> roomJids = new ArrayList<String>();
         try {
             con = DbConnectionManager.getConnection();
             pstmt = con.prepareStatement(LOAD_ROOMIDS_BY_JID);
             pstmt.setString(1, userJid);
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                String roomId = rs.getString("roomID");
-                roomIDs.add(roomId);
+                String roomJid = rs.getString("roomJid");
+                roomJids.add(roomJid);
             }
         } catch (SQLException sqle) {
             Log.error(sqle.getMessage(), sqle);
         } finally {
             DbConnectionManager.closeConnection(rs, pstmt, con);
         }
-        return roomIDs;
+        return roomJids;
     }
 
     public static String getRoomNameByRoomId(String roomId) {
@@ -1336,15 +1349,15 @@ public class MUCPersistenceManager {
     }
 
 
-    public static RoomInfo getRoomInfoByRoomId(String roomId) {
+    public static RoomInfo getRoomInfoByRoomJid(String roomJid) {
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         RoomInfo rminf = null;
         try {
             con = DbConnectionManager.getConnection();
-            pstmt = con.prepareStatement(LOAD_ROOMINFO_BY_ROOMID);
-            pstmt.setString(1, roomId);
+            pstmt = con.prepareStatement(LOAD_ROOMINFO_BY_ROOMJID);
+            pstmt.setString(1, roomJid);
             rs = pstmt.executeQuery();
             if (rs.next()) {
                 String serviceID = rs.getString("serviceID");
