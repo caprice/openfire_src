@@ -8,6 +8,7 @@ import org.jivesoftware.openfire.handler.IQHandler;
 import org.xmpp.packet.IQ;
 import org.xmpp.packet.PacketError;
 import wetodo.manager.TaskGroupManager;
+import wetodo.xml.task.group.TaskGroupAddXmlReader;
 
 public class IQTaskGroupAddHandler extends IQHandler {
 
@@ -41,13 +42,10 @@ public class IQTaskGroupAddHandler extends IQHandler {
 
         // xml reader
         Element lacoolElement = packet.getChildElement();
-        int roomID = Integer.parseInt(lacoolElement.attribute("roomid").getValue());
-
-        Element itemElement = lacoolElement.element("item");
-        String taskGroupName = itemElement.attribute("name").getValue();
+        TaskGroupAddXmlReader.getTaskGroup(lacoolElement);
 
         // persistent to db
-        taskGroupManager.add(roomID, taskGroupName);
+        //taskGroupManager.add(roomID, taskGroupName);
 
         // output
         IQ reply = IQ.createResultIQ(packet);
