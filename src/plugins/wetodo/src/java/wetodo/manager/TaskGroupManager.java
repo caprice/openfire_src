@@ -1,6 +1,7 @@
 package wetodo.manager;
 
 import wetodo.dao.TaskGroupDAO;
+import wetodo.model.TaskGroup;
 
 public class TaskGroupManager {
     /**
@@ -18,7 +19,7 @@ public class TaskGroupManager {
         return instance;
     }
 
-    public void add(int roomID, String taskGroupName) {
-        TaskGroupDAO.add(roomID, taskGroupName);
+    public void add(TaskGroup taskGroup) {
+        TaskGroupDAO.add(taskGroup);
     }
 }
