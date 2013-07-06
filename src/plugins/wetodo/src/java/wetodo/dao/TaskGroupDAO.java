@@ -1,4 +1,4 @@
-package wetodo.model;
+package wetodo.dao;
 
 import org.jivesoftware.database.DbConnectionManager;
 
@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class TaskGroup {
+public class TaskGroupDAO {
     private static final String INSERT_TASKGROUP = "INSERT INTO wtdTaskGroup (tgid, roomid, name) VALUES (null, ?, ?)";
 
     public static void add(int roomID, String taskGroupName) {
