@@ -3,14 +3,19 @@ package wetodo.handler.task.group;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.jivesoftware.openfire.IQHandlerInfo;
-import org.jivesoftware.openfire.auth.UnauthorizedException;
+import org.jivesoftware.openfire.XMPPServer;
 import org.jivesoftware.openfire.handler.IQHandler;
 import org.xmpp.packet.IQ;
+import org.xmpp.packet.PacketError;
+import wetodo.manager.TaskGroupManager;
 
 public class IQTaskGroupAddHandler extends IQHandler {
-    private static final String NAME_SPACE = "lacool:iq:task:group";
+
+    private static final String NAME_SPACE = "lacool:iq:taskgroup:add";
 
     private IQHandlerInfo info;
+
+    private TaskGroupManager taskGroupManager;
 
     public IQTaskGroupAddHandler() {
         super(null);
@@ -23,24 +28,40 @@ public class IQTaskGroupAddHandler extends IQHandler {
     }
 
     @Override
-    public IQ handleIQ(IQ packet) throws UnauthorizedException {
-        System.out.println("===lacool:iq:task:group===");
+    public IQ handleIQ(IQ packet) {
+        System.out.println("===lacool:iq:taskgroup:add===");
 
+        // valid
+        if (!packet.getType().equals(IQ.Type.set)) {
+            IQ result = IQ.createResultIQ(packet);
+            result.setChildElement(packet.getChildElement().createCopy());
+            result.setError(PacketError.Condition.bad_request);
+            return result;
+        }
+
+        // xml reader
+        Element lacoolElement = packet.getChildElement();
+        int roomID = Integer.parseInt(lacoolElement.attribute("roomid").getValue());
+
+        Element itemElement = lacoolElement.element("item");
+        String taskGroupName = itemElement.attribute("name").getValue();
+
+        // persistent to db
+        taskGroupManager.add(roomID, taskGroupName);
+
+        // output
         IQ reply = IQ.createResultIQ(packet);
-
-        Element groups = packet.getChildElement();
-        System.out.println("groups:" + groups);
-        Element childElement = packet.getChildElement();
-        System.out.println("clildElement:" + childElement);
-        String namespace = childElement.getNamespaceURI(); //xmls value
-        System.out.println("namespace:" + namespace);
-        Element childElementCopy = packet.getChildElement().createCopy();
-        System.out.println("childElementCopy:" + childElementCopy);
-
         reply.setType(IQ.Type.result);
         Element reason = DocumentHelper.createElement("lacool");
         reason.addNamespace("", NAME_SPACE);
         reply.setChildElement(reason);
         return reply;
     }
+
+    @Override
+    public void initialize(XMPPServer server) {
+        super.initialize(server);
+        taskGroupManager = TaskGroupManager.getInstance();
+    }
+
 }

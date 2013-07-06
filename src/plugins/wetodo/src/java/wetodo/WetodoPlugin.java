@@ -1,6 +1,7 @@
 package wetodo;
 
 import org.jivesoftware.database.DbConnectionManager;
+import org.jivesoftware.openfire.IQRouter;
 import org.jivesoftware.openfire.PacketRouter;
 import org.jivesoftware.openfire.XMPPServer;
 import org.jivesoftware.openfire.auth.UnauthorizedException;
@@ -19,6 +20,7 @@ import org.xmpp.packet.JID;
 import org.xmpp.packet.Message;
 import org.xmpp.packet.PacketExtension;
 import org.xmpp.packet.Presence;
+import wetodo.handler.task.group.IQTaskGroupAddHandler;
 
 import java.io.File;
 import java.sql.Connection;
@@ -155,6 +157,10 @@ public class WetodoPlugin implements Plugin {
         SessionEventDispatcher.addListener(listener);
         MUCEventDispatcher.addListener(wetodoMUCEventListener);
         System.out.println("join groups plugin is running!");
+
+        // router
+        IQRouter iqRouter = server.getIQRouter();
+        iqRouter.addHandler(new IQTaskGroupAddHandler());
     }
 
     public void LeaveGroups(JID userJid) {
