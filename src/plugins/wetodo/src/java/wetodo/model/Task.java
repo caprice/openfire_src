@@ -1,4 +1,4 @@
 package wetodo.model;
 
-public class Group {
+public class Task {
 }

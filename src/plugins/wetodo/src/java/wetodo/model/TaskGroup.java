@@ -1,4 +1,4 @@
 package wetodo.model;
 
-public class Todo {
+public class TaskGroup {
 }
