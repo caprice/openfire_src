@@ -1,6 +1,5 @@
 package wetodo.handler.task.group;
 
-import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.jivesoftware.openfire.IQHandlerInfo;
 import org.jivesoftware.openfire.XMPPServer;
@@ -10,10 +9,14 @@ import org.xmpp.packet.PacketError;
 import wetodo.manager.TaskGroupManager;
 import wetodo.model.TaskGroup;
 import wetodo.xml.task.group.TaskGroupAddXmlReader;
+import wetodo.xml.task.group.TaskGroupAddXmlWriter;
+
+import java.sql.Date;
 
 public class IQTaskGroupAddHandler extends IQHandler {
 
     private static final String NAME_SPACE = "lacool:iq:taskgroup:add";
+    private static final int VERSION_ONE = 1;
     private IQHandlerInfo info;
     private TaskGroupManager taskGroupManager;
 
@@ -42,6 +45,10 @@ public class IQTaskGroupAddHandler extends IQHandler {
         // xml reader
         Element lacoolElement = packet.getChildElement();
         TaskGroup taskGroup = TaskGroupAddXmlReader.getTaskGroup(lacoolElement);
+        taskGroup.setVersion(VERSION_ONE);
+        Date now = new Date(System.currentTimeMillis());
+        taskGroup.setCreate_date(now);
+        taskGroup.setModify_date(now);
 
         // persistent to db
         taskGroupManager.add(taskGroup);
@@ -49,9 +56,9 @@ public class IQTaskGroupAddHandler extends IQHandler {
         // output
         IQ reply = IQ.createResultIQ(packet);
         reply.setType(IQ.Type.result);
-        Element reason = DocumentHelper.createElement("lacool");
-        reason.addNamespace("", NAME_SPACE);
-        reply.setChildElement(reason);
+        Element reasonElement = TaskGroupAddXmlWriter.write(taskGroup, NAME_SPACE);
+        reply.setChildElement(reasonElement);
+
         return reply;
     }
 
