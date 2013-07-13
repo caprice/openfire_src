@@ -21,6 +21,7 @@ import org.xmpp.packet.Message;
 import org.xmpp.packet.PacketExtension;
 import org.xmpp.packet.Presence;
 import wetodo.handler.task.group.IQTaskGroupAddHandler;
+import wetodo.handler.task.group.IQTaskGroupListHandler;
 
 import java.io.File;
 import java.sql.Connection;
@@ -37,115 +38,6 @@ public class WetodoPlugin implements Plugin {
     private XMPPServer server;
     private MultiUserChatServiceImpl mucService;
 
-    private class WetodoMUCEventListener implements MUCEventListener {
-
-        @Override
-        public void roomCreated(JID roomJID) {
-            //To change body of implemented methods use File | Settings | File Templates.
-        }
-
-        @Override
-        public void roomDestroyed(JID roomJID) {
-            //To change body of implemented methods use File | Settings | File Templates.
-        }
-
-        @Override
-        public void occupantJoined(JID roomJID, JID user, String nickname) {
-            //To change body of implemented methods use File | Settings | File Templates.
-            System.out.println("============================================");
-            System.out.println("occupantJoined");
-            System.out.println(roomJID);
-            System.out.println(user);
-            System.out.println(nickname);
-            Connection con = null;
-            PreparedStatement pstmt = null;
-            String insert_muc_member = "INSERT INTO roomMember VALUES (null,?,?,?)";
-            try {
-                con = DbConnectionManager.getConnection();
-                pstmt = con.prepareStatement(insert_muc_member);
-                pstmt.setString(1, user.toBareJID());
-                pstmt.setString(2, roomJID.toBareJID());
-                pstmt.setString(3, nickname);
-                pstmt.executeUpdate();
-            } catch (SQLException sqle) {
-                System.out.println(sqle.getMessage());
-                Log.error(sqle.getMessage(), sqle);
-            } finally {
-                DbConnectionManager.closeConnection(pstmt, con);
-            }
-        }
-
-        @Override
-        public void occupantLeft(JID roomJID, JID user) {
-            //To change body of implemented methods use File | Settings | File Templates.
-            //To change body of implemented methods use File | Settings | File Templates.
-            System.out.println("============================================");
-            System.out.println("occupantLeft");
-            System.out.println(roomJID);
-            System.out.println(user);
-            //Connection con = null;
-            //PreparedStatement pstmt = null;
-            //String delete_muc_member = "DELETE FROM roomMember where jid=? and roomID=?";
-            //try {
-            //    con = DbConnectionManager.getConnection();
-            //    pstmt = con.prepareStatement(delete_muc_member);
-            //    pstmt.setString(1, user.toBareJID());
-            //   pstmt.setString(2, roomJID.toBareJID());
-            //   pstmt.executeUpdate();
-            //} catch (SQLException sqle) {
-            //    Log.error(sqle.getMessage(), sqle);
-            //} finally {
-            //   DbConnectionManager.closeConnection(pstmt, con);
-            //}
-        }
-
-        @Override
-        public void nicknameChanged(JID roomJID, JID user, String oldNickname, String newNickname) {
-            //To change body of implemented methods use File | Settings | File Templates.
-        }
-
-        @Override
-        public void messageReceived(JID roomJID, JID user, String nickname, Message message) {
-            //To change body of implemented methods use File | Settings | File Templates.
-        }
-
-        @Override
-        public void privateMessageRecieved(JID toJID, JID fromJID, Message message) {
-            //To change body of implemented methods use File | Settings | File Templates.
-        }
-
-        @Override
-        public void roomSubjectChanged(JID roomJID, JID user, String newSubject) {
-            //To change body of implemented methods use File | Settings | File Templates.
-        }
-    }
-
-    private class JoinGroupsSessionEventListener implements SessionEventListener {
-        public void sessionCreated(Session session) {
-            System.out.println("a client connect!");
-            JID userJid = session.getAddress();
-            JoinGroups(userJid);
-        }
-
-        public void sessionDestroyed(Session session) {
-            //ignore
-            JID userJid = session.getAddress();
-            LeaveGroups(userJid);
-        }
-
-        public void resourceBound(Session session) {
-            // Do nothing.
-        }
-
-        public void anonymousSessionCreated(Session session) {
-            //ignore
-        }
-
-        public void anonymousSessionDestroyed(Session session) {
-            //ignore
-        }
-    }
-
     public WetodoPlugin() {
     }
 
@@ -161,6 +53,7 @@ public class WetodoPlugin implements Plugin {
         // router
         IQRouter iqRouter = server.getIQRouter();
         iqRouter.addHandler(new IQTaskGroupAddHandler());
+        iqRouter.addHandler(new IQTaskGroupListHandler());
     }
 
     public void LeaveGroups(JID userJid) {
@@ -285,5 +178,114 @@ public class WetodoPlugin implements Plugin {
         serverAddress = null;
         server = null;
         mucService = null;
+    }
+
+    private class WetodoMUCEventListener implements MUCEventListener {
+
+        @Override
+        public void roomCreated(JID roomJID) {
+            //To change body of implemented methods use File | Settings | File Templates.
+        }
+
+        @Override
+        public void roomDestroyed(JID roomJID) {
+            //To change body of implemented methods use File | Settings | File Templates.
+        }
+
+        @Override
+        public void occupantJoined(JID roomJID, JID user, String nickname) {
+            //To change body of implemented methods use File | Settings | File Templates.
+            System.out.println("============================================");
+            System.out.println("occupantJoined");
+            System.out.println(roomJID);
+            System.out.println(user);
+            System.out.println(nickname);
+            Connection con = null;
+            PreparedStatement pstmt = null;
+            String insert_muc_member = "INSERT INTO roomMember VALUES (null,?,?,?)";
+            try {
+                con = DbConnectionManager.getConnection();
+                pstmt = con.prepareStatement(insert_muc_member);
+                pstmt.setString(1, user.toBareJID());
+                pstmt.setString(2, roomJID.toBareJID());
+                pstmt.setString(3, nickname);
+                pstmt.executeUpdate();
+            } catch (SQLException sqle) {
+                System.out.println(sqle.getMessage());
+                Log.error(sqle.getMessage(), sqle);
+            } finally {
+                DbConnectionManager.closeConnection(pstmt, con);
+            }
+        }
+
+        @Override
+        public void occupantLeft(JID roomJID, JID user) {
+            //To change body of implemented methods use File | Settings | File Templates.
+            //To change body of implemented methods use File | Settings | File Templates.
+            System.out.println("============================================");
+            System.out.println("occupantLeft");
+            System.out.println(roomJID);
+            System.out.println(user);
+            //Connection con = null;
+            //PreparedStatement pstmt = null;
+            //String delete_muc_member = "DELETE FROM roomMember where jid=? and roomID=?";
+            //try {
+            //    con = DbConnectionManager.getConnection();
+            //    pstmt = con.prepareStatement(delete_muc_member);
+            //    pstmt.setString(1, user.toBareJID());
+            //   pstmt.setString(2, roomJID.toBareJID());
+            //   pstmt.executeUpdate();
+            //} catch (SQLException sqle) {
+            //    Log.error(sqle.getMessage(), sqle);
+            //} finally {
+            //   DbConnectionManager.closeConnection(pstmt, con);
+            //}
+        }
+
+        @Override
+        public void nicknameChanged(JID roomJID, JID user, String oldNickname, String newNickname) {
+            //To change body of implemented methods use File | Settings | File Templates.
+        }
+
+        @Override
+        public void messageReceived(JID roomJID, JID user, String nickname, Message message) {
+            //To change body of implemented methods use File | Settings | File Templates.
+        }
+
+        @Override
+        public void privateMessageRecieved(JID toJID, JID fromJID, Message message) {
+            //To change body of implemented methods use File | Settings | File Templates.
+        }
+
+        @Override
+        public void roomSubjectChanged(JID roomJID, JID user, String newSubject) {
+            //To change body of implemented methods use File | Settings | File Templates.
+        }
+    }
+
+    private class JoinGroupsSessionEventListener implements SessionEventListener {
+        public void sessionCreated(Session session) {
+            System.out.println("a client connect!");
+            JID userJid = session.getAddress();
+            JoinGroups(userJid);
+        }
+
+        public void sessionDestroyed(Session session) {
+            //ignore
+            JID userJid = session.getAddress();
+            LeaveGroups(userJid);
+        }
+
+        public void resourceBound(Session session) {
+            // Do nothing.
+        }
+
+        public void anonymousSessionCreated(Session session) {
+            //ignore
+        }
+
+        public void anonymousSessionDestroyed(Session session) {
+            //ignore
+        }
     }
 }

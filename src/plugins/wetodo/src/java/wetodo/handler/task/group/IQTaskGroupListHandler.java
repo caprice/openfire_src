@@ -8,19 +8,19 @@ import org.xmpp.packet.IQ;
 import org.xmpp.packet.PacketError;
 import wetodo.manager.TaskGroupManager;
 import wetodo.model.TaskGroup;
-import wetodo.xml.task.group.TaskGroupAddXmlReader;
-import wetodo.xml.task.group.TaskGroupAddXmlWriter;
+import wetodo.xml.task.group.TaskGroupListXmlReader;
+import wetodo.xml.task.group.TaskGroupListXmlWriter;
 
-import java.sql.Date;
+import java.util.List;
 
-public class IQTaskGroupAddHandler extends IQHandler {
+public class IQTaskGroupListHandler extends IQHandler {
 
-    private static final String NAME_SPACE = "lacool:iq:taskgroup:add";
+    private static final String NAME_SPACE = "lacool:iq:taskgroup:list";
     private static final int VERSION_ONE = 1;
     private IQHandlerInfo info;
     private TaskGroupManager taskGroupManager;
 
-    public IQTaskGroupAddHandler() {
+    public IQTaskGroupListHandler() {
         super(null);
         this.info = new IQHandlerInfo("lacool", NAME_SPACE);
     }
@@ -32,10 +32,10 @@ public class IQTaskGroupAddHandler extends IQHandler {
 
     @Override
     public IQ handleIQ(IQ packet) {
-        System.out.println("===lacool:iq:taskgroup:add===");
+        System.out.println("===lacool:iq:taskgroup:list===");
 
         // valid
-        if (!packet.getType().equals(IQ.Type.set)) {
+        if (!packet.getType().equals(IQ.Type.get)) {
             IQ result = IQ.createResultIQ(packet);
             result.setChildElement(packet.getChildElement().createCopy());
             result.setError(PacketError.Condition.bad_request);
@@ -44,19 +44,17 @@ public class IQTaskGroupAddHandler extends IQHandler {
 
         // xml reader
         Element lacoolElement = packet.getChildElement();
-        TaskGroup taskGroup = TaskGroupAddXmlReader.getTaskGroup(lacoolElement);
-        taskGroup.setVersion(VERSION_ONE);
-        Date now = new Date(System.currentTimeMillis());
-        taskGroup.setCreate_date(now);
-        taskGroup.setModify_date(now);
+        int roomid = TaskGroupListXmlReader.getRoomid(lacoolElement);
+        System.out.println("roomid:" + roomid);
 
         // persistent to db
-        taskGroup = taskGroupManager.add(taskGroup);
+        List<TaskGroup> list = taskGroupManager.list(roomid);
+        System.out.println("list:" + list);
 
         // output
         IQ reply = IQ.createResultIQ(packet);
         reply.setType(IQ.Type.result);
-        Element reasonElement = TaskGroupAddXmlWriter.write(taskGroup, NAME_SPACE);
+        Element reasonElement = TaskGroupListXmlWriter.write(list, NAME_SPACE);
         reply.setChildElement(reasonElement);
 
         return reply;

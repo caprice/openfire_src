@@ -3,6 +3,8 @@ package wetodo.manager;
 import wetodo.dao.TaskGroupDAO;
 import wetodo.model.TaskGroup;
 
+import java.util.List;
+
 public class TaskGroupManager {
     /**
      * Singleton: keep a static reference to teh only instance
@@ -19,7 +21,11 @@ public class TaskGroupManager {
         return instance;
     }
 
-    public void add(TaskGroup taskGroup) {
-        TaskGroupDAO.add(taskGroup);
+    public TaskGroup add(TaskGroup taskGroup) {
+        return TaskGroupDAO.add(taskGroup);
+    }
+
+    public List<TaskGroup> list(int roomid) {
+        return TaskGroupDAO.list(roomid);
     }
 }
