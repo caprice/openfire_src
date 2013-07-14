@@ -14,7 +14,7 @@ public class TaskGroupListXmlWriter {
 
         for (TaskGroup taskGroup : list) {
             Element taskgroupElement = lacoolElement.addElement("taskgroup");
-            taskgroupElement.addAttribute("tgid", String.valueOf(taskGroup.getTgid()));
+            taskgroupElement.addAttribute("tgid", taskGroup.getTgid());
             taskgroupElement.addAttribute("name", taskGroup.getName());
             taskgroupElement.addAttribute("roomid", String.valueOf(taskGroup.getRoomid()));
             taskgroupElement.addAttribute("version", String.valueOf(taskGroup.getVersion()));

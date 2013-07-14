@@ -4,18 +4,40 @@ import java.sql.Date;
 
 public class TaskGroup {
 
-    private int tgid;
+    private int id;
+    private String tgid;
     private int roomid;
     private String name;
     private int version;
     private Date create_date;
     private Date modify_date;
 
-    public int getTgid() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "TaskGroup{" +
+                "id=" + id +
+                ", tgid='" + tgid + '\'' +
+                ", roomid=" + roomid +
+                ", name='" + name + '\'' +
+                ", version=" + version +
+                ", create_date=" + create_date +
+                ", modify_date=" + modify_date +
+                '}';
+    }
+
+    public String getTgid() {
         return tgid;
     }
 
-    public void setTgid(int tgid) {
+    public void setTgid(String tgid) {
         this.tgid = tgid;
     }
 

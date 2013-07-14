@@ -9,10 +9,12 @@ public class TaskGroupAddXmlReader {
         int roomid = Integer.parseInt(lacoolElement.attribute("roomid").getValue());
 
         Element itemElement = lacoolElement.element("item");
+        String tgid = itemElement.attribute("tgid").getValue();
         String taskGroupName = itemElement.attribute("name").getValue();
 
         TaskGroup taskGroup = new TaskGroup();
         taskGroup.setRoomid(roomid);
+        taskGroup.setTgid(tgid);
         taskGroup.setName(taskGroupName);
 
         return taskGroup;
