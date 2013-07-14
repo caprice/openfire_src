@@ -28,4 +28,8 @@ public class TaskGroupManager {
     public List<TaskGroup> list(int roomid) {
         return TaskGroupDAO.list(roomid);
     }
+
+    public TaskGroup find(String tgid) {
+        return TaskGroupDAO.find(tgid);
+    }
 }
