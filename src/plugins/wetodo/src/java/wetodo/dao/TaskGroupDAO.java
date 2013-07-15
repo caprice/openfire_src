@@ -14,6 +14,7 @@ public class TaskGroupDAO {
     private static final String INSERT_TASKGROUP = "INSERT INTO wtdTaskGroup (id, tgid, roomid, name, version, create_date, modify_date) VALUES (null, ?, ?, ?, ?, ?, ?)";
     private static final String LIST_TASKGROUP = "SELECT * from wtdTaskGroup where roomid = ?";
     private static final String FIND_TASKGROUP = "SELECT * from wtdTaskGroup where tgid = ?";
+    private static final String UPDATE_VERSION = "UPDATE wtdTaskGroup set version = version + 1 where tgid = ?";
 
     public static TaskGroup add(TaskGroup taskGroup) {
         Connection con = null;
@@ -97,6 +98,21 @@ public class TaskGroupDAO {
             return null;
         } catch (SQLException sqle) {
             return null;
+        } finally {
+            DbConnectionManager.closeConnection(pstmt, con);
+        }
+    }
+
+    public static void updateVersion(String tgid) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+            con = DbConnectionManager.getConnection();
+            pstmt = con.prepareStatement(UPDATE_VERSION);
+            pstmt.setString(1, tgid);
+            pstmt.executeUpdate();
+        } catch (SQLException sqle) {
+            // Log error
         } finally {
             DbConnectionManager.closeConnection(pstmt, con);
         }

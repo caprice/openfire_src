@@ -13,6 +13,7 @@ import java.util.List;
 public class TaskDAO {
     private static final String LIST_TASK_ALL = "SELECT * from wtdTask where roomid = ?";
     private static final String LIST_TASK = "SELECT * from wtdTask where roomid = ? and tgid = ?";
+    private static final String INSERT_TASK = "INSERT INTO wtdTask (id, tid, tgid, roomid, name, status, create_date, modify_date) values (null, ?, ?, ?, ?, ?, ?, ?)";
 
     public static List<Task> list_all(int roomid) {
         Connection con = null;
@@ -69,6 +70,37 @@ public class TaskDAO {
             }
             return list;
         } catch (SQLException sqle) {
+            return null;
+        } finally {
+            DbConnectionManager.closeConnection(pstmt, con);
+        }
+    }
+
+    public static Task add(Task task) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+            con = DbConnectionManager.getConnection();
+            pstmt = con.prepareStatement(INSERT_TASK);
+            pstmt.setString(1, task.getTid());
+            pstmt.setString(2, task.getTgid());
+            pstmt.setInt(3, task.getRoomid());
+            pstmt.setString(4, task.getName());
+            pstmt.setInt(5, task.getStatus());
+            pstmt.setDate(6, task.getCreate_date());
+            pstmt.setDate(7, task.getModify_date());
+            pstmt.executeUpdate();
+
+            ResultSet keys = pstmt.getGeneratedKeys();
+            if (keys.next()) {
+                task.setId(keys.getInt(1));
+                return task;
+            } else {
+                return null;
+            }
+
+        } catch (SQLException sqle) {
+            // Log error
             return null;
         } finally {
             DbConnectionManager.closeConnection(pstmt, con);

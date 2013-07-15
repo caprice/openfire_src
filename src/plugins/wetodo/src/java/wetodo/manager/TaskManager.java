@@ -1,9 +1,13 @@
 package wetodo.manager;
 
 import wetodo.dao.TaskDAO;
+import wetodo.dao.TaskGroupDAO;
 import wetodo.model.Task;
+import wetodo.model.TaskGroup;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TaskManager {
     /**
@@ -27,5 +31,16 @@ public class TaskManager {
 
     public List<Task> list(int roomid, String tgid) {
         return TaskDAO.list(roomid, tgid);
+    }
+
+    public Map<String, Object> add(Task task) {
+        task = TaskDAO.add(task);
+        TaskGroupDAO.updateVersion(task.getTgid());
+        TaskGroup taskGroup = TaskGroupDAO.find(task.getTgid());
+
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        resultMap.put("task", task);
+        resultMap.put("taskgroup", taskGroup);
+        return resultMap;
     }
 }
