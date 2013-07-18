@@ -11,9 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskDAO {
-    private static final String LIST_TASK_ALL = "SELECT * from wtdTask where roomid = ?";
-    private static final String LIST_TASK = "SELECT * from wtdTask where roomid = ? and tgid = ?";
-    private static final String INSERT_TASK = "INSERT INTO wtdTask (id, tid, tgid, roomid, name, status, create_date, modify_date) values (null, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String LIST_TASK_ALL = "SELECT * FROM wtdTask WHERE roomid = ?";
+    private static final String LIST_TASK = "SELECT * FROM wtdTask WHERE roomid = ? and tgid = ?";
+    private static final String INSERT_TASK = "INSERT INTO wtdTask (id, tid, tgid, roomid, name, status, create_date, modify_date) VALUES (null, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String MODIFY_TASK = "UPDATE wtdTask SET name = ?, modify_date = ? WHERE tid = ? AND tgid = ? AND roomid = ?";
+    private static final String FIND_TASK = "SELECT * FROM wtdTask WHERE tid = ?";
+    private static final String DEL_TASK = "DELETE FROM wtdTask WHERE tid = ?";
 
     public static List<Task> list_all(int roomid) {
         Connection con = null;
@@ -102,6 +105,75 @@ public class TaskDAO {
         } catch (SQLException sqle) {
             // Log error
             return null;
+        } finally {
+            DbConnectionManager.closeConnection(pstmt, con);
+        }
+    }
+
+    public static boolean modify(Task task) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+            con = DbConnectionManager.getConnection();
+            pstmt = con.prepareStatement(MODIFY_TASK);
+            pstmt.setString(1, task.getName());
+            pstmt.setDate(2, task.getModify_date());
+            pstmt.setString(3, task.getTid());
+            pstmt.setString(4, task.getTgid());
+            pstmt.setInt(5, task.getRoomid());
+            pstmt.executeUpdate();
+
+            return true;
+        } catch (SQLException sqle) {
+            // Log error
+            return false;
+        } finally {
+            DbConnectionManager.closeConnection(pstmt, con);
+        }
+    }
+
+    public static Task find(String tid) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+            con = DbConnectionManager.getConnection();
+            pstmt = con.prepareStatement(FIND_TASK);
+            pstmt.setString(1, tid);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                Task task = new Task();
+                task.setId(rs.getInt(1));
+                task.setTid(rs.getString(2));
+                task.setTgid(rs.getString(3));
+                task.setRoomid(rs.getInt(4));
+                task.setName(rs.getString(5));
+                task.setStatus(rs.getInt(6));
+                task.setCreate_date(rs.getDate(7));
+                task.setModify_date(rs.getDate(8));
+                return task;
+            }
+            return null;
+        } catch (SQLException sqle) {
+            return null;
+        } finally {
+            DbConnectionManager.closeConnection(pstmt, con);
+        }
+    }
+
+    public static boolean del(String tid) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+            con = DbConnectionManager.getConnection();
+            pstmt = con.prepareStatement(DEL_TASK);
+            pstmt.setString(1, tid);
+            pstmt.executeUpdate();
+
+            return true;
+        } catch (SQLException sqle) {
+            // Log error
+            return false;
         } finally {
             DbConnectionManager.closeConnection(pstmt, con);
         }

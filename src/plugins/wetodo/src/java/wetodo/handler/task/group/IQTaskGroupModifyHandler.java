@@ -1,4 +1,4 @@
-package wetodo.handler.task;
+package wetodo.handler.task.group;
 
 import org.dom4j.Element;
 import org.jivesoftware.openfire.IQHandlerInfo;
@@ -7,22 +7,20 @@ import org.jivesoftware.openfire.handler.IQHandler;
 import org.xmpp.packet.IQ;
 import org.xmpp.packet.PacketError;
 import wetodo.manager.TaskGroupManager;
-import wetodo.manager.TaskManager;
-import wetodo.model.Task;
 import wetodo.model.TaskGroup;
-import wetodo.xml.task.TaskDelXmlReader;
-import wetodo.xml.task.TaskDelXmlWriter;
+import wetodo.xml.task.group.TaskGroupModifyXmlReader;
+import wetodo.xml.task.group.TaskGroupModifyXmlWriter;
 
-import java.util.Map;
+import java.sql.Date;
 
-public class IQTaskDelHandler extends IQHandler {
-    private static final String NAME_SPACE = "lacool:iq:task:delete";
+public class IQTaskGroupModifyHandler extends IQHandler {
+
+    private static final String NAME_SPACE = "lacool:iq:taskgroup:modify";
     private static final int VERSION_ONE = 1;
     private IQHandlerInfo info;
     private TaskGroupManager taskGroupManager;
-    private TaskManager taskManager;
 
-    public IQTaskDelHandler() {
+    public IQTaskGroupModifyHandler() {
         super(null);
         this.info = new IQHandlerInfo("lacool", NAME_SPACE);
     }
@@ -34,7 +32,7 @@ public class IQTaskDelHandler extends IQHandler {
 
     @Override
     public IQ handleIQ(IQ packet) {
-        System.out.println("===lacool:iq:task:delete===");
+        System.out.println("===lacool:iq:taskgroup:modify===");
 
         // valid
         if (!packet.getType().equals(IQ.Type.set)) {
@@ -46,16 +44,18 @@ public class IQTaskDelHandler extends IQHandler {
 
         // xml reader
         Element lacoolElement = packet.getChildElement();
-        Task task = TaskDelXmlReader.getTask(lacoolElement);
+        TaskGroup taskGroup = TaskGroupModifyXmlReader.getTaskGroup(lacoolElement);
+        Date now = new Date(System.currentTimeMillis());
+        taskGroup.setModify_date(now);
 
         // persistent to db
-        Map resultMap = taskManager.del(task);
-        TaskGroup taskGroup = (TaskGroup) resultMap.get("taskgroup");
+        taskGroupManager.modify(taskGroup);
+        taskGroup = taskGroupManager.find(taskGroup.getTgid());
 
         // output
         IQ reply = IQ.createResultIQ(packet);
         reply.setType(IQ.Type.result);
-        Element reasonElement = TaskDelXmlWriter.write(task, taskGroup, NAME_SPACE);
+        Element reasonElement = TaskGroupModifyXmlWriter.write(taskGroup, NAME_SPACE);
         reply.setChildElement(reasonElement);
 
         return reply;
@@ -65,6 +65,6 @@ public class IQTaskDelHandler extends IQHandler {
     public void initialize(XMPPServer server) {
         super.initialize(server);
         taskGroupManager = TaskGroupManager.getInstance();
-        taskManager = TaskManager.getInstance();
     }
+
 }

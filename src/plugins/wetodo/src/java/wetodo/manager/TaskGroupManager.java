@@ -32,4 +32,12 @@ public class TaskGroupManager {
     public TaskGroup find(String tgid) {
         return TaskGroupDAO.find(tgid);
     }
+
+    public boolean modify(TaskGroup taskGroup) {
+        return TaskGroupDAO.modify(taskGroup);
+    }
+
+    public boolean del(String tgid) {
+        return TaskGroupDAO.del(tgid);
+    }
 }

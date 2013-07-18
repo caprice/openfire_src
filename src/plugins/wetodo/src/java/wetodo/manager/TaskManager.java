@@ -43,4 +43,26 @@ public class TaskManager {
         resultMap.put("taskgroup", taskGroup);
         return resultMap;
     }
+
+    public Map<String, Object> modify(Task task) {
+        TaskDAO.modify(task);
+        task = TaskDAO.find(task.getTid());
+        TaskGroupDAO.updateVersion(task.getTgid());
+        TaskGroup taskGroup = TaskGroupDAO.find(task.getTgid());
+
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        resultMap.put("task", task);
+        resultMap.put("taskgroup", taskGroup);
+        return resultMap;
+    }
+
+    public Map<String, Object> del(Task task) {
+        TaskDAO.del(task.getTid());
+        TaskGroupDAO.updateVersion(task.getTgid());
+        TaskGroup taskGroup = TaskGroupDAO.find(task.getTgid());
+
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        resultMap.put("taskgroup", taskGroup);
+        return resultMap;
+    }
 }

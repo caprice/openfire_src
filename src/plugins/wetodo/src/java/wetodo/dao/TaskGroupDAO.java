@@ -15,6 +15,8 @@ public class TaskGroupDAO {
     private static final String LIST_TASKGROUP = "SELECT * from wtdTaskGroup where roomid = ?";
     private static final String FIND_TASKGROUP = "SELECT * from wtdTaskGroup where tgid = ?";
     private static final String UPDATE_VERSION = "UPDATE wtdTaskGroup set version = version + 1 where tgid = ?";
+    private static final String MODIFY_TASKGROUP = "UPDATE wtdTaskGroup set name = ?, version = version + 1, modify_date = ? where tgid = ? and roomid = ?";
+    private static final String DEL_TASKGROUP = "DELETE from wtdTaskGroup where tgid = ?";
 
     public static TaskGroup add(TaskGroup taskGroup) {
         Connection con = null;
@@ -113,6 +115,47 @@ public class TaskGroupDAO {
             pstmt.executeUpdate();
         } catch (SQLException sqle) {
             // Log error
+        } finally {
+            DbConnectionManager.closeConnection(pstmt, con);
+        }
+    }
+
+    public static boolean modify(TaskGroup taskGroup) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+            con = DbConnectionManager.getConnection();
+            pstmt = con.prepareStatement(MODIFY_TASKGROUP);
+            pstmt.setString(1, taskGroup.getName());
+            pstmt.setDate(2, taskGroup.getModify_date());
+            pstmt.setString(3, taskGroup.getTgid());
+            pstmt.setInt(4, taskGroup.getRoomid());
+            pstmt.executeUpdate();
+
+            return true;
+
+        } catch (SQLException sqle) {
+            // Log error
+            return false;
+        } finally {
+            DbConnectionManager.closeConnection(pstmt, con);
+        }
+    }
+
+    public static boolean del(String tgid) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+            con = DbConnectionManager.getConnection();
+            pstmt = con.prepareStatement(DEL_TASKGROUP);
+            pstmt.setString(1, tgid);
+            pstmt.executeUpdate();
+
+            return true;
+
+        } catch (SQLException sqle) {
+            // Log error
+            return false;
         } finally {
             DbConnectionManager.closeConnection(pstmt, con);
         }
