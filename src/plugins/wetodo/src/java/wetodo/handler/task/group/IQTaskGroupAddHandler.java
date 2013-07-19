@@ -11,7 +11,7 @@ import wetodo.model.TaskGroup;
 import wetodo.xml.task.group.TaskGroupAddXmlReader;
 import wetodo.xml.task.group.TaskGroupAddXmlWriter;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class IQTaskGroupAddHandler extends IQHandler {
 
@@ -46,7 +46,7 @@ public class IQTaskGroupAddHandler extends IQHandler {
         Element lacoolElement = packet.getChildElement();
         TaskGroup taskGroup = TaskGroupAddXmlReader.getTaskGroup(lacoolElement);
         taskGroup.setVersion(VERSION_ONE);
-        Date now = new Date(System.currentTimeMillis());
+        Timestamp now = new Timestamp(System.currentTimeMillis());
         taskGroup.setCreate_date(now);
         taskGroup.setModify_date(now);
 
@@ -56,7 +56,7 @@ public class IQTaskGroupAddHandler extends IQHandler {
         // output
         IQ reply = IQ.createResultIQ(packet);
         reply.setType(IQ.Type.result);
-        Element reasonElement = TaskGroupAddXmlWriter.write(taskGroup, NAME_SPACE);
+        Element reasonElement = TaskGroupAddXmlWriter.write(taskGroup.getRoomid(), taskGroup, NAME_SPACE);
         reply.setChildElement(reasonElement);
 
         return reply;

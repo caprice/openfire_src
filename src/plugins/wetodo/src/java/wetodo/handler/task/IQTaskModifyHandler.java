@@ -13,7 +13,7 @@ import wetodo.model.TaskGroup;
 import wetodo.xml.task.TaskModifyXmlReader;
 import wetodo.xml.task.TaskModifyXmlWriter;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Map;
 
 public class IQTaskModifyHandler extends IQHandler {
@@ -48,7 +48,7 @@ public class IQTaskModifyHandler extends IQHandler {
         // xml reader
         Element lacoolElement = packet.getChildElement();
         Task task = TaskModifyXmlReader.getTask(lacoolElement);
-        Date now = new Date(System.currentTimeMillis());
+        Timestamp now = new Timestamp(System.currentTimeMillis());
         task.setModify_date(now);
 
         // persistent to db

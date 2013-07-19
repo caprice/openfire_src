@@ -45,16 +45,14 @@ public class IQTaskGroupListHandler extends IQHandler {
         // xml reader
         Element lacoolElement = packet.getChildElement();
         int roomid = TaskGroupListXmlReader.getRoomid(lacoolElement);
-        System.out.println("roomid:" + roomid);
 
         // persistent to db
         List<TaskGroup> list = taskGroupManager.list(roomid);
-        System.out.println("list:" + list);
 
         // output
         IQ reply = IQ.createResultIQ(packet);
         reply.setType(IQ.Type.result);
-        Element reasonElement = TaskGroupListXmlWriter.write(list, NAME_SPACE);
+        Element reasonElement = TaskGroupListXmlWriter.write(roomid, list, NAME_SPACE);
         reply.setChildElement(reasonElement);
 
         return reply;

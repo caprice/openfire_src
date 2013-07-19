@@ -50,7 +50,7 @@ public class IQTaskGroupDelHandler extends IQHandler {
         // output
         IQ reply = IQ.createResultIQ(packet);
         reply.setType(IQ.Type.result);
-        Element reasonElement = TaskGroupDelXmlWriter.write(taskGroup, NAME_SPACE);
+        Element reasonElement = TaskGroupDelXmlWriter.write(taskGroup.getRoomid(), taskGroup, NAME_SPACE);
         reply.setChildElement(reasonElement);
 
         return reply;

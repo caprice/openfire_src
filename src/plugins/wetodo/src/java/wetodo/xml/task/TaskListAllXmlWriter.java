@@ -6,6 +6,7 @@ import wetodo.manager.TaskGroupManager;
 import wetodo.model.Task;
 import wetodo.model.TaskGroup;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +19,8 @@ public class TaskListAllXmlWriter {
 
         Map<String, TaskGroup> mapTaskGroup = new HashMap<String, TaskGroup>();
         Map<String, List<Task>> mapTaskList = new HashMap<String, List<Task>>();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         for (Task task : list) {
             String tgid = task.getTgid();
@@ -40,21 +43,23 @@ public class TaskListAllXmlWriter {
 
             TaskGroup taskGroup = mapTaskGroup.get(tgid);
 
-            Element taskGroupElement = lacoolElement.addElement("taskgroup");
+            Element taskGroupElement = lacoolElement.addElement("taskgroup", namespace);
             taskGroupElement.addAttribute("tgid", taskGroup.getTgid());
             taskGroupElement.addAttribute("roomid", String.valueOf(taskGroup.getRoomid()));
             taskGroupElement.addAttribute("version", String.valueOf(taskGroup.getVersion()));
-            taskGroupElement.addAttribute("create_date", taskGroup.getCreate_date().toString());
-            taskGroupElement.addAttribute("modify_date", taskGroup.getModify_date().toString());
+
+            taskGroupElement.addAttribute("create_date", sdf.format(taskGroup.getCreate_date()));
+            taskGroupElement.addAttribute("modify_date", sdf.format(taskGroup.getModify_date()));
 
             for (Task task : taskList) {
-                Element taskElement = taskGroupElement.addElement("task");
+                Element taskElement = taskGroupElement.addElement("task", namespace);
                 taskElement.addAttribute("tid", task.getTid());
                 taskElement.addAttribute("roomid", String.valueOf(task.getRoomid()));
                 taskElement.addAttribute("name", task.getName());
                 taskElement.addAttribute("status", String.valueOf(task.getStatus()));
-                taskElement.addAttribute("create_date", taskGroup.getCreate_date().toString());
-                taskElement.addAttribute("modify_date", taskGroup.getModify_date().toString());
+
+                taskElement.addAttribute("create_date", sdf.format(task.getCreate_date()));
+                taskElement.addAttribute("modify_date", sdf.format(task.getModify_date()));
             }
 
         }

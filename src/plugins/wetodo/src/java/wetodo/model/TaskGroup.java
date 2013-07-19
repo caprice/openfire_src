@@ -1,6 +1,6 @@
 package wetodo.model;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class TaskGroup {
 
@@ -9,8 +9,8 @@ public class TaskGroup {
     private int roomid;
     private String name;
     private int version;
-    private Date create_date;
-    private Date modify_date;
+    private Timestamp create_date;
+    private Timestamp modify_date;
 
     public int getId() {
         return id;
@@ -65,19 +65,19 @@ public class TaskGroup {
         this.version = version;
     }
 
-    public Date getCreate_date() {
+    public Timestamp getCreate_date() {
         return create_date;
     }
 
-    public void setCreate_date(Date create_date) {
+    public void setCreate_date(Timestamp create_date) {
         this.create_date = create_date;
     }
 
-    public Date getModify_date() {
+    public Timestamp getModify_date() {
         return modify_date;
     }
 
-    public void setModify_date(Date modify_date) {
+    public void setModify_date(Timestamp modify_date) {
         this.modify_date = modify_date;
     }
 }

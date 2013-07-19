@@ -28,8 +28,8 @@ public class TaskGroupDAO {
             pstmt.setInt(2, taskGroup.getRoomid());
             pstmt.setString(3, taskGroup.getName());
             pstmt.setInt(4, taskGroup.getVersion());
-            pstmt.setDate(5, taskGroup.getCreate_date());
-            pstmt.setDate(6, taskGroup.getModify_date());
+            pstmt.setTimestamp(5, taskGroup.getCreate_date());
+            pstmt.setTimestamp(6, taskGroup.getModify_date());
             pstmt.executeUpdate();
 
             ResultSet keys = pstmt.getGeneratedKeys();
@@ -64,10 +64,9 @@ public class TaskGroupDAO {
                 taskGroup.setRoomid(rs.getInt(3));
                 taskGroup.setName(rs.getString(4));
                 taskGroup.setVersion(rs.getInt(5));
-                taskGroup.setCreate_date(rs.getDate(6));
-                taskGroup.setModify_date(rs.getDate(7));
+                taskGroup.setCreate_date(rs.getTimestamp(6));
+                taskGroup.setModify_date(rs.getTimestamp(7));
                 list.add(taskGroup);
-                System.out.println(taskGroup.toString());
             }
             return list;
         } catch (SQLException sqle) {
@@ -93,8 +92,8 @@ public class TaskGroupDAO {
                 taskGroup.setRoomid(rs.getInt(3));
                 taskGroup.setName(rs.getString(4));
                 taskGroup.setVersion(rs.getInt(5));
-                taskGroup.setCreate_date(rs.getDate(6));
-                taskGroup.setModify_date(rs.getDate(7));
+                taskGroup.setCreate_date(rs.getTimestamp(6));
+                taskGroup.setModify_date(rs.getTimestamp(7));
                 return taskGroup;
             }
             return null;
@@ -127,7 +126,7 @@ public class TaskGroupDAO {
             con = DbConnectionManager.getConnection();
             pstmt = con.prepareStatement(MODIFY_TASKGROUP);
             pstmt.setString(1, taskGroup.getName());
-            pstmt.setDate(2, taskGroup.getModify_date());
+            pstmt.setTimestamp(2, taskGroup.getModify_date());
             pstmt.setString(3, taskGroup.getTgid());
             pstmt.setInt(4, taskGroup.getRoomid());
             pstmt.executeUpdate();

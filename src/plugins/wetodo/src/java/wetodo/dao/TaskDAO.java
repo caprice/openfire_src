@@ -35,8 +35,8 @@ public class TaskDAO {
                 task.setRoomid(rs.getInt(4));
                 task.setName(rs.getString(5));
                 task.setStatus(rs.getInt(6));
-                task.setCreate_date(rs.getDate(7));
-                task.setModify_date(rs.getDate(8));
+                task.setCreate_date(rs.getTimestamp(7));
+                task.setModify_date(rs.getTimestamp(8));
 
                 list.add(task);
             }
@@ -66,8 +66,8 @@ public class TaskDAO {
                 task.setRoomid(rs.getInt(4));
                 task.setName(rs.getString(5));
                 task.setStatus(rs.getInt(6));
-                task.setCreate_date(rs.getDate(7));
-                task.setModify_date(rs.getDate(8));
+                task.setCreate_date(rs.getTimestamp(7));
+                task.setModify_date(rs.getTimestamp(8));
 
                 list.add(task);
             }
@@ -90,8 +90,8 @@ public class TaskDAO {
             pstmt.setInt(3, task.getRoomid());
             pstmt.setString(4, task.getName());
             pstmt.setInt(5, task.getStatus());
-            pstmt.setDate(6, task.getCreate_date());
-            pstmt.setDate(7, task.getModify_date());
+            pstmt.setTimestamp(6, task.getCreate_date());
+            pstmt.setTimestamp(7, task.getModify_date());
             pstmt.executeUpdate();
 
             ResultSet keys = pstmt.getGeneratedKeys();
@@ -117,7 +117,7 @@ public class TaskDAO {
             con = DbConnectionManager.getConnection();
             pstmt = con.prepareStatement(MODIFY_TASK);
             pstmt.setString(1, task.getName());
-            pstmt.setDate(2, task.getModify_date());
+            pstmt.setTimestamp(2, task.getModify_date());
             pstmt.setString(3, task.getTid());
             pstmt.setString(4, task.getTgid());
             pstmt.setInt(5, task.getRoomid());
@@ -149,8 +149,8 @@ public class TaskDAO {
                 task.setRoomid(rs.getInt(4));
                 task.setName(rs.getString(5));
                 task.setStatus(rs.getInt(6));
-                task.setCreate_date(rs.getDate(7));
-                task.setModify_date(rs.getDate(8));
+                task.setCreate_date(rs.getTimestamp(7));
+                task.setModify_date(rs.getTimestamp(8));
                 return task;
             }
             return null;

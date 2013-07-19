@@ -20,8 +20,11 @@ import org.xmpp.packet.JID;
 import org.xmpp.packet.Message;
 import org.xmpp.packet.PacketExtension;
 import org.xmpp.packet.Presence;
+import wetodo.handler.task.*;
 import wetodo.handler.task.group.IQTaskGroupAddHandler;
+import wetodo.handler.task.group.IQTaskGroupDelHandler;
 import wetodo.handler.task.group.IQTaskGroupListHandler;
+import wetodo.handler.task.group.IQTaskGroupModifyHandler;
 
 import java.io.File;
 import java.sql.Connection;
@@ -52,8 +55,18 @@ public class WetodoPlugin implements Plugin {
 
         // router
         IQRouter iqRouter = server.getIQRouter();
+        // TaskGroup
         iqRouter.addHandler(new IQTaskGroupAddHandler());
         iqRouter.addHandler(new IQTaskGroupListHandler());
+        iqRouter.addHandler(new IQTaskGroupModifyHandler());
+        iqRouter.addHandler(new IQTaskGroupDelHandler());
+        // Task
+        iqRouter.addHandler(new IQTaskAddHandler());
+        iqRouter.addHandler(new IQTaskDelHandler());
+        iqRouter.addHandler(new IQTaskListHandler());
+        iqRouter.addHandler(new IQTaskListAllHandler());
+        iqRouter.addHandler(new IQTaskModifyHandler());
+
     }
 
     public void LeaveGroups(JID userJid) {

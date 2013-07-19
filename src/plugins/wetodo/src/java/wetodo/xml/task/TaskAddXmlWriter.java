@@ -5,12 +5,14 @@ import org.dom4j.Element;
 import wetodo.model.Task;
 import wetodo.model.TaskGroup;
 
+import java.text.SimpleDateFormat;
+
 public class TaskAddXmlWriter {
     public static Element write(Task task, TaskGroup taskGroup, String namespace) {
         Element lacoolElement = DocumentHelper.createElement("lacool");
         lacoolElement.addNamespace("", namespace);
 
-        Element taskgroupElement = lacoolElement.addElement("taskgroup");
+        Element taskgroupElement = lacoolElement.addElement("taskgroup", namespace);
         taskgroupElement.addAttribute("tgid", String.valueOf(taskGroup.getTgid()));
         taskgroupElement.addAttribute("version", String.valueOf(taskGroup.getVersion()));
 
@@ -18,8 +20,10 @@ public class TaskAddXmlWriter {
         taskElement.addAttribute("tid", task.getTid());
         taskElement.addAttribute("name", task.getName());
         taskElement.addAttribute("status", String.valueOf(task.getStatus()));
-        taskElement.addAttribute("create_date", task.getCreate_date().toString());
-        taskElement.addAttribute("modify_date", task.getModify_date().toString());
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        taskElement.addAttribute("create_date", sdf.format(task.getCreate_date()));
+        taskElement.addAttribute("modify_date", sdf.format(task.getModify_date()));
         return lacoolElement;
     }
 }

@@ -10,7 +10,7 @@ public class TaskDelXmlWriter {
         Element lacoolElement = DocumentHelper.createElement("lacool");
         lacoolElement.addNamespace("", namespace);
 
-        Element taskgroupElement = lacoolElement.addElement("taskgroup");
+        Element taskgroupElement = lacoolElement.addElement("taskgroup", namespace);
         taskgroupElement.addAttribute("tgid", String.valueOf(taskGroup.getTgid()));
         taskgroupElement.addAttribute("version", String.valueOf(taskGroup.getVersion()));
 
