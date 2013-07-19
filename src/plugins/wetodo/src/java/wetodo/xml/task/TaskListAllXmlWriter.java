@@ -13,9 +13,10 @@ import java.util.List;
 import java.util.Map;
 
 public class TaskListAllXmlWriter {
-    public static Element write(List<Task> list, String namespace) {
+    public static Element write(int roomid, List<Task> list, String namespace) {
         Element lacoolElement = DocumentHelper.createElement("lacool");
         lacoolElement.addNamespace("", namespace);
+        lacoolElement.addAttribute("roomid", String.valueOf(roomid));
 
         Map<String, TaskGroup> mapTaskGroup = new HashMap<String, TaskGroup>();
         Map<String, List<Task>> mapTaskList = new HashMap<String, List<Task>>();

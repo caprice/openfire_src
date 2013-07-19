@@ -1,59 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3678de82-c18c-4a06-ae1f-5bb821fecd27" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/task/IQTaskCompleteHandler.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/task/IQTaskQueryHandler.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/task/IQTaskAddHandler.java" afterPath="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/task/IQTaskAddHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/task/IQTaskModifyHandler.java" afterPath="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/task/IQTaskModifyHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/model/Task.java" afterPath="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/model/Task.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/dao/TaskDAO.java" afterPath="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/dao/TaskDAO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/TaskDelXmlWriter.java" afterPath="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/TaskDelXmlWriter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/model/TaskGroup.java" afterPath="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/model/TaskGroup.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/group/TaskGroupAddXmlReader.java" afterPath="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/group/TaskGroupAddXmlReader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="3678de82-c18c-4a06-ae1f-5bb821fecd27" name="Default" comment="" />
     <ignored path="openfire_src.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374260021471" ignored="false" />
     <file path="/MUCPersistenceManager.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1372486743065" ignored="false" />
     <file path="/WetodoPlugin.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374263558087" ignored="false" />
     <file path="/plugin.xml" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1372445304949" ignored="false" />
-    <file path="/fragment.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374168432156" ignored="false" />
+    <file path="/fragment.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374265601563" ignored="false" />
     <file path="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/wetodo/manager/group/TodoManager.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1372788061665" ignored="false" />
     <file path="$PROJECT_DIR$/../openfire_client/src/wetodo/TodoGroup.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374265244137" ignored="false" />
     <file path="/IQGroupAddHandler.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1373068621701" ignored="false" />
     <file path="/IQTaskGroupAddHandler.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374264854962" ignored="false" />
     <file path="/TodoGroup.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374265243784" ignored="false" />
-    <file path="/TaskGroup.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374261612288" ignored="false" />
+    <file path="/TaskGroup.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374268157639" ignored="false" />
     <file path="/TaskGroupManager.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374166632379" ignored="false" />
     <file path="/TaskGroupAddXmlReader.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374260103456" ignored="false" />
-    <file path="/Task.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374261716696" ignored="false" />
+    <file path="/Task.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374268547808" ignored="false" />
     <file path="/TaskGroupAddXmlWriter.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374264883426" ignored="false" />
     <file path="/TaskGroupDAO.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374261783866" ignored="false" />
     <file path="/TaskGroupListXmlReader.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1373568003826" ignored="false" />
     <file path="/IQTaskGroupListHandler.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374265009627" ignored="false" />
     <file path="/TaskGroupListXmlWriter.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374264901822" ignored="false" />
     <file path="$PROJECT_DIR$/../openfire_client/src/wetodo/Login.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1373769343039" ignored="false" />
-    <file path="/IQTaskListHandler.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1373787103254" ignored="false" />
+    <file path="/IQTaskListHandler.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374265534739" ignored="false" />
     <file path="/TaskListXmlReader.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1373782044658" ignored="false" />
     <file path="/TaskManager.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374168384416" ignored="false" />
     <file path="/TaskDAO.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374261865445" ignored="false" />
-    <file path="/TaskListXmlWriter.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1373792964969" ignored="false" />
+    <file path="/TaskListXmlWriter.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374265546887" ignored="false" />
     <file path="/a.dummy" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1373788033721" ignored="false" />
-    <file path="/IQTaskListAllHandler.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1373788222833" ignored="false" />
-    <file path="/TaskListAllXmlWriter.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374264139975" ignored="false" />
-    <file path="/IQTaskAddHandler.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374261926684" ignored="false" />
+    <file path="/IQTaskListAllHandler.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374265508497" ignored="false" />
+    <file path="/TaskListAllXmlWriter.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374265520717" ignored="false" />
+    <file path="/IQTaskAddHandler.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374265415493" ignored="false" />
     <file path="/TaskAddXmlReader.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1373906566829" ignored="false" />
-    <file path="/TaskAddXmlWriter.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374264048672" ignored="false" />
+    <file path="/TaskAddXmlWriter.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374265457978" ignored="false" />
     <file path="/IQTaskGroupModifyHandler.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374265034902" ignored="false" />
     <file path="/TaskGroupModifyXmlReader.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374160379945" ignored="false" />
-    <file path="/IQTaskModifyHandler.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374261961162" ignored="false" />
+    <file path="/IQTaskModifyHandler.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374265565007" ignored="false" />
     <file path="/IQTaskGroupDelHandler.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374264942865" ignored="false" />
     <file path="/TaskGroupDelXmlReader.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374166528571" ignored="false" />
-    <file path="/IQTaskDelHandler.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374168407453" ignored="false" />
+    <file path="/IQTaskDelHandler.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374265472833" ignored="false" />
     <file path="/TaskGroupDelXmlWriter.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374264989448" ignored="false" />
     <file path="/TaskGroupModifyXmlWriter.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374265080294" ignored="false" />
+    <file path="/TaskDelXmlWriter.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374265494228" ignored="false" />
+    <file path="/TaskModifyXmlWriter.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374265584983" ignored="false" />
+    <file path="$PROJECT_DIR$/../openfire_client/src/wetodo/Task.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374268548126" ignored="false" />
+    <file path="$PROJECT_DIR$/../openfire_client/src/wetodo/TaskGroup.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374268157951" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +118,26 @@
     </favorites_list>
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="IQTaskListHandler.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/task/IQTaskListHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="38" column="15" selection-start="1111" selection-end="1111" vertical-scroll-proportion="0.6918819">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WetodoPlugin.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/WetodoPlugin.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="65" column="42" selection-start="2817" selection-end="2817" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -143,22 +155,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/task/IQTaskAddHandler.java" />
-        <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/task/IQTaskModifyHandler.java" />
-        <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/dao/TaskGroupDAO.java" />
-        <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/WetodoPlugin.java" />
-        <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/TaskAddXmlWriter.java" />
-        <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/TaskListAllXmlWriter.java" />
-        <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/TaskListXmlWriter.java" />
-        <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/TaskModifyXmlWriter.java" />
-        <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/task/group/IQTaskGroupAddHandler.java" />
-        <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/group/TaskGroupAddXmlWriter.java" />
         <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/group/TaskGroupListXmlWriter.java" />
         <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/task/group/IQTaskGroupDelHandler.java" />
         <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/group/TaskGroupDelXmlWriter.java" />
         <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/task/group/IQTaskGroupListHandler.java" />
         <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/task/group/IQTaskGroupModifyHandler.java" />
         <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/group/TaskGroupModifyXmlWriter.java" />
+        <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/task/IQTaskAddHandler.java" />
+        <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/TaskAddXmlWriter.java" />
+        <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/task/IQTaskDelHandler.java" />
+        <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/TaskDelXmlWriter.java" />
+        <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/task/IQTaskListAllHandler.java" />
+        <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/TaskListAllXmlWriter.java" />
+        <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/task/IQTaskListHandler.java" />
+        <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/TaskListXmlWriter.java" />
+        <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/task/IQTaskModifyHandler.java" />
+        <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/TaskModifyXmlWriter.java" />
       </list>
     </option>
   </component>
@@ -356,32 +368,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="openfire_src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wetodo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="task" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="group" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -539,7 +525,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1280" height="690" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -553,7 +539,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959481" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28768232" sideWeight="0.67017543" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28768232" sideWeight="0.67017543" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -627,85 +613,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/WetodoPlugin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="29" selection-start="2294" selection-end="2294" vertical-scroll-proportion="0.34026465">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/TaskAddXmlWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="83" selection-start="1182" selection-end="1182" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/TaskDelXmlWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="13" selection-start="156" selection-end="156" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/group/TaskGroupAddXmlReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="13" selection-start="103" selection-end="103" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/TaskListXmlWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="75" selection-start="524" selection-end="524" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/TaskModifyXmlWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="7" selection-start="952" selection-end="952" vertical-scroll-proportion="0.4913295">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/TaskListAllXmlWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="91" selection-start="2721" selection-end="2721" vertical-scroll-proportion="0.8034682">
-          <folding>
-            <element signature="e#684#704#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/group/TaskGroupListXmlReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="13" selection-start="72" selection-end="72" vertical-scroll-proportion="0.11070111">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/group/TaskGroupAddXmlWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="68" selection-start="473" selection-end="473" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/group/TaskGroupDelXmlWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="65" selection-start="434" selection-end="434" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/group/TaskGroupListXmlWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="26" selection-start="247" selection-end="247" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/task/group/IQTaskGroupListHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="50" column="0" selection-start="1586" selection-end="1586" vertical-scroll-proportion="0.0">
@@ -737,6 +644,85 @@
     <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/task/group/IQTaskGroupAddHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="58" column="57" selection-start="1935" selection-end="1935" vertical-scroll-proportion="0.80258304">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/task/IQTaskAddHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="62" column="52" selection-start="2037" selection-end="2037" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/task/IQTaskDelHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="52" selection-start="1836" selection-end="1836" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/TaskAddXmlWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="68" selection-start="498" selection-end="498" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/TaskDelXmlWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="42" selection-start="217" selection-end="217" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/TaskListAllXmlWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="42" selection-start="396" selection-end="396" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#766#786#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/TaskListXmlWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="8" selection-start="468" selection-end="468" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/task/IQTaskModifyHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="52" selection-start="2027" selection-end="2027" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/task/TaskModifyXmlWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="8" selection-start="441" selection-end="441" vertical-scroll-proportion="0.22140221">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/task/IQTaskListAllHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="55" column="56" selection-start="1774" selection-end="1774" vertical-scroll-proportion="0.47416973">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/WetodoPlugin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="42" selection-start="2817" selection-end="2817" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/task/IQTaskListHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="15" selection-start="1111" selection-end="1111" vertical-scroll-proportion="0.6918819">
           <folding />
         </state>
       </provider>

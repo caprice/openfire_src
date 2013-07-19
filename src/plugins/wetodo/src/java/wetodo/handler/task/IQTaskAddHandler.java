@@ -60,7 +60,7 @@ public class IQTaskAddHandler extends IQHandler {
         // output
         IQ reply = IQ.createResultIQ(packet);
         reply.setType(IQ.Type.result);
-        Element reasonElement = TaskAddXmlWriter.write(task, taskGroup, NAME_SPACE);
+        Element reasonElement = TaskAddXmlWriter.write(task.getRoomid(), task, taskGroup, NAME_SPACE);
         reply.setChildElement(reasonElement);
 
         return reply;

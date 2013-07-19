@@ -9,9 +9,10 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class TaskListXmlWriter {
-    public static Element write(List<Task> list, TaskGroup taskGroup, String namespace) {
+    public static Element write(int roomid, List<Task> list, TaskGroup taskGroup, String namespace) {
         Element lacoolElement = DocumentHelper.createElement("lacool");
         lacoolElement.addNamespace("", namespace);
+        lacoolElement.addAttribute("roomid", String.valueOf(roomid));
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 

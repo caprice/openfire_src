@@ -8,9 +8,10 @@ import wetodo.model.TaskGroup;
 import java.text.SimpleDateFormat;
 
 public class TaskAddXmlWriter {
-    public static Element write(Task task, TaskGroup taskGroup, String namespace) {
+    public static Element write(int roomid, Task task, TaskGroup taskGroup, String namespace) {
         Element lacoolElement = DocumentHelper.createElement("lacool");
         lacoolElement.addNamespace("", namespace);
+        lacoolElement.addAttribute("roomid", String.valueOf(roomid));
 
         Element taskgroupElement = lacoolElement.addElement("taskgroup", namespace);
         taskgroupElement.addAttribute("tgid", String.valueOf(taskGroup.getTgid()));
