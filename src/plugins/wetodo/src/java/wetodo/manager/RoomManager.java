@@ -21,8 +21,8 @@ public class RoomManager {
         return instance;
     }
 
-    public static List<Room> list(String username) {
-        return RoomDAO.list(username);
+    public static List<Room> list(String jid) {
+        return RoomDAO.list(jid);
     }
 
 }

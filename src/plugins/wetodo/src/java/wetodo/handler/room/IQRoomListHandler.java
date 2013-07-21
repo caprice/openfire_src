@@ -5,7 +5,6 @@ import org.jivesoftware.openfire.IQHandlerInfo;
 import org.jivesoftware.openfire.XMPPServer;
 import org.jivesoftware.openfire.handler.IQHandler;
 import org.jivesoftware.openfire.session.ClientSession;
-import org.jivesoftware.openfire.user.UserNotFoundException;
 import org.xmpp.packet.IQ;
 import org.xmpp.packet.PacketError;
 import wetodo.manager.RoomManager;
@@ -43,21 +42,15 @@ public class IQRoomListHandler extends IQHandler {
 
         // xml reader
         ClientSession session = sessionManager.getSession(packet.getFrom());
-        String username = null;
-        try {
-            username = session.getUsername();
-            System.out.println(username);
-        } catch (UserNotFoundException e) {
-            e.printStackTrace();
-        }
+        String jid = session.getAddress().toBareJID();
 
         // persistent to db
-        List<Room> list = roomManager.list(username);
+        List<Room> list = roomManager.list(jid);
 
         // output
         IQ reply = IQ.createResultIQ(packet);
         reply.setType(IQ.Type.result);
-        Element reasonElement = RoomListXmlWriter.write(NAME_SPACE);
+        Element reasonElement = RoomListXmlWriter.write(list, NAME_SPACE);
         reply.setChildElement(reasonElement);
 
         return reply;

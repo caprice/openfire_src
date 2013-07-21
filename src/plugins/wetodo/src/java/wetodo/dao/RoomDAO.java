@@ -3,31 +3,31 @@ package wetodo.dao;
 import org.jivesoftware.database.DbConnectionManager;
 import wetodo.model.Room;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class RoomDAO {
-    private static final String LIST_ROOM = "SELECT * FROM ofMucMember WHERE jid = ?";
+    private static final String LIST_ROOM = "select r.roomID,m.jid,r.name,r.description,r.creationDate from ofMucRoom r,(select jid,roomID from ofMucMember union ALL SELECT jid,roomid from ofMucAffiliation) m where r.roomId = m.roomid and m.jid = ?";
 
-    public static List<Room> list(String username) {
+    public static List<Room> list(String jid) {
+        System.out.println(jid);
         Connection con = null;
         PreparedStatement pstmt = null;
         try {
             con = DbConnectionManager.getConnection();
             pstmt = con.prepareStatement(LIST_ROOM);
-            pstmt.setString(1, username);
+            pstmt.setString(1, jid);
+            System.out.println(pstmt);
             ResultSet rs = pstmt.executeQuery();
             List<Room> list = new ArrayList<Room>();
             while (rs.next()) {
                 Room room = new Room();
-                room.setJid(rs.getInt(1));
-                room.setSubject(rs.getString(2));
-                room.setDescription(rs.getString(3));
-                room.setCreationdate(rs.getTimestamp(4));
+                room.setRoomid(rs.getInt(1));
+                room.setJid(rs.getString(2));
+                room.setSubject(rs.getString(3));
+                room.setDescription(rs.getString(4));
+                room.setCreationdate(new Timestamp(Long.parseLong(rs.getString(5))));
 
                 list.add(room);
             }

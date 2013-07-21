@@ -3,25 +3,26 @@ package wetodo.model;
 import java.sql.Timestamp;
 
 public class Room {
-    private int jid;
+    private int roomid;
+    private String jid;
     private String subject;
     private String description;
     private Timestamp creationdate;
 
-    public Timestamp getCreationdate() {
-        return creationdate;
+    public int getRoomid() {
+        return roomid;
     }
 
-    public void setCreationdate(Timestamp creationdate) {
-        this.creationdate = creationdate;
+    public void setRoomid(int roomid) {
+        this.roomid = roomid;
     }
 
-    public String getDescription() {
-        return description;
+    public String getJid() {
+        return jid;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setJid(String jid) {
+        this.jid = jid;
     }
 
     public String getSubject() {
@@ -32,12 +33,19 @@ public class Room {
         this.subject = subject;
     }
 
-    public int getJid() {
-        return jid;
+    public String getDescription() {
+        return description;
     }
 
-    public void setJid(int jid) {
-        this.jid = jid;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
+    public Timestamp getCreationdate() {
+        return creationdate;
+    }
+
+    public void setCreationdate(Timestamp creationdate) {
+        this.creationdate = creationdate;
+    }
 }
