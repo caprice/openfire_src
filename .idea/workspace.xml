@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3678de82-c18c-4a06-ae1f-5bb821fecd27" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/account/AccountRegisterXmlReader.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/account/code/CodeSendXmlReader.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/account/code/IQCodeSendHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/room/IQRoomListHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/WetodoPlugin.java" afterPath="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/WetodoPlugin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="3678de82-c18c-4a06-ae1f-5bb821fecd27" name="Default" comment="" />
     <ignored path="openfire_src.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374260021471" ignored="false" />
     <file path="/MUCPersistenceManager.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1372486743065" ignored="false" />
-    <file path="/WetodoPlugin.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374391963314" ignored="false" />
+    <file path="/WetodoPlugin.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374424946845" ignored="false" />
     <file path="/plugin.xml" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1372445304949" ignored="false" />
-    <file path="/fragment.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374400707717" ignored="false" />
+    <file path="/fragment.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374425326982" ignored="false" />
     <file path="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/wetodo/manager/group/TodoManager.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1372788061665" ignored="false" />
     <file path="$PROJECT_DIR$/../openfire_client/src/wetodo/TodoGroup.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374265244137" ignored="false" />
     <file path="/IQGroupAddHandler.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1373068621701" ignored="false" />
@@ -67,6 +60,10 @@
     <file path="/RoomManager.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374400111214" ignored="false" />
     <file path="/RoomDAO.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374400553395" ignored="false" />
     <file path="/Room.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374400432649" ignored="false" />
+    <file path="$PROJECT_DIR$/../openfire_client/src/wetodo/Code.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374425301058" ignored="false" />
+    <file path="/Code.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374425300441" ignored="false" />
+    <file path="$PROJECT_DIR$/../openfire_client/src/wetodo/Account.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374426755770" ignored="false" />
+    <file path="/Account.java" changelist="3678de82-c18c-4a06-ae1f-5bb821fecd27" time="1374426717482" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +135,35 @@
     </favorites_list>
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="WetodoPlugin.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/WetodoPlugin.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="28" selection-start="1160" selection-end="1160" vertical-scroll-proportion="0.41512915">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IQAccountRegisterHandler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/account/IQAccountRegisterHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="49" column="12" selection-start="1816" selection-end="1816" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IQRegisterHandler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/org/jivesoftware/openfire/handler/IQRegisterHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="86" column="36" selection-start="3473" selection-end="3473" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -156,7 +181,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/account/code/CodeValidateXmlReader.java" />
         <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/manager/CodeManager.java" />
         <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/account/code/CodeValidateXmlWriter.java" />
         <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/account/code/IQCodeValidateHandler.java" />
@@ -172,6 +196,7 @@
         <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/muc/IQMucListHandler.java" />
         <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/room/IQMucListHandler.java" />
         <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/room/IQRoomListHandler.java" />
+        <option value="$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/WetodoPlugin.java" />
       </list>
     </option>
   </component>
@@ -296,6 +321,84 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="wetodo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="openfire_src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wetodo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="handler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="openfire_src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wetodo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="handler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="account" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="openfire_src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wetodo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="handler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="account" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="code" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -471,7 +574,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959481" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28768232" sideWeight="0.67017543" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28768232" sideWeight="0.67017543" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -544,13 +647,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/account/code/CodeValidateXmlReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="30" selection-start="455" selection-end="455" vertical-scroll-proportion="0.35977858">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/xml/account/AccountRegisterXmlReader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="28" column="47" selection-start="1031" selection-end="1031" vertical-scroll-proportion="0.0">
@@ -581,13 +677,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/account/IQAccountRegisterHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="44" selection-start="2057" selection-end="2057" vertical-scroll-proportion="0.63653135">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/java/org/jivesoftware/openfire/user/UserManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="54" column="13" selection-start="1768" selection-end="1768" vertical-scroll-proportion="0.31758034">
@@ -605,13 +694,6 @@
     <entry file="file://$PROJECT_DIR$/src/java/org/jivesoftware/openfire/muc/spi/IQMUCRegisterHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="117" column="18" selection-start="4772" selection-end="4772" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/org/jivesoftware/openfire/handler/IQRegisterHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="167" column="76" selection-start="7034" selection-end="7034" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -658,6 +740,27 @@
     <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/room/IQRoomListHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="26" column="12" selection-start="832" selection-end="832" vertical-scroll-proportion="0.38745388">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/org/jivesoftware/openfire/handler/IQRegisterHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="86" column="36" selection-start="3473" selection-end="3473" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/handler/account/IQAccountRegisterHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="12" selection-start="1816" selection-end="1816" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugins/wetodo/src/java/wetodo/WetodoPlugin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="28" selection-start="1160" selection-end="1160" vertical-scroll-proportion="0.41512915">
           <folding />
         </state>
       </provider>

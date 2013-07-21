@@ -4,6 +4,9 @@ import org.jivesoftware.openfire.IQRouter;
 import org.jivesoftware.openfire.XMPPServer;
 import org.jivesoftware.openfire.container.Plugin;
 import org.jivesoftware.openfire.container.PluginManager;
+import wetodo.handler.account.IQAccountRegisterHandler;
+import wetodo.handler.account.code.IQCodeSendHandler;
+import wetodo.handler.account.code.IQCodeValidateHandler;
 import wetodo.handler.task.*;
 import wetodo.handler.task.group.IQTaskGroupAddHandler;
 import wetodo.handler.task.group.IQTaskGroupDelHandler;
@@ -28,6 +31,11 @@ public class WetodoPlugin implements Plugin {
         iqRouter.addHandler(new IQTaskListHandler());
         iqRouter.addHandler(new IQTaskListAllHandler());
         iqRouter.addHandler(new IQTaskModifyHandler());
+        // Code
+        iqRouter.addHandler(new IQCodeSendHandler());
+        iqRouter.addHandler(new IQCodeValidateHandler());
+        // Account
+        iqRouter.addHandler(new IQAccountRegisterHandler());
     }
 
     public void destroyPlugin() {
