@@ -11,7 +11,7 @@ import wetodo.xml.account.code.CodeValidateXmlReader;
 import wetodo.xml.account.code.CodeValidateXmlWriter;
 
 public class IQCodeValidateHandler extends IQHandler {
-    private static final String NAME_SPACE = "lacool:iq:code:validate";
+    private static final String NAME_SPACE = "lacool:register:verify:auth_code";
     private IQHandlerInfo info;
     private CodeManager codeManager;
 
@@ -27,7 +27,7 @@ public class IQCodeValidateHandler extends IQHandler {
 
     @Override
     public IQ handleIQ(IQ packet) {
-        System.out.println("===lacool:iq:code:validate===");
+        System.out.println("===lacool:register:verify:auth_code===");
 
         // valid
         if (!packet.getType().equals(IQ.Type.get)) {

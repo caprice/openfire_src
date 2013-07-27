@@ -15,7 +15,7 @@ import java.sql.Timestamp;
 
 public class IQTaskGroupAddHandler extends IQHandler {
 
-    private static final String NAME_SPACE = "lacool:iq:taskgroup:add";
+    private static final String NAME_SPACE = "lacool:todo:add:group";
     private static final int VERSION_ONE = 1;
     private IQHandlerInfo info;
     private TaskGroupManager taskGroupManager;
@@ -32,7 +32,7 @@ public class IQTaskGroupAddHandler extends IQHandler {
 
     @Override
     public IQ handleIQ(IQ packet) {
-        System.out.println("===lacool:iq:taskgroup:add===");
+        System.out.println("===lacool:todo:add:group===");
 
         // valid
         if (!packet.getType().equals(IQ.Type.set)) {

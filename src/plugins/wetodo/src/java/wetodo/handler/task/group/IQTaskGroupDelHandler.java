@@ -13,7 +13,7 @@ import wetodo.xml.task.group.TaskGroupDelXmlWriter;
 
 public class IQTaskGroupDelHandler extends IQHandler {
 
-    private static final String NAME_SPACE = "lacool:iq:taskgroup:delete";
+    private static final String NAME_SPACE = "lacool:todo:delete:group";
     private static final int VERSION_ONE = 1;
     private IQHandlerInfo info;
     private TaskGroupManager taskGroupManager;
@@ -30,7 +30,7 @@ public class IQTaskGroupDelHandler extends IQHandler {
 
     @Override
     public IQ handleIQ(IQ packet) {
-        System.out.println("===lacool:iq:taskgroup:delete===");
+        System.out.println("===lacool:todo:delete:group===");
 
         // valid
         if (!packet.getType().equals(IQ.Type.set)) {

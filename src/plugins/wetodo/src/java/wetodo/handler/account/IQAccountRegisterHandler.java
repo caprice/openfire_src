@@ -12,7 +12,7 @@ import wetodo.xml.account.AccountRegisterXmlReader;
 import wetodo.xml.account.AccountRegisterXmlWriter;
 
 public class IQAccountRegisterHandler extends IQHandler {
-    private static final String NAME_SPACE = "lacool:iq:account:register";
+    private static final String NAME_SPACE = "lacool:register";
     private IQHandlerInfo info;
     private AccountManager accountManager;
 
@@ -28,7 +28,7 @@ public class IQAccountRegisterHandler extends IQHandler {
 
     @Override
     public IQ handleIQ(IQ packet) {
-        System.out.println("===lacool:iq:account:register===");
+        System.out.println("===lacool:register===");
 
         // valid
         if (!packet.getType().equals(IQ.Type.set)) {

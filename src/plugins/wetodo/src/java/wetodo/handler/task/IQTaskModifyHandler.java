@@ -17,7 +17,7 @@ import java.sql.Timestamp;
 import java.util.Map;
 
 public class IQTaskModifyHandler extends IQHandler {
-    private static final String NAME_SPACE = "lacool:iq:task:modify";
+    private static final String NAME_SPACE = "lacool:todo:modify:task";
     private static final int VERSION_ONE = 1;
     private IQHandlerInfo info;
     private TaskGroupManager taskGroupManager;
@@ -35,7 +35,7 @@ public class IQTaskModifyHandler extends IQHandler {
 
     @Override
     public IQ handleIQ(IQ packet) {
-        System.out.println("===lacool:iq:task:modify===");
+        System.out.println("===lacool:todo:modify:task===");
 
         // valid
         if (!packet.getType().equals(IQ.Type.set)) {

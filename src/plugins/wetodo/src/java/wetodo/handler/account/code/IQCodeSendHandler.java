@@ -11,7 +11,7 @@ import wetodo.xml.account.code.CodeSendXmlReader;
 import wetodo.xml.account.code.CodeSendXmlWriter;
 
 public class IQCodeSendHandler extends IQHandler {
-    private static final String NAME_SPACE = "lacool:iq:code:send";
+    private static final String NAME_SPACE = "lacool:register:query:auth_code";
     private IQHandlerInfo info;
     private CodeManager codeManager;
 
@@ -27,7 +27,7 @@ public class IQCodeSendHandler extends IQHandler {
 
     @Override
     public IQ handleIQ(IQ packet) {
-        System.out.println("===lacool:iq:code:send===");
+        System.out.println("===lacool:register:query:auth_code===");
 
         // valid
         if (!packet.getType().equals(IQ.Type.get)) {

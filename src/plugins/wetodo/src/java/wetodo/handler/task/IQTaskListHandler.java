@@ -16,7 +16,7 @@ import wetodo.xml.task.TaskListXmlWriter;
 import java.util.List;
 
 public class IQTaskListHandler extends IQHandler {
-    private static final String NAME_SPACE = "lacool:iq:task:list";
+    private static final String NAME_SPACE = "lacool:todo:fetch:task_list";
     private static final int VERSION_ONE = 1;
     private IQHandlerInfo info;
     private TaskManager taskManager;
@@ -34,7 +34,7 @@ public class IQTaskListHandler extends IQHandler {
 
     @Override
     public IQ handleIQ(IQ packet) {
-        System.out.println("===lacool:iq:task:list===");
+        System.out.println("===lacool:todo:fetch:task_list===");
 
         // valid
         if (!packet.getType().equals(IQ.Type.get)) {

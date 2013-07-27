@@ -14,7 +14,7 @@ import wetodo.xml.room.RoomListXmlWriter;
 import java.util.List;
 
 public class IQRoomListHandler extends IQHandler {
-    private static final String NAME_SPACE = "lacool:iq:room:list";
+    private static final String NAME_SPACE = "lacool:muc:fetch:room_list";
     private IQHandlerInfo info;
     private RoomManager roomManager;
 
@@ -30,7 +30,7 @@ public class IQRoomListHandler extends IQHandler {
 
     @Override
     public IQ handleIQ(IQ packet) {
-        System.out.println("===lacool:iq:room:list===");
+        System.out.println("===lacool:muc:fetch:room_list===");
 
         // valid
         if (!packet.getType().equals(IQ.Type.get)) {
