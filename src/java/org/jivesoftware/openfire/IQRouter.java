@@ -113,6 +113,9 @@ public class IQRouter extends BasicModule {
             }
             else if (session == null || session.getStatus() == Session.STATUS_AUTHENTICATED || (
                     isLocalServer(to) && (
+                            "lacool:register:query:auth_code".equals(packet.getChildElement().getNamespaceURI()) ||
+                            "lacool:register:verify:auth_code".equals(packet.getChildElement().getNamespaceURI()) ||
+                            "lacool:register".equals(packet.getChildElement().getNamespaceURI()) ||
                             "jabber:iq:auth".equals(packet.getChildElement().getNamespaceURI()) ||
                                     "jabber:iq:register"
                                             .equals(packet.getChildElement().getNamespaceURI()) ||

@@ -4,6 +4,7 @@ import org.dom4j.Element;
 import org.jivesoftware.openfire.IQHandlerInfo;
 import org.jivesoftware.openfire.XMPPServer;
 import org.jivesoftware.openfire.handler.IQHandler;
+import org.jivesoftware.openfire.session.ClientSession;
 import org.jivesoftware.openfire.user.UserAlreadyExistsException;
 import org.xmpp.packet.IQ;
 import org.xmpp.packet.PacketError;
@@ -29,6 +30,8 @@ public class IQAccountRegisterHandler extends IQHandler {
     @Override
     public IQ handleIQ(IQ packet) {
         System.out.println("===lacool:register===");
+
+        ClientSession session = sessionManager.getSession(packet.getFrom());
 
         // valid
         if (!packet.getType().equals(IQ.Type.set)) {
@@ -59,6 +62,7 @@ public class IQAccountRegisterHandler extends IQHandler {
         Element reasonElement = AccountRegisterXmlWriter.write(NAME_SPACE);
         reply.setChildElement(reasonElement);
 
+        session.process(reply);
         return reply;
     }
 

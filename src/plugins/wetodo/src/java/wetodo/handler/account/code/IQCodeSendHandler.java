@@ -4,6 +4,7 @@ import org.dom4j.Element;
 import org.jivesoftware.openfire.IQHandlerInfo;
 import org.jivesoftware.openfire.XMPPServer;
 import org.jivesoftware.openfire.handler.IQHandler;
+import org.jivesoftware.openfire.session.ClientSession;
 import org.xmpp.packet.IQ;
 import org.xmpp.packet.PacketError;
 import wetodo.manager.CodeManager;
@@ -29,6 +30,8 @@ public class IQCodeSendHandler extends IQHandler {
     public IQ handleIQ(IQ packet) {
         System.out.println("===lacool:register:query:auth_code===");
 
+        ClientSession session = sessionManager.getSession(packet.getFrom());
+
         // valid
         if (!packet.getType().equals(IQ.Type.get)) {
             IQ result = IQ.createResultIQ(packet);
@@ -50,6 +53,7 @@ public class IQCodeSendHandler extends IQHandler {
         Element reasonElement = CodeSendXmlWriter.write(NAME_SPACE);
         reply.setChildElement(reasonElement);
 
+        session.process(reply);
         return reply;
     }
 
