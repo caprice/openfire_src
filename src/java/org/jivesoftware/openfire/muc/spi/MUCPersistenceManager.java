@@ -341,6 +341,7 @@ public class MUCPersistenceManager {
                 pstmt.setInt(15, (room.canChangeNickname() ? 1 : 0));
                 pstmt.setInt(16, (room.isRegistrationEnabled() ? 1 : 0));
                 pstmt.setLong(17, room.getID());
+                System.out.println(pstmt);
                 pstmt.executeUpdate();
             } else {
                 pstmt = con.prepareStatement(ADD_ROOM);
