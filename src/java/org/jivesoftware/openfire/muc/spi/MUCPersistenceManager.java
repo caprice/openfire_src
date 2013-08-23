@@ -373,9 +373,11 @@ public class MUCPersistenceManager {
                 pstmt.setInt(22, (room.isLoginRestrictedToNickname() ? 1 : 0));
                 pstmt.setInt(23, (room.canChangeNickname() ? 1 : 0));
                 pstmt.setInt(24, (room.isRegistrationEnabled() ? 1 : 0));
+                System.out.println(pstmt);
                 pstmt.executeUpdate();
             }
         } catch (SQLException sqle) {
+            System.out.println(sqle.getMessage());
             Log.error(sqle.getMessage(), sqle);
         } finally {
             DbConnectionManager.closeConnection(pstmt, con);
