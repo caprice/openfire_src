@@ -46,7 +46,6 @@ public class IQRoomListHandler extends IQHandler {
 
         // persistent to db
         List<Room> list = roomManager.list(jid);
-
         // output
         IQ reply = IQ.createResultIQ(packet);
         reply.setType(IQ.Type.result);
