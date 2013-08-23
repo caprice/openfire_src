@@ -317,6 +317,7 @@ public class MUCPersistenceManager {
      * @param room The room to save its configuration.
      */
     public static void saveToDB(LocalMUCRoom room) {
+        System.out.println("=== saveToDB ===");
         Connection con = null;
         PreparedStatement pstmt = null;
         try {
