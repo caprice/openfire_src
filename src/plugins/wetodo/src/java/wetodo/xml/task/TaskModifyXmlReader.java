@@ -6,7 +6,7 @@ import wetodo.model.Task;
 public class TaskModifyXmlReader {
 
     public static Task getTask(Element lacoolElement) {
-        int roomid = Integer.parseInt(lacoolElement.attribute("roomid").getValue());
+        String roomid = lacoolElement.attribute("roomid").getValue();
 
         Element taskGroupElement = lacoolElement.element("taskgroup");
         String tgid = taskGroupElement.attribute("tgid").getValue();

@@ -4,8 +4,8 @@ import org.dom4j.Element;
 
 public class TaskListXmlReader {
 
-    public static int getRoomid(Element lacoolElement) {
-        int roomid = Integer.parseInt(lacoolElement.attribute("roomid").getValue());
+    public static String getRoomid(Element lacoolElement) {
+        String roomid = lacoolElement.attribute("roomid").getValue();
         return roomid;
     }
 

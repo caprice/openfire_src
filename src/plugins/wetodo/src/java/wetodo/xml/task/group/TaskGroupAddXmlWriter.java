@@ -8,10 +8,10 @@ import java.text.SimpleDateFormat;
 
 public class TaskGroupAddXmlWriter {
 
-    public static Element write(int roomid, TaskGroup taskGroup, String namespace) {
+    public static Element write(String roomid, TaskGroup taskGroup, String namespace) {
         Element lacoolElement = DocumentHelper.createElement("lacool");
         lacoolElement.addNamespace("", namespace);
-        lacoolElement.addAttribute("roomid", String.valueOf(roomid));
+        lacoolElement.addAttribute("roomid", roomid);
 
         Element taskgroupElement = lacoolElement.addElement("taskgroup", namespace);
         taskgroupElement.addAttribute("tgid", String.valueOf(taskGroup.getTgid()));

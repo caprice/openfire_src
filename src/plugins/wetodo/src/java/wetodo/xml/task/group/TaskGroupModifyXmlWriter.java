@@ -8,15 +8,15 @@ import java.text.SimpleDateFormat;
 
 public class TaskGroupModifyXmlWriter {
 
-    public static Element write(int roomid, TaskGroup taskGroup, String namespace) {
+    public static Element write(String roomid, TaskGroup taskGroup, String namespace) {
         Element lacoolElement = DocumentHelper.createElement("lacool");
         lacoolElement.addNamespace("", namespace);
-        lacoolElement.addAttribute("roomid", String.valueOf(roomid));
+        lacoolElement.addAttribute("roomid", roomid);
 
         Element taskgroupElement = lacoolElement.addElement("taskgroup", namespace);
         taskgroupElement.addAttribute("tgid", String.valueOf(taskGroup.getTgid()));
         taskgroupElement.addAttribute("name", taskGroup.getName());
-        taskgroupElement.addAttribute("roomid", String.valueOf(taskGroup.getRoomid()));
+        taskgroupElement.addAttribute("roomid", taskGroup.getRoomid());
         taskgroupElement.addAttribute("version", String.valueOf(taskGroup.getVersion()));
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

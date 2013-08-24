@@ -13,10 +13,10 @@ import java.util.List;
 import java.util.Map;
 
 public class TaskListAllXmlWriter {
-    public static Element write(int roomid, List<Task> list, String namespace) {
+    public static Element write(String roomid, List<Task> list, String namespace) {
         Element lacoolElement = DocumentHelper.createElement("lacool");
         lacoolElement.addNamespace("", namespace);
-        lacoolElement.addAttribute("roomid", String.valueOf(roomid));
+        lacoolElement.addAttribute("roomid", roomid);
 
         Map<String, TaskGroup> mapTaskGroup = new HashMap<String, TaskGroup>();
         Map<String, List<Task>> mapTaskList = new HashMap<String, List<Task>>();
@@ -46,7 +46,7 @@ public class TaskListAllXmlWriter {
 
             Element taskGroupElement = lacoolElement.addElement("taskgroup", namespace);
             taskGroupElement.addAttribute("tgid", taskGroup.getTgid());
-            taskGroupElement.addAttribute("roomid", String.valueOf(taskGroup.getRoomid()));
+            taskGroupElement.addAttribute("roomid", taskGroup.getRoomid());
             taskGroupElement.addAttribute("version", String.valueOf(taskGroup.getVersion()));
 
             taskGroupElement.addAttribute("create_date", sdf.format(taskGroup.getCreate_date()));
@@ -55,7 +55,7 @@ public class TaskListAllXmlWriter {
             for (Task task : taskList) {
                 Element taskElement = taskGroupElement.addElement("task", namespace);
                 taskElement.addAttribute("tid", task.getTid());
-                taskElement.addAttribute("roomid", String.valueOf(task.getRoomid()));
+                taskElement.addAttribute("roomid", task.getRoomid());
                 taskElement.addAttribute("name", task.getName());
                 taskElement.addAttribute("status", String.valueOf(task.getStatus()));
 

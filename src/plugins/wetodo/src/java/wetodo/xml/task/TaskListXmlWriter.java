@@ -9,16 +9,16 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class TaskListXmlWriter {
-    public static Element write(int roomid, List<Task> list, TaskGroup taskGroup, String namespace) {
+    public static Element write(String roomid, List<Task> list, TaskGroup taskGroup, String namespace) {
         Element lacoolElement = DocumentHelper.createElement("lacool");
         lacoolElement.addNamespace("", namespace);
-        lacoolElement.addAttribute("roomid", String.valueOf(roomid));
+        lacoolElement.addAttribute("roomid", roomid);
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         Element taskGroupElement = lacoolElement.addElement("taskgroup", namespace);
         taskGroupElement.addAttribute("tgid", taskGroup.getTgid());
-        taskGroupElement.addAttribute("roomid", String.valueOf(taskGroup.getRoomid()));
+        taskGroupElement.addAttribute("roomid", taskGroup.getRoomid());
         taskGroupElement.addAttribute("version", String.valueOf(taskGroup.getVersion()));
 
         taskGroupElement.addAttribute("create_date", sdf.format(taskGroup.getCreate_date()));
@@ -27,7 +27,7 @@ public class TaskListXmlWriter {
         for (Task task : list) {
             Element taskElement = taskGroupElement.addElement("task", namespace);
             taskElement.addAttribute("tid", task.getTid());
-            taskElement.addAttribute("roomid", String.valueOf(task.getRoomid()));
+            taskElement.addAttribute("roomid", task.getRoomid());
             taskElement.addAttribute("name", task.getName());
             taskElement.addAttribute("status", String.valueOf(task.getStatus()));
 

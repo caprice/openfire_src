@@ -9,10 +9,10 @@ import java.util.List;
 
 public class TaskGroupListXmlWriter {
 
-    public static Element write(int roomid, List<TaskGroup> list, String namespace) {
+    public static Element write(String roomid, List<TaskGroup> list, String namespace) {
         Element lacoolElement = DocumentHelper.createElement("lacool");
         lacoolElement.addNamespace("", namespace);
-        lacoolElement.addAttribute("roomid", String.valueOf(roomid));
+        lacoolElement.addAttribute("roomid", roomid);
 
         for (TaskGroup taskGroup : list) {
             Element taskgroupElement = lacoolElement.addElement("taskgroup", namespace);
