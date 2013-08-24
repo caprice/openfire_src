@@ -4,10 +4,19 @@ import java.sql.Timestamp;
 
 public class Room {
     private int roomid;
+    private String roomJid;
     private String jid;
     private String subject;
     private String description;
     private Timestamp creationdate;
+
+    public String getRoomJid() {
+        return roomJid;
+    }
+
+    public void setRoomJid(String roomJid) {
+        this.roomJid = roomJid;
+    }
 
     public int getRoomid() {
         return roomid;

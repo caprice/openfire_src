@@ -16,7 +16,7 @@ public class RoomListXmlWriter {
 
         for (Room room : list) {
             Element roomElement = lacoolElement.addElement("room", namespace);
-            roomElement.addAttribute("roomid", String.valueOf(room.getRoomid()));
+            roomElement.addAttribute("jid", String.valueOf(room.getRoomJid()));
 
             Element xElement = roomElement.addElement("x", "jabber:x:data");
             xElement.addAttribute("type", "result");

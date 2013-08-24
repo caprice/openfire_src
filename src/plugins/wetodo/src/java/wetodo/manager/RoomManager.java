@@ -26,13 +26,13 @@ public class RoomManager {
         return instance;
     }
 
-    public Room create(JID roomJid, JID userJid) {
+    public Room create(JID roomJid, JID userJid, String subject) {
         MultiUserChatService chatService =
                 XMPPServer.getInstance().getMultiUserChatManager().getMultiUserChatService(roomJid);
         try {
             MUCRoom room = chatService.getChatRoom(roomJid.getNode(), userJid);
             room.setPersistent(true);
-            room.setSubject(roomJid.getNode());
+            room.setSubject(subject);
             room.setMembersOnly(true);
             room.saveToDB();
             System.out.println(roomJid.toBareJID());

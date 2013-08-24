@@ -41,6 +41,8 @@ public class RoomAddXmlWriter {
         valueElement = fieldElement.addElement("value", "jabber:x:data");
         valueElement.setText(sdf.format(room.getCreationdate()));
 
+
+        System.out.println(lacoolElement);
         return lacoolElement;
     }
 
