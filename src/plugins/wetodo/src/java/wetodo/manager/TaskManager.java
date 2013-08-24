@@ -25,11 +25,11 @@ public class TaskManager {
         return instance;
     }
 
-    public List<Task> list_all(int roomid) {
+    public List<Task> list_all(String roomid) {
         return TaskDAO.list_all(roomid);
     }
 
-    public List<Task> list(int roomid, String tgid) {
+    public List<Task> list(String roomid, String tgid) {
         return TaskDAO.list(roomid, tgid);
     }
 

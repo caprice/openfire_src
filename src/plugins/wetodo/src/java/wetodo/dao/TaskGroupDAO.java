@@ -25,7 +25,7 @@ public class TaskGroupDAO {
             con = DbConnectionManager.getConnection();
             pstmt = con.prepareStatement(INSERT_TASKGROUP);
             pstmt.setString(1, taskGroup.getTgid());
-            pstmt.setInt(2, taskGroup.getRoomid());
+            pstmt.setString(2, taskGroup.getRoomid());
             pstmt.setString(3, taskGroup.getName());
             pstmt.setInt(4, taskGroup.getVersion());
             pstmt.setTimestamp(5, taskGroup.getCreate_date());
@@ -48,20 +48,20 @@ public class TaskGroupDAO {
         }
     }
 
-    public static List<TaskGroup> list(int roomid) {
+    public static List<TaskGroup> list(String roomid) {
         Connection con = null;
         PreparedStatement pstmt = null;
         try {
             con = DbConnectionManager.getConnection();
             pstmt = con.prepareStatement(LIST_TASKGROUP);
-            pstmt.setInt(1, roomid);
+            pstmt.setString(1, roomid);
             ResultSet rs = pstmt.executeQuery();
             List<TaskGroup> list = new ArrayList<TaskGroup>();
             while (rs.next()) {
                 TaskGroup taskGroup = new TaskGroup();
                 taskGroup.setId(rs.getInt(1));
                 taskGroup.setTgid(rs.getString(2));
-                taskGroup.setRoomid(rs.getInt(3));
+                taskGroup.setRoomid(rs.getString(3));
                 taskGroup.setName(rs.getString(4));
                 taskGroup.setVersion(rs.getInt(5));
                 taskGroup.setCreate_date(rs.getTimestamp(6));
@@ -89,7 +89,7 @@ public class TaskGroupDAO {
                 TaskGroup taskGroup = new TaskGroup();
                 taskGroup.setId(rs.getInt(1));
                 taskGroup.setTgid(rs.getString(2));
-                taskGroup.setRoomid(rs.getInt(3));
+                taskGroup.setRoomid(rs.getString(3));
                 taskGroup.setName(rs.getString(4));
                 taskGroup.setVersion(rs.getInt(5));
                 taskGroup.setCreate_date(rs.getTimestamp(6));
@@ -128,7 +128,7 @@ public class TaskGroupDAO {
             pstmt.setString(1, taskGroup.getName());
             pstmt.setTimestamp(2, taskGroup.getModify_date());
             pstmt.setString(3, taskGroup.getTgid());
-            pstmt.setInt(4, taskGroup.getRoomid());
+            pstmt.setString(4, taskGroup.getRoomid());
             pstmt.executeUpdate();
 
             return true;

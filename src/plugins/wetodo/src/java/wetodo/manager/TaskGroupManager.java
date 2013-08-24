@@ -25,7 +25,7 @@ public class TaskGroupManager {
         return TaskGroupDAO.add(taskGroup);
     }
 
-    public List<TaskGroup> list(int roomid) {
+    public List<TaskGroup> list(String roomid) {
         return TaskGroupDAO.list(roomid);
     }
 

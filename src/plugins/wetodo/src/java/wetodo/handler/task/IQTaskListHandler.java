@@ -46,7 +46,7 @@ public class IQTaskListHandler extends IQHandler {
 
         // xml reader
         Element lacoolElement = packet.getChildElement();
-        int roomid = TaskListXmlReader.getRoomid(lacoolElement);
+        String roomid = TaskListXmlReader.getRoomid(lacoolElement);
         String tgid = TaskListXmlReader.getTgid(lacoolElement);
 
         // persistent to db

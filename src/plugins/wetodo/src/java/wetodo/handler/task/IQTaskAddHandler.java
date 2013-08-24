@@ -58,6 +58,7 @@ public class IQTaskAddHandler extends IQHandler {
         TaskGroup taskGroup = (TaskGroup) resultMap.get("taskgroup");
 
         // output
+        System.out.println("=== output before ===");
         IQ reply = IQ.createResultIQ(packet);
         reply.setType(IQ.Type.result);
         Element reasonElement = TaskAddXmlWriter.write(task.getRoomid(), task, taskGroup, NAME_SPACE);

@@ -45,12 +45,16 @@ public class IQTaskGroupDelHandler extends IQHandler {
         TaskGroup taskGroup = TaskGroupDelXmlReader.getTaskGroup(lacoolElement);
 
         // persistent to db
+        System.out.println("=== del before ===");
         taskGroupManager.del(taskGroup.getTgid());
+        System.out.println("=== del after ===");
 
         // output
+        System.out.println("=== output before ===");
         IQ reply = IQ.createResultIQ(packet);
         reply.setType(IQ.Type.result);
         Element reasonElement = TaskGroupDelXmlWriter.write(taskGroup.getRoomid(), taskGroup, NAME_SPACE);
+        System.out.println("=== del after ===");
         reply.setChildElement(reasonElement);
 
         return reply;

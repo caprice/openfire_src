@@ -45,12 +45,13 @@ public class IQTaskListAllHandler extends IQHandler {
 
         // xml reader
         Element lacoolElement = packet.getChildElement();
-        int roomid = TaskListXmlReader.getRoomid(lacoolElement);
+        String roomid = TaskListXmlReader.getRoomid(lacoolElement);
 
         // persistent to db
         List<Task> taskList = taskManager.list_all(roomid);
 
         // output
+        System.out.println("=== output ===");
         IQ reply = IQ.createResultIQ(packet);
         reply.setType(IQ.Type.result);
         Element reasonElement = TaskListAllXmlWriter.write(roomid, taskList, NAME_SPACE);

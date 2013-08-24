@@ -18,13 +18,13 @@ public class TaskDAO {
     private static final String FIND_TASK = "SELECT * FROM wtdTask WHERE tid = ?";
     private static final String DEL_TASK = "DELETE FROM wtdTask WHERE tid = ?";
 
-    public static List<Task> list_all(int roomid) {
+    public static List<Task> list_all(String roomid) {
         Connection con = null;
         PreparedStatement pstmt = null;
         try {
             con = DbConnectionManager.getConnection();
             pstmt = con.prepareStatement(LIST_TASK_ALL);
-            pstmt.setInt(1, roomid);
+            pstmt.setString(1, roomid);
             ResultSet rs = pstmt.executeQuery();
             List<Task> list = new ArrayList<Task>();
             while (rs.next()) {
@@ -32,7 +32,7 @@ public class TaskDAO {
                 task.setId(rs.getInt(1));
                 task.setTid(rs.getString(2));
                 task.setTgid(rs.getString(3));
-                task.setRoomid(rs.getInt(4));
+                task.setRoomid(rs.getString(4));
                 task.setName(rs.getString(5));
                 task.setStatus(rs.getInt(6));
                 task.setCreate_date(rs.getTimestamp(7));
@@ -48,13 +48,13 @@ public class TaskDAO {
         }
     }
 
-    public static List<Task> list(int roomid, String tgid) {
+    public static List<Task> list(String roomid, String tgid) {
         Connection con = null;
         PreparedStatement pstmt = null;
         try {
             con = DbConnectionManager.getConnection();
             pstmt = con.prepareStatement(LIST_TASK);
-            pstmt.setInt(1, roomid);
+            pstmt.setString(1, roomid);
             pstmt.setString(2, tgid);
             ResultSet rs = pstmt.executeQuery();
             List<Task> list = new ArrayList<Task>();
@@ -63,7 +63,7 @@ public class TaskDAO {
                 task.setId(rs.getInt(1));
                 task.setTid(rs.getString(2));
                 task.setTgid(rs.getString(3));
-                task.setRoomid(rs.getInt(4));
+                task.setRoomid(rs.getString(4));
                 task.setName(rs.getString(5));
                 task.setStatus(rs.getInt(6));
                 task.setCreate_date(rs.getTimestamp(7));
@@ -87,7 +87,7 @@ public class TaskDAO {
             pstmt = con.prepareStatement(INSERT_TASK);
             pstmt.setString(1, task.getTid());
             pstmt.setString(2, task.getTgid());
-            pstmt.setInt(3, task.getRoomid());
+            pstmt.setString(3, task.getRoomid());
             pstmt.setString(4, task.getName());
             pstmt.setInt(5, task.getStatus());
             pstmt.setTimestamp(6, task.getCreate_date());
@@ -120,7 +120,7 @@ public class TaskDAO {
             pstmt.setTimestamp(2, task.getModify_date());
             pstmt.setString(3, task.getTid());
             pstmt.setString(4, task.getTgid());
-            pstmt.setInt(5, task.getRoomid());
+            pstmt.setString(5, task.getRoomid());
             pstmt.executeUpdate();
 
             return true;
@@ -146,7 +146,7 @@ public class TaskDAO {
                 task.setId(rs.getInt(1));
                 task.setTid(rs.getString(2));
                 task.setTgid(rs.getString(3));
-                task.setRoomid(rs.getInt(4));
+                task.setRoomid(rs.getString(4));
                 task.setName(rs.getString(5));
                 task.setStatus(rs.getInt(6));
                 task.setCreate_date(rs.getTimestamp(7));

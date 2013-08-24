@@ -6,7 +6,7 @@ public class TaskGroup {
 
     private int id;
     private String tgid;
-    private int roomid;
+    private String roomid;
     private String name;
     private int version;
     private Timestamp create_date;
@@ -41,11 +41,11 @@ public class TaskGroup {
         this.tgid = tgid;
     }
 
-    public int getRoomid() {
+    public String getRoomid() {
         return roomid;
     }
 
-    public void setRoomid(int roomid) {
+    public void setRoomid(String roomid) {
         this.roomid = roomid;
     }
 
