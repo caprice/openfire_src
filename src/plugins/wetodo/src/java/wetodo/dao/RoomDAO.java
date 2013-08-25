@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RoomDAO {
-    private static final String LIST_ROOM = "select r.roomID,r.roomJID,m.jid,r.name,r.description,r.creationDate from ofMucRoom r,(select jid,roomID from ofMucMember union ALL SELECT jid,roomid from ofMucAffiliation) m where r.roomId = m.roomid and m.jid = ?";
-    private static final String FIND_BY_ROOMJID = "select roomID,roomJID,name,description,creationDate from ofMucRoom where roomJID = ?";
+    private static final String LIST_ROOM = "select r.roomID,r.roomJID,m.jid,r.subject,r.description,r.creationDate from ofMucRoom r,(select jid,roomID from ofMucMember union ALL SELECT jid,roomid from ofMucAffiliation) m where r.roomId = m.roomid and m.jid = ?";
+    private static final String FIND_BY_ROOMJID = "select roomID,roomJID,subject,description,creationDate from ofMucRoom where roomJID = ?";
 
     public static List<Room> list(String jid) {
         System.out.println(jid);
