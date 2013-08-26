@@ -4,7 +4,6 @@ import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import wetodo.model.TaskGroup;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class TaskGroupListXmlWriter {
@@ -21,9 +20,8 @@ public class TaskGroupListXmlWriter {
             taskgroupElement.addAttribute("roomid", String.valueOf(taskGroup.getRoomid()));
             taskgroupElement.addAttribute("version", String.valueOf(taskGroup.getVersion()));
 
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            taskgroupElement.addAttribute("create_date", sdf.format(taskGroup.getCreate_date()));
-            taskgroupElement.addAttribute("modify_date", sdf.format(taskGroup.getModify_date()));
+            taskgroupElement.addAttribute("create_date", String.valueOf(taskGroup.getCreate_date().getTime()));
+            taskgroupElement.addAttribute("modify_date", String.valueOf(taskGroup.getModify_date().getTime()));
         }
 
         return lacoolElement;

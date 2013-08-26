@@ -6,7 +6,6 @@ import wetodo.manager.TaskGroupManager;
 import wetodo.model.Task;
 import wetodo.model.TaskGroup;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,8 +19,6 @@ public class TaskListAllXmlWriter {
 
         Map<String, TaskGroup> mapTaskGroup = new HashMap<String, TaskGroup>();
         Map<String, List<Task>> mapTaskList = new HashMap<String, List<Task>>();
-
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         for (Task task : list) {
             String tgid = task.getTgid();
@@ -49,8 +46,8 @@ public class TaskListAllXmlWriter {
             taskGroupElement.addAttribute("roomid", taskGroup.getRoomid());
             taskGroupElement.addAttribute("version", String.valueOf(taskGroup.getVersion()));
 
-            taskGroupElement.addAttribute("create_date", sdf.format(taskGroup.getCreate_date()));
-            taskGroupElement.addAttribute("modify_date", sdf.format(taskGroup.getModify_date()));
+            taskGroupElement.addAttribute("create_date", String.valueOf(taskGroup.getCreate_date().getTime()));
+            taskGroupElement.addAttribute("modify_date", String.valueOf(taskGroup.getModify_date().getTime()));
 
             for (Task task : taskList) {
                 Element taskElement = taskGroupElement.addElement("task", namespace);
@@ -59,8 +56,8 @@ public class TaskListAllXmlWriter {
                 taskElement.addAttribute("name", task.getName());
                 taskElement.addAttribute("status", String.valueOf(task.getStatus()));
 
-                taskElement.addAttribute("create_date", sdf.format(task.getCreate_date()));
-                taskElement.addAttribute("modify_date", sdf.format(task.getModify_date()));
+                taskElement.addAttribute("create_date", String.valueOf(task.getCreate_date().getTime()));
+                taskElement.addAttribute("modify_date", String.valueOf(task.getModify_date().getTime()));
             }
 
         }

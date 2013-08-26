@@ -5,7 +5,6 @@ import org.dom4j.Element;
 import wetodo.model.Task;
 import wetodo.model.TaskGroup;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class TaskListXmlWriter {
@@ -14,15 +13,13 @@ public class TaskListXmlWriter {
         lacoolElement.addNamespace("", namespace);
         lacoolElement.addAttribute("roomid", roomid);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
         Element taskGroupElement = lacoolElement.addElement("taskgroup", namespace);
         taskGroupElement.addAttribute("tgid", taskGroup.getTgid());
         taskGroupElement.addAttribute("roomid", taskGroup.getRoomid());
         taskGroupElement.addAttribute("version", String.valueOf(taskGroup.getVersion()));
 
-        taskGroupElement.addAttribute("create_date", sdf.format(taskGroup.getCreate_date()));
-        taskGroupElement.addAttribute("modify_date", sdf.format(taskGroup.getModify_date()));
+        taskGroupElement.addAttribute("create_date", String.valueOf(taskGroup.getCreate_date().getTime()));
+        taskGroupElement.addAttribute("modify_date", String.valueOf(taskGroup.getModify_date().getTime()));
 
         for (Task task : list) {
             Element taskElement = taskGroupElement.addElement("task", namespace);
@@ -31,8 +28,8 @@ public class TaskListXmlWriter {
             taskElement.addAttribute("name", task.getName());
             taskElement.addAttribute("status", String.valueOf(task.getStatus()));
 
-            taskElement.addAttribute("create_date", sdf.format(task.getCreate_date()));
-            taskElement.addAttribute("modify_date", sdf.format(task.getModify_date()));
+            taskElement.addAttribute("create_date", String.valueOf(task.getCreate_date().getTime()));
+            taskElement.addAttribute("modify_date", String.valueOf(task.getModify_date().getTime()));
         }
 
         return lacoolElement;

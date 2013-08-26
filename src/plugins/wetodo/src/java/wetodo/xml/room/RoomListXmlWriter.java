@@ -4,7 +4,6 @@ import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import wetodo.model.Room;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class RoomListXmlWriter {
@@ -12,7 +11,6 @@ public class RoomListXmlWriter {
     public static Element write(List<Room> list, String namespace) {
         Element lacoolElement = DocumentHelper.createElement("lacool");
         lacoolElement.addNamespace("", namespace);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         for (Room room : list) {
             Element roomElement = lacoolElement.addElement("room", namespace);
@@ -44,7 +42,7 @@ public class RoomListXmlWriter {
             fieldElement.addAttribute("var", "x-muc#roominfo_creationdate");
 
             valueElement = fieldElement.addElement("value", "jabber:x:data");
-            valueElement.setText(sdf.format(room.getCreationdate()));
+            valueElement.setText(String.valueOf(room.getCreationdate().getTime()));
         }
 
         return lacoolElement;
