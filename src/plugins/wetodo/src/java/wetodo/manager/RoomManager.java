@@ -1,9 +1,9 @@
 package wetodo.manager;
 
 import org.jivesoftware.openfire.XMPPServer;
-import org.jivesoftware.openfire.muc.MUCRoom;
-import org.jivesoftware.openfire.muc.MultiUserChatService;
-import org.jivesoftware.openfire.muc.NotAllowedException;
+import org.jivesoftware.openfire.muc.*;
+import org.jivesoftware.openfire.muc.spi.LocalMUCRole;
+import org.jivesoftware.openfire.muc.spi.LocalMUCRoom;
 import org.xmpp.packet.JID;
 import wetodo.dao.RoomDAO;
 import wetodo.model.Room;
@@ -49,4 +49,28 @@ public class RoomManager {
         return RoomDAO.list(jid);
     }
 
+    public void invite(JID roomJid, JID inviterJid, JID inviteeJid) {
+        try {
+            MultiUserChatService chatService =
+                    XMPPServer.getInstance().getMultiUserChatManager().getMultiUserChatService(roomJid);
+            LocalMUCRoom room = (LocalMUCRoom) chatService.getChatRoom(roomJid.getNode(), inviterJid);
+
+            LocalMUCRole role = (LocalMUCRole) room.getOccupant(inviterJid.getNode());
+            if (room.isMembersOnly()) {
+                room.addMember(inviteeJid, null, role);
+            }
+            // Send the invitation to the invitee
+            room.sendInvitation(inviteeJid,
+                    "join in", role, null);
+        } catch (NotAllowedException e) {
+            e.printStackTrace();
+        } catch (ForbiddenException e) {
+            e.printStackTrace();
+        } catch (ConflictException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 }

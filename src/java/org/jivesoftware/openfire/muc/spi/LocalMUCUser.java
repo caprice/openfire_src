@@ -97,7 +97,7 @@ public class LocalMUCUser implements MUCUser {
      * @param packetRouter the router for sending packets from this user.
      * @param jid the real address of the user
      */
-    LocalMUCUser(MultiUserChatService chatservice, PacketRouter packetRouter, JID jid) {
+    public LocalMUCUser(MultiUserChatService chatservice, PacketRouter packetRouter, JID jid) {
         this.realjid = jid;
         this.router = packetRouter;
         this.server = chatservice;

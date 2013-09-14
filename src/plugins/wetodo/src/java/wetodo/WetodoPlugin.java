@@ -8,6 +8,7 @@ import wetodo.handler.account.IQAccountRegisterHandler;
 import wetodo.handler.account.code.IQCodeSendHandler;
 import wetodo.handler.account.code.IQCodeValidateHandler;
 import wetodo.handler.room.IQRoomCreateHandler;
+import wetodo.handler.room.IQRoomInviteHandler;
 import wetodo.handler.room.IQRoomListHandler;
 import wetodo.handler.task.*;
 import wetodo.handler.task.group.IQTaskGroupAddHandler;
@@ -41,6 +42,7 @@ public class WetodoPlugin implements Plugin {
         // Room
         iqRouter.addHandler(new IQRoomListHandler());
         iqRouter.addHandler(new IQRoomCreateHandler());
+        iqRouter.addHandler(new IQRoomInviteHandler());
     }
 
     public void destroyPlugin() {
