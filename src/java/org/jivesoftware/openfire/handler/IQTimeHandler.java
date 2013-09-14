@@ -54,7 +54,7 @@ import java.util.Iterator;
  */
 public class IQTimeHandler extends IQHandler implements ServerFeaturesProvider {
 
-    // task: Make display text match the locale of user (xml:lang support)
+    // todo: Make display text match the locale of user (xml:lang support)
     private static final DateFormat DATE_FORMAT = DateFormat.getDateInstance(DateFormat.MEDIUM);
     private static final DateFormat TIME_FORMAT = DateFormat.getTimeInstance(DateFormat.LONG);
 
