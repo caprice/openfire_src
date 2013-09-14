@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="jnsapi">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/src/plugins/jingleNodes/lib/jnsapi.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
