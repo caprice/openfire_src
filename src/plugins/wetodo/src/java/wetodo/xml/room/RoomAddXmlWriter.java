@@ -9,6 +9,7 @@ public class RoomAddXmlWriter {
     public static Element write(Room room, String namespace) {
         Element lacoolElement = DocumentHelper.createElement("lacool");
         lacoolElement.addNamespace("", namespace);
+        lacoolElement.addAttribute("roomid", room.getRoomJid());
 
         Element xElement = lacoolElement.addElement("x", "jabber:x:data");
         xElement.addAttribute("type", "result");

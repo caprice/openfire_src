@@ -41,10 +41,11 @@ public class IQRoomCreateHandler extends IQHandler {
 
         // xml reader
         Element lacoolElement = packet.getChildElement();
-        String roomID = RoomAddXmlReader.getRoomId(lacoolElement);
         String subject = RoomAddXmlReader.getSubject(lacoolElement);
-        JID roomJid = new JID(roomID);
         JID userJid = packet.getFrom();
+
+        // generate room jid on server side, not client sid.
+        JID roomJid = RoomManager.getInstance().generateRoomJid(userJid);
 
         // persistent to db
         Room room = roomManager.create(roomJid, userJid, subject);
