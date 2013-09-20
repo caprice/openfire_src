@@ -8,6 +8,7 @@ import org.jivesoftware.openfire.session.ClientSession;
 import org.jivesoftware.openfire.user.UserAlreadyExistsException;
 import org.xmpp.packet.IQ;
 import org.xmpp.packet.PacketError;
+import wetodo.error.IQError;
 import wetodo.manager.AccountManager;
 import wetodo.xml.account.AccountRegisterXmlReader;
 import wetodo.xml.account.AccountRegisterXmlWriter;
@@ -38,6 +39,8 @@ public class IQAccountRegisterHandler extends IQHandler {
             IQ result = IQ.createResultIQ(packet);
             result.setChildElement(packet.getChildElement().createCopy());
             result.setError(PacketError.Condition.bad_request);
+
+            session.process(result);
             return result;
         }
 
@@ -53,7 +56,12 @@ public class IQAccountRegisterHandler extends IQHandler {
         try {
             accountManager.register(username, password, nickname, phone, authCode);
         } catch (UserAlreadyExistsException e) {
-            e.printStackTrace();
+            IQ result = IQ.createResultIQ(packet);
+            result.setType(IQ.Type.result);
+            result.setChildElement(IQError.getError(packet.getChildElement().createCopy(), IQError.Condition.username_exist));
+
+            session.process(result);
+            return result;
         }
 
         // output

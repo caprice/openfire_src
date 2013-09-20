@@ -13,7 +13,7 @@ public class IQError {
     }
 
     public enum Condition {
-        username_exist("username-exist", 2);
+        username_exist("username-exist", 100);
         private String msg;
         private int code;
 
