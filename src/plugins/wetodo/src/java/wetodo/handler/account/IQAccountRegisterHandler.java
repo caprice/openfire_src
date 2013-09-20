@@ -57,7 +57,7 @@ public class IQAccountRegisterHandler extends IQHandler {
             accountManager.register(username, password, nickname, phone, authCode);
         } catch (UserAlreadyExistsException e) {
             IQ result = IQ.createResultIQ(packet);
-            result.setType(IQ.Type.result);
+            result.setType(IQ.Type.error);
             result.setChildElement(IQError.getError(packet.getChildElement().createCopy(), IQError.Condition.username_exist));
 
             session.process(result);
