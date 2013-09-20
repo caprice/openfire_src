@@ -37,6 +37,9 @@ public class IQCodeSendHandler extends IQHandler {
             IQ result = IQ.createResultIQ(packet);
             result.setChildElement(packet.getChildElement().createCopy());
             result.setError(PacketError.Condition.bad_request);
+
+            // difference, need invoke session.process() method
+            session.process(result);
             return result;
         }
 
@@ -53,6 +56,7 @@ public class IQCodeSendHandler extends IQHandler {
         Element reasonElement = CodeSendXmlWriter.write(NAME_SPACE);
         reply.setChildElement(reasonElement);
 
+        // difference, need invoke session.process() method
         session.process(reply);
         return reply;
     }
