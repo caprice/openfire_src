@@ -9,6 +9,7 @@ public class Room {
     private String subject;
     private String description;
     private Timestamp creationdate;
+    private User owner;
 
     public String getRoomJid() {
         return roomJid;
@@ -56,5 +57,13 @@ public class Room {
 
     public void setCreationdate(Timestamp creationdate) {
         this.creationdate = creationdate;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 }
