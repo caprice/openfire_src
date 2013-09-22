@@ -4,22 +4,21 @@ import org.dom4j.Element;
 import org.jivesoftware.openfire.IQHandlerInfo;
 import org.jivesoftware.openfire.XMPPServer;
 import org.jivesoftware.openfire.handler.IQHandler;
+import org.jivesoftware.openfire.session.ClientSession;
 import org.xmpp.packet.IQ;
-import org.xmpp.packet.JID;
 import org.xmpp.packet.PacketError;
 import wetodo.manager.RoomManager;
-import wetodo.manager.UserManager;
-import wetodo.model.User;
-import wetodo.xml.room.RoomInviteXmlReader;
-import wetodo.xml.room.RoomInviteXmlWriter;
+import wetodo.model.Room;
+import wetodo.xml.room.RoomListXmlWriter;
 
-public class IQRoomInviteHandler extends IQHandler {
-    private static final String NAME_SPACE = "lacool:muc:invite:friend";
+import java.util.List;
+
+public class IQRoomMemberListHandler extends IQHandler {
+    private static final String NAME_SPACE = "lacool:muc:fetch:room_member_list";
     private IQHandlerInfo info;
     private RoomManager roomManager;
-    private UserManager userManager;
 
-    public IQRoomInviteHandler() {
+    public IQRoomMemberListHandler() {
         super(null);
         this.info = new IQHandlerInfo("lacool", NAME_SPACE);
     }
@@ -31,10 +30,10 @@ public class IQRoomInviteHandler extends IQHandler {
 
     @Override
     public IQ handleIQ(IQ packet) {
-        System.out.println("===lacool:muc:invite:friend===");
+        System.out.println("===lacool:muc:fetch:room_member_list===");
 
         // valid
-        if (!packet.getType().equals(IQ.Type.set)) {
+        if (!packet.getType().equals(IQ.Type.get)) {
             IQ result = IQ.createResultIQ(packet);
             result.setChildElement(packet.getChildElement().createCopy());
             result.setError(PacketError.Condition.bad_request);
@@ -42,21 +41,15 @@ public class IQRoomInviteHandler extends IQHandler {
         }
 
         // xml reader
-        Element lacoolElement = packet.getChildElement();
-        String roomID = RoomInviteXmlReader.getRoomId(lacoolElement);
-        JID inviteeJid = RoomInviteXmlReader.getInviteeJid(lacoolElement);
-        JID roomJid = new JID(roomID);
-        JID inviterJid = packet.getFrom();
-        String inviteeUsername = inviteeJid.getNode();
+        ClientSession session = sessionManager.getSession(packet.getFrom());
+        String jid = session.getAddress().toBareJID();
 
         // persistent to db
-        roomManager.invite(roomJid, inviterJid, inviteeJid);
-        User inviteeUser = userManager.findByUsername(inviteeUsername);
-
+        List<Room> list = roomManager.list(jid);
         // output
         IQ reply = IQ.createResultIQ(packet);
         reply.setType(IQ.Type.result);
-        Element reasonElement = RoomInviteXmlWriter.write(NAME_SPACE, inviteeUser);
+        Element reasonElement = RoomListXmlWriter.write(list, NAME_SPACE);
         reply.setChildElement(reasonElement);
 
         return reply;
@@ -66,6 +59,5 @@ public class IQRoomInviteHandler extends IQHandler {
     public void initialize(XMPPServer server) {
         super.initialize(server);
         roomManager = new RoomManager();
-        userManager = new UserManager();
     }
 }
