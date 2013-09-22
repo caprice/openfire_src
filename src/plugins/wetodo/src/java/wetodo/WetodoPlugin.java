@@ -10,6 +10,7 @@ import wetodo.handler.account.code.IQCodeValidateHandler;
 import wetodo.handler.room.IQRoomCreateHandler;
 import wetodo.handler.room.IQRoomInviteHandler;
 import wetodo.handler.room.IQRoomListHandler;
+import wetodo.handler.room.IQRoomQueryHandler;
 import wetodo.handler.task.*;
 import wetodo.handler.task.group.IQTaskGroupAddHandler;
 import wetodo.handler.task.group.IQTaskGroupDelHandler;
@@ -41,6 +42,7 @@ public class WetodoPlugin implements Plugin {
         iqRouter.addHandler(new IQAccountRegisterHandler());
         // Room
         iqRouter.addHandler(new IQRoomListHandler());
+        iqRouter.addHandler(new IQRoomQueryHandler());
         iqRouter.addHandler(new IQRoomCreateHandler());
         iqRouter.addHandler(new IQRoomInviteHandler());
     }

@@ -69,6 +69,16 @@ public class RoomManager {
     }
 
     /**
+     * 查询房间信息
+     *
+     * @param roomJid
+     * @return
+     */
+    public Room query(String roomJid) {
+        return RoomDAO.findByRoomJidDetail(roomJid);
+    }
+
+    /**
      * 邀请进入房间
      *
      * @param roomJid
