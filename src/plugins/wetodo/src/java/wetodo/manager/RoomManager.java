@@ -8,6 +8,7 @@ import org.xmpp.packet.JID;
 import wetodo.conf.MucConf;
 import wetodo.dao.RoomDAO;
 import wetodo.model.Room;
+import wetodo.model.User;
 
 import java.util.List;
 import java.util.UUID;
@@ -125,5 +126,10 @@ public class RoomManager {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public List<User> fetchMemberList(String roomId) {
+        List<User> memberList = RoomDAO.fetchMemberList(roomId);
+        return memberList;
     }
 }

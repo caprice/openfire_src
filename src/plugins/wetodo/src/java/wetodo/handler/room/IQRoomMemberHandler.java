@@ -4,21 +4,21 @@ import org.dom4j.Element;
 import org.jivesoftware.openfire.IQHandlerInfo;
 import org.jivesoftware.openfire.XMPPServer;
 import org.jivesoftware.openfire.handler.IQHandler;
-import org.jivesoftware.openfire.session.ClientSession;
 import org.xmpp.packet.IQ;
 import org.xmpp.packet.PacketError;
 import wetodo.manager.RoomManager;
-import wetodo.model.Room;
-import wetodo.xml.room.RoomListXmlWriter;
+import wetodo.model.User;
+import wetodo.xml.room.RoomMemberXmlReader;
+import wetodo.xml.room.RoomMemberXmlWriter;
 
 import java.util.List;
 
-public class IQRoomMemberListHandler extends IQHandler {
-    private static final String NAME_SPACE = "lacool:muc:fetch:room_member_list";
+public class IQRoomMemberHandler extends IQHandler {
+    private static final String NAME_SPACE = "lacool:muc:fetch:friend";
     private IQHandlerInfo info;
     private RoomManager roomManager;
 
-    public IQRoomMemberListHandler() {
+    public IQRoomMemberHandler() {
         super(null);
         this.info = new IQHandlerInfo("lacool", NAME_SPACE);
     }
@@ -30,7 +30,7 @@ public class IQRoomMemberListHandler extends IQHandler {
 
     @Override
     public IQ handleIQ(IQ packet) {
-        System.out.println("===lacool:muc:fetch:room_member_list===");
+        System.out.println("===lacool:muc:fetch:friend===");
 
         // valid
         if (!packet.getType().equals(IQ.Type.get)) {
@@ -41,15 +41,15 @@ public class IQRoomMemberListHandler extends IQHandler {
         }
 
         // xml reader
-        ClientSession session = sessionManager.getSession(packet.getFrom());
-        String jid = session.getAddress().toBareJID();
+        Element lacoolElement = packet.getChildElement();
+        String roomId = RoomMemberXmlReader.getRoomId(lacoolElement);
 
         // persistent to db
-        List<Room> list = roomManager.list(jid);
+        List<User> list = roomManager.fetchMemberList(roomId);
         // output
         IQ reply = IQ.createResultIQ(packet);
         reply.setType(IQ.Type.result);
-        Element reasonElement = RoomListXmlWriter.write(list, NAME_SPACE);
+        Element reasonElement = RoomMemberXmlWriter.write(list, NAME_SPACE);
         reply.setChildElement(reasonElement);
 
         return reply;
