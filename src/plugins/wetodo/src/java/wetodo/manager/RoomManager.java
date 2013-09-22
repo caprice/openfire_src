@@ -48,7 +48,8 @@ public class RoomManager {
             room.setSubject(subject);
             room.setMembersOnly(true);
             room.saveToDB();
-            System.out.println(roomJid.toBareJID());
+            room.unlock(room.getRole());
+
             return RoomDAO.findByRoomJidDetail(roomJid.toBareJID());
         } catch (NotAllowedException e) {
             e.printStackTrace();
