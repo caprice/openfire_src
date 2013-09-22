@@ -39,6 +39,11 @@ public class RoomAddXmlWriter {
         valueElement = fieldElement.addElement("value", "jabber:x:data");
         valueElement.setText(String.valueOf(room.getCreationdate().getTime()));
 
+        fieldElement = xElement.addElement("field", "jabber:x:data");
+        fieldElement.addAttribute("var", "muc#roominfo_ownerjid");
+
+        valueElement = fieldElement.addElement("value", "jabber:x:data");
+        valueElement.setText(String.valueOf(room.getOwner().getJID()));
 
         System.out.println(lacoolElement);
         return lacoolElement;

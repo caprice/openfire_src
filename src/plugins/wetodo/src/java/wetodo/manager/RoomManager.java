@@ -48,7 +48,7 @@ public class RoomManager {
             room.setMembersOnly(true);
             room.saveToDB();
             System.out.println(roomJid.toBareJID());
-            return RoomDAO.findByRoomJid(roomJid.toBareJID());
+            return RoomDAO.findByRoomJidDetail(roomJid.toBareJID());
         } catch (NotAllowedException e) {
             e.printStackTrace();
             return null;
