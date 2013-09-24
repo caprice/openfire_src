@@ -14,7 +14,7 @@ public class TaskDAO {
     private static final String LIST_TASK_ALL = "SELECT * FROM wtdTask WHERE roomid = ?";
     private static final String LIST_TASK = "SELECT * FROM wtdTask WHERE roomid = ? and tgid = ?";
     private static final String INSERT_TASK = "INSERT INTO wtdTask (id, tid, tgid, roomid, name, status, create_date, modify_date) VALUES (null, ?, ?, ?, ?, ?, ?, ?)";
-    private static final String MODIFY_TASK = "UPDATE wtdTask SET name = ?, modify_date = ? WHERE tid = ? AND tgid = ? AND roomid = ?";
+    private static final String MODIFY_TASK = "UPDATE wtdTask SET name = ?, modify_date = ?, status = ? WHERE tid = ? AND tgid = ? AND roomid = ?";
     private static final String FIND_TASK = "SELECT * FROM wtdTask WHERE tid = ?";
     private static final String DEL_TASK = "DELETE FROM wtdTask WHERE tid = ?";
 
@@ -118,9 +118,10 @@ public class TaskDAO {
             pstmt = con.prepareStatement(MODIFY_TASK);
             pstmt.setString(1, task.getName());
             pstmt.setTimestamp(2, task.getModify_date());
-            pstmt.setString(3, task.getTid());
-            pstmt.setString(4, task.getTgid());
-            pstmt.setString(5, task.getRoomid());
+            pstmt.setInt(3, task.getStatus());
+            pstmt.setString(4, task.getTid());
+            pstmt.setString(5, task.getTgid());
+            pstmt.setString(6, task.getRoomid());
             pstmt.executeUpdate();
 
             return true;
