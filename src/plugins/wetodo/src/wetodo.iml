@@ -9,6 +9,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="merge" level="project" />
     <orderEntry type="module" module-name="openfire_src" />
+    <orderEntry type="library" name="lib (2)" level="project" />
   </component>
 </module>
 

@@ -5,17 +5,15 @@ import org.jivesoftware.openfire.IQHandlerInfo;
 import org.jivesoftware.openfire.XMPPServer;
 import org.jivesoftware.openfire.handler.IQHandler;
 import org.xmpp.packet.IQ;
-import org.xmpp.packet.JID;
 import org.xmpp.packet.PacketError;
-import wetodo.manager.RoomManager;
-import wetodo.model.Room;
-import wetodo.xml.room.RoomAddXmlReader;
-import wetodo.xml.room.RoomAddXmlWriter;
+import wetodo.manager.PayManager;
+import wetodo.xml.pay.PayPurchaseXmlReader;
+import wetodo.xml.pay.PayPurchaseXmlWriter;
 
 public class IQPayPurchaseHandler extends IQHandler {
-    private static final String NAME_SPACE = "lacool:muc:create:room";
+    private static final String NAME_SPACE = "lacool:member:verify:product";
     private IQHandlerInfo info;
-    private RoomManager roomManager;
+    private PayManager payManager;
 
     public IQPayPurchaseHandler() {
         super(null);
@@ -29,10 +27,10 @@ public class IQPayPurchaseHandler extends IQHandler {
 
     @Override
     public IQ handleIQ(IQ packet) {
-        System.out.println("===lacool:muc:create:room===");
+        System.out.println("===lacool:member:verify:product===");
 
         // valid
-        if (!packet.getType().equals(IQ.Type.set)) {
+        if (!packet.getType().equals(IQ.Type.get)) {
             IQ result = IQ.createResultIQ(packet);
             result.setChildElement(packet.getChildElement().createCopy());
             result.setError(PacketError.Condition.bad_request);
@@ -41,19 +39,16 @@ public class IQPayPurchaseHandler extends IQHandler {
 
         // xml reader
         Element lacoolElement = packet.getChildElement();
-        String subject = RoomAddXmlReader.getSubject(lacoolElement);
-        JID userJid = packet.getFrom();
-
-        // generate room jid on server side, not client sid.
-        JID roomJid = RoomManager.getInstance().generateRoomJid(userJid);
+        int productId = PayPurchaseXmlReader.getProductId(lacoolElement);
+        String receipt = PayPurchaseXmlReader.getReceipt(lacoolElement);
 
         // persistent to db
-        Room room = roomManager.create(roomJid, userJid, subject);
+        payManager.purchase();
 
         // output
         IQ reply = IQ.createResultIQ(packet);
         reply.setType(IQ.Type.result);
-        Element reasonElement = RoomAddXmlWriter.write(room, NAME_SPACE);
+        Element reasonElement = PayPurchaseXmlWriter.write(NAME_SPACE);
         reply.setChildElement(reasonElement);
 
         return reply;
@@ -62,6 +57,6 @@ public class IQPayPurchaseHandler extends IQHandler {
     @Override
     public void initialize(XMPPServer server) {
         super.initialize(server);
-        roomManager = new RoomManager();
+        payManager = new PayManager();
     }
 }
