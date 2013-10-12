@@ -8,8 +8,26 @@ public class User {
     private String name;
     private String phone;
     private String email;
+    private int vipExpire;
+    private int vip;
     private Timestamp creationdate;
     private Timestamp modificationdate;
+
+    public int getVip() {
+        return vip;
+    }
+
+    public void setVip(int vip) {
+        this.vip = vip;
+    }
+
+    public int getVipExpire() {
+        return vipExpire;
+    }
+
+    public void setVipExpire(int vipExpire) {
+        this.vipExpire = vipExpire;
+    }
 
     public String getJID() {
         return JID;

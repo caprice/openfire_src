@@ -7,7 +7,7 @@ import wetodo.model.User;
 import java.sql.*;
 
 public class UserDAO {
-    private static final String FIND_BY_USERNAME = "select username,name,email,creationDate,modificationDate from ofUser where username = ?";
+    private static final String FIND_BY_USERNAME = "select username,name,email,creationDate,modificationDate,vip_expire,vip from ofUser where username = ?";
 
     public static User findByUsername(String username) {
         Connection con = null;
@@ -27,6 +27,8 @@ public class UserDAO {
                 user.setEmail(rs.getString(3));
                 user.setCreationdate(new Timestamp(Long.parseLong(rs.getString(4))));
                 user.setModificationdate(new Timestamp(Long.parseLong(rs.getString(5))));
+                user.setVipExpire(rs.getInt(6));
+                user.setVip(rs.getInt(7));
                 user.setJID(user.getUsername() + "@" + MucConf.SERVER);
 
                 return user;

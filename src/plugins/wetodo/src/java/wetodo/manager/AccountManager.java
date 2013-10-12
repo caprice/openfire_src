@@ -3,6 +3,7 @@ package wetodo.manager;
 import org.jivesoftware.openfire.user.User;
 import org.jivesoftware.openfire.user.UserAlreadyExistsException;
 import org.jivesoftware.openfire.user.UserManager;
+import wetodo.dao.UserDAO;
 
 public class AccountManager {
     /**
@@ -24,6 +25,10 @@ public class AccountManager {
         UserManager userManager = UserManager.getInstance();
         User newUser = userManager.createUser(username, password, nickname, null);
         return true;
+    }
+
+    public static wetodo.model.User getUserInfo(String username) {
+        return UserDAO.findByUsername(username);
     }
 
 
