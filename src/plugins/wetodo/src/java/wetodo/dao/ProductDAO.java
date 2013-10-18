@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDAO {
-    private static final String LIST = "select id,name,month,create_date,modify_date from wtdProduct";
+    private static final String LIST = "select id,iap_id,name,month,create_date,modify_date from wtdProduct";
 
     public static List<Product> list() {
         Connection con = null;
@@ -24,10 +24,11 @@ public class ProductDAO {
             while (rs.next()) {
                 Product product = new Product();
                 product.setId(rs.getInt(1));
-                product.setName(rs.getString(2));
-                product.setMonth(rs.getInt(3));
-                product.setCreationdate(rs.getTimestamp(4));
-                product.setModificationdate(rs.getTimestamp(5));
+                product.setIapId(rs.getString(2));
+                product.setName(rs.getString(3));
+                product.setMonth(rs.getInt(4));
+                product.setCreationdate(rs.getTimestamp(5));
+                product.setModificationdate(rs.getTimestamp(6));
 
                 list.add(product);
             }

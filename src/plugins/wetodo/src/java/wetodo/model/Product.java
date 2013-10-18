@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 
 public class Product {
     private int id;
+    private String iapId;
     private String name;
     private int month;
     private Timestamp creationdate;
@@ -16,6 +17,14 @@ public class Product {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getIapId() {
+        return iapId;
+    }
+
+    public void setIapId(String iapId) {
+        this.iapId = iapId;
     }
 
     public String getName() {
