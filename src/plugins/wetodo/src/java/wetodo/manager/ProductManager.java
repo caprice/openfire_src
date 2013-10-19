@@ -24,6 +24,6 @@ public class ProductManager {
     }
 
     public List<Product> list() {
-        return ProductDAO.list();
+        return ProductDAO.all();
     }
 }

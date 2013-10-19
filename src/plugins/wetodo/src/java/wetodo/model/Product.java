@@ -5,11 +5,11 @@ import java.sql.Timestamp;
 
 public class Product {
     private int id;
-    private String iapId;
+    private String iap_id;
     private String name;
     private int month;
-    private Timestamp creationdate;
-    private Timestamp modificationdate;
+    private Timestamp create_date;
+    private Timestamp modify_date;
 
     public int getId() {
         return id;
@@ -19,12 +19,28 @@ public class Product {
         this.id = id;
     }
 
-    public String getIapId() {
-        return iapId;
+    public String getIap_id() {
+        return iap_id;
     }
 
-    public void setIapId(String iapId) {
-        this.iapId = iapId;
+    public void setIap_id(String iap_id) {
+        this.iap_id = iap_id;
+    }
+
+    public Timestamp getCreate_date() {
+        return create_date;
+    }
+
+    public void setCreate_date(Timestamp create_date) {
+        this.create_date = create_date;
+    }
+
+    public Timestamp getModify_date() {
+        return modify_date;
+    }
+
+    public void setModify_date(Timestamp modify_date) {
+        this.modify_date = modify_date;
     }
 
     public String getName() {
@@ -43,19 +59,4 @@ public class Product {
         this.month = month;
     }
 
-    public Timestamp getCreationdate() {
-        return creationdate;
-    }
-
-    public void setCreationdate(Timestamp creationdate) {
-        this.creationdate = creationdate;
-    }
-
-    public Timestamp getModificationdate() {
-        return modificationdate;
-    }
-
-    public void setModificationdate(Timestamp modificationdate) {
-        this.modificationdate = modificationdate;
-    }
 }

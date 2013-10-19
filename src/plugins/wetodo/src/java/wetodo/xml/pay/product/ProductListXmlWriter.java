@@ -14,7 +14,7 @@ public class ProductListXmlWriter {
 
         for (Product product : list) {
             Element productElement = lacoolElement.addElement("product", namespace);
-            productElement.addAttribute("id", product.getIapId());
+            productElement.addAttribute("id", product.getIap_id());
         }
 
         return lacoolElement;
