@@ -1,41 +1,18 @@
 package wetodo.model;
 
-import java.sql.Timestamp;
-
 public class User {
-    private String JID;
     private String username;
+    private String plainPassword;
+    private String encryptedPassword;
     private String name;
-    private String phone;
     private String email;
-    private int vipExpire;
+    private long creationDate;
+    private long modificationDate;
+    private int vip_expire;
     private int vip;
-    private Timestamp creationdate;
-    private Timestamp modificationdate;
-
-    public int getVip() {
-        return vip;
-    }
-
-    public void setVip(int vip) {
-        this.vip = vip;
-    }
-
-    public int getVipExpire() {
-        return vipExpire;
-    }
-
-    public void setVipExpire(int vipExpire) {
-        this.vipExpire = vipExpire;
-    }
-
-    public String getJID() {
-        return JID;
-    }
-
-    public void setJID(String JID) {
-        this.JID = JID;
-    }
+    // other field
+    private String JID;
+    private String phone;
 
     public String getUsername() {
         return username;
@@ -43,6 +20,22 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getPlainPassword() {
+        return plainPassword;
+    }
+
+    public void setPlainPassword(String plainPassword) {
+        this.plainPassword = plainPassword;
+    }
+
+    public String getEncryptedPassword() {
+        return encryptedPassword;
+    }
+
+    public void setEncryptedPassword(String encryptedPassword) {
+        this.encryptedPassword = encryptedPassword;
     }
 
     public String getName() {
@@ -53,14 +46,6 @@ public class User {
         this.name = name;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -69,19 +54,51 @@ public class User {
         this.email = email;
     }
 
-    public Timestamp getCreationdate() {
-        return creationdate;
+    public long getCreationDate() {
+        return creationDate;
     }
 
-    public void setCreationdate(Timestamp creationdate) {
-        this.creationdate = creationdate;
+    public void setCreationDate(long creationDate) {
+        this.creationDate = creationDate;
     }
 
-    public Timestamp getModificationdate() {
-        return modificationdate;
+    public long getModificationDate() {
+        return modificationDate;
     }
 
-    public void setModificationdate(Timestamp modificationdate) {
-        this.modificationdate = modificationdate;
+    public void setModificationDate(long modificationDate) {
+        this.modificationDate = modificationDate;
+    }
+
+    public int getVip_expire() {
+        return vip_expire;
+    }
+
+    public void setVip_expire(int vip_expire) {
+        this.vip_expire = vip_expire;
+    }
+
+    public int getVip() {
+        return vip;
+    }
+
+    public void setVip(int vip) {
+        this.vip = vip;
+    }
+
+    public String getJID() {
+        return JID;
+    }
+
+    public void setJID(String JID) {
+        this.JID = JID;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

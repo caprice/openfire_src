@@ -7,8 +7,8 @@ import org.jivesoftware.openfire.handler.IQHandler;
 import org.xmpp.packet.IQ;
 import org.xmpp.packet.JID;
 import org.xmpp.packet.PacketError;
+import wetodo.dao.UserDAO;
 import wetodo.manager.RoomManager;
-import wetodo.manager.UserManager;
 import wetodo.model.User;
 import wetodo.xml.room.RoomInviteXmlReader;
 import wetodo.xml.room.RoomInviteXmlWriter;
@@ -17,7 +17,6 @@ public class IQRoomInviteHandler extends IQHandler {
     private static final String NAME_SPACE = "lacool:muc:invite:friend";
     private IQHandlerInfo info;
     private RoomManager roomManager;
-    private UserManager userManager;
 
     public IQRoomInviteHandler() {
         super(null);
@@ -51,7 +50,7 @@ public class IQRoomInviteHandler extends IQHandler {
 
         // persistent to db
         roomManager.invite(roomJid, inviterJid, inviteeJid);
-        User inviteeUser = userManager.findByUsername(inviteeUsername);
+        User inviteeUser = UserDAO.findByUsername(inviteeUsername);
 
         // output
         IQ reply = IQ.createResultIQ(packet);
@@ -66,6 +65,5 @@ public class IQRoomInviteHandler extends IQHandler {
     public void initialize(XMPPServer server) {
         super.initialize(server);
         roomManager = new RoomManager();
-        userManager = new UserManager();
     }
 }

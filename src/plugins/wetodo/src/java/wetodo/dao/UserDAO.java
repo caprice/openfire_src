@@ -1,47 +1,34 @@
 package wetodo.dao;
 
+import org.apache.commons.dbutils.DbUtils;
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.jivesoftware.database.DbConnectionManager;
 import wetodo.conf.MucConf;
 import wetodo.model.User;
 
-import java.sql.*;
+import java.sql.Connection;
 
 public class UserDAO {
-    private static final String FIND_BY_USERNAME = "select username,name,email,creationDate,modificationDate,vip_expire,vip from ofUser where username = ?";
+    private static final String FIND_BY_USERNAME = "select * from ofUser where username = ?";
 
     public static User findByUsername(String username) {
-        Connection con = null;
-        PreparedStatement pstmt = null;
+        Connection conn = null;
         try {
-            con = DbConnectionManager.getConnection();
-            pstmt = con.prepareStatement(FIND_BY_USERNAME);
-            pstmt.setString(1, username);
-            System.out.println(pstmt);
-            ResultSet rs = pstmt.executeQuery();
-            while (true) {
-                if (!(rs.next())) break;
-
-                User user = new User();
-                user.setUsername(rs.getString(1));
-                user.setName(rs.getString(2));
-                user.setEmail(rs.getString(3));
-                user.setCreationdate(new Timestamp(Long.parseLong(rs.getString(4))));
-                user.setModificationdate(new Timestamp(Long.parseLong(rs.getString(5))));
-                user.setVipExpire(rs.getInt(6));
-                user.setVip(rs.getInt(7));
-                user.setJID(user.getUsername() + "@" + MucConf.SERVER);
-
-                return user;
-            }
-            return null;
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-            return null;
+            conn = DbConnectionManager.getConnection();
+            QueryRunner qRunner = new QueryRunner();
+            User user = (User) qRunner.query(conn,
+                    FIND_BY_USERNAME,
+                    new BeanHandler(Class.forName("wetodo.model.User")),
+                    new Object[]{username});
+            user.setJID(user.getUsername() + "@" + MucConf.SERVER);
+            return user;
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
         } finally {
-            DbConnectionManager.closeConnection(pstmt, con);
+            DbUtils.closeQuietly(conn);
         }
+        return null;
     }
+
 }

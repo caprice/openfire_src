@@ -7,14 +7,13 @@ import org.jivesoftware.openfire.handler.IQHandler;
 import org.xmpp.packet.IQ;
 import org.xmpp.packet.JID;
 import org.xmpp.packet.PacketError;
-import wetodo.manager.AccountManager;
+import wetodo.dao.UserDAO;
 import wetodo.model.User;
 import wetodo.xml.account.AccountInfoXmlWriter;
 
 public class IQAccountInfoHandler extends IQHandler {
     private static final String NAME_SPACE = "lacool:member:query:deadline";
     private IQHandlerInfo info;
-    private AccountManager accountManager;
 
     public IQAccountInfoHandler() {
         super(null);
@@ -43,7 +42,7 @@ public class IQAccountInfoHandler extends IQHandler {
         String username = userJid.getNode();
 
         // persistent to db
-        User user = accountManager.getUserInfo(username);
+        User user = UserDAO.findByUsername(username);
 
         // output
         IQ reply = IQ.createResultIQ(packet);
@@ -57,6 +56,5 @@ public class IQAccountInfoHandler extends IQHandler {
     @Override
     public void initialize(XMPPServer server) {
         super.initialize(server);
-        accountManager = new AccountManager();
     }
 }
