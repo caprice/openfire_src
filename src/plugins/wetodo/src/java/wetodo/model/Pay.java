@@ -6,9 +6,9 @@ public class Pay {
     private int id;
     private String username;
     private String receipt;
-    private String iapId;
-    private Timestamp createDate;
-    private Timestamp modifyDate;
+    private String iap_id;
+    private Timestamp create_date;
+    private Timestamp modify_date;
 
     public int getId() {
         return id;
@@ -34,27 +34,27 @@ public class Pay {
         this.receipt = receipt;
     }
 
-    public String getIapId() {
-        return iapId;
+    public String getIap_id() {
+        return iap_id;
     }
 
-    public void setIapId(String iapId) {
-        this.iapId = iapId;
+    public void setIap_id(String iap_id) {
+        this.iap_id = iap_id;
     }
 
-    public Timestamp getCreateDate() {
-        return createDate;
+    public Timestamp getCreate_date() {
+        return create_date;
     }
 
-    public void setCreateDate(Timestamp createDate) {
-        this.createDate = createDate;
+    public void setCreate_date(Timestamp create_date) {
+        this.create_date = create_date;
     }
 
-    public Timestamp getModifyDate() {
-        return modifyDate;
+    public Timestamp getModify_date() {
+        return modify_date;
     }
 
-    public void setModifyDate(Timestamp modifyDate) {
-        this.modifyDate = modifyDate;
+    public void setModify_date(Timestamp modify_date) {
+        this.modify_date = modify_date;
     }
 }

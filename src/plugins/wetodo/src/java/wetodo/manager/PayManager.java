@@ -50,12 +50,12 @@ public class PayManager {
                 Pay payNew = new Pay();
                 payNew.setUsername(username);
                 payNew.setReceipt(receipt);
-                payNew.setIapId(iapId);
+                payNew.setIap_id(iapId);
                 Timestamp now = new Timestamp(System.currentTimeMillis());
-                payNew.setCreateDate(now);
-                payNew.setModifyDate(now);
+                payNew.setCreate_date(now);
+                payNew.setModify_date(now);
 
-                PayDAO.add(payNew);
+                PayDAO.create(payNew);
             } else {
             }
         }
