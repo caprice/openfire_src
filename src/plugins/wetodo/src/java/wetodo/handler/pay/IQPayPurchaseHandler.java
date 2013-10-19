@@ -39,11 +39,12 @@ public class IQPayPurchaseHandler extends IQHandler {
 
         // xml reader
         Element lacoolElement = packet.getChildElement();
-        int productId = PayPurchaseXmlReader.getProductId(lacoolElement);
+        String iapId = PayPurchaseXmlReader.getIapId(lacoolElement);
         String receipt = PayPurchaseXmlReader.getReceipt(lacoolElement);
+        String username = packet.getFrom().getNode();
 
         // persistent to db
-        payManager.purchase();
+        payManager.purchase(username, receipt, iapId);
 
         // output
         IQ reply = IQ.createResultIQ(packet);

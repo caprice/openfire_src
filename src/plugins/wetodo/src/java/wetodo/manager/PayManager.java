@@ -6,10 +6,13 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import wetodo.dao.PayDAO;
+import wetodo.model.Pay;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
+import java.sql.Timestamp;
 
 public class PayManager {
 
@@ -17,11 +20,6 @@ public class PayManager {
     private static final String ENCODING = "UTF-8";
     private static PayManager instance;
 
-    /**
-     * 单例产生实例
-     *
-     * @return
-     */
     public static PayManager getInstance() {
         if (instance == null) {
             synchronized (PayManager.class) {
@@ -37,14 +35,30 @@ public class PayManager {
         return writer.toString();
     }
 
-    public void purchase() {
-        String response = null;
-        try {
-            response = this.request();
-        } catch (IOException e) {
-            e.printStackTrace();
+    public void purchase(String username, String receipt, String iapId) {
+        Pay pay = PayDAO.findByReceipt(receipt);
+        if (pay != null) {
+        } else {
+            String response = null;
+            try {
+                response = this.request();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println(response);
+            if (response != null) {
+                Pay payNew = new Pay();
+                payNew.setUsername(username);
+                payNew.setReceipt(receipt);
+                payNew.setIapId(iapId);
+                Timestamp now = new Timestamp(System.currentTimeMillis());
+                payNew.setCreateDate(now);
+                payNew.setModifyDate(now);
+
+                PayDAO.add(payNew);
+            } else {
+            }
         }
-        System.out.println(response);
     }
 
     public String request() throws IOException {
