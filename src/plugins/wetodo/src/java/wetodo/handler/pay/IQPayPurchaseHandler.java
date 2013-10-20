@@ -8,6 +8,7 @@ import org.xmpp.packet.IQ;
 import org.xmpp.packet.PacketError;
 import wetodo.error.IQError;
 import wetodo.exception.ReceiptAlreadyExistsException;
+import wetodo.exception.ReceiptIAPValidFailException;
 import wetodo.manager.PayManager;
 import wetodo.xml.pay.PayPurchaseXmlReader;
 import wetodo.xml.pay.PayPurchaseXmlWriter;
@@ -54,6 +55,12 @@ public class IQPayPurchaseHandler extends IQHandler {
             reply = IQ.createResultIQ(packet);
             reply.setType(IQ.Type.error);
             reply.setChildElement(IQError.getError(packet.getChildElement().createCopy(), IQError.Condition.receipt_exist));
+
+            return reply;
+        } catch (ReceiptIAPValidFailException e) {
+            reply = IQ.createResultIQ(packet);
+            reply.setType(IQ.Type.error);
+            reply.setChildElement(IQError.getError(packet.getChildElement().createCopy(), IQError.Condition.receipt_iap_valid_fail));
 
             return reply;
         }

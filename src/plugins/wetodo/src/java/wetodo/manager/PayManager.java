@@ -1,5 +1,7 @@
 package wetodo.manager;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -7,7 +9,9 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import wetodo.dao.PayDAO;
+import wetodo.error.IAPError;
 import wetodo.exception.ReceiptAlreadyExistsException;
+import wetodo.exception.ReceiptIAPValidFailException;
 import wetodo.model.Pay;
 
 import java.io.IOException;
@@ -37,15 +41,16 @@ public class PayManager {
         return writer.toString();
     }
 
-    public void purchase(String username, String receipt, String iapId) throws ReceiptAlreadyExistsException {
+    public void purchase(String username, String receipt, String iapId) throws ReceiptAlreadyExistsException, ReceiptIAPValidFailException {
         Pay pay = PayDAO.findByReceipt(receipt);
         if (pay != null) {
             throw new ReceiptAlreadyExistsException();
         } else {
             String response = this.request();
             System.out.println(response);
-            if (response != null) {
-                // TODO
+
+            JSONObject json = JSON.parseObject(response);
+            if (json != null && json.containsKey("status") && (Integer) json.get("status") == IAPError.Condition.success.getCode()) {
                 Pay payNew = new Pay();
                 payNew.setUsername(username);
                 payNew.setReceipt(receipt);
@@ -56,6 +61,7 @@ public class PayManager {
 
                 PayDAO.create(payNew);
             } else {
+                throw new ReceiptIAPValidFailException();
             }
         }
     }
