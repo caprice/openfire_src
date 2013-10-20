@@ -3,29 +3,23 @@ package wetodo.handler.pay;
 import org.dom4j.Element;
 import org.jivesoftware.openfire.IQHandlerInfo;
 import org.jivesoftware.openfire.XMPPServer;
-import org.jivesoftware.openfire.handler.IQHandler;
 import org.xmpp.packet.IQ;
 import org.xmpp.packet.PacketError;
 import wetodo.error.IQError;
 import wetodo.exception.ReceiptAlreadyExistsException;
 import wetodo.exception.ReceiptIAPValidFailException;
+import wetodo.handler.IQBaseHandler;
 import wetodo.manager.PayManager;
 import wetodo.xml.pay.PayPurchaseXmlReader;
 import wetodo.xml.pay.PayPurchaseXmlWriter;
 
-public class IQPayPurchaseHandler extends IQHandler {
-    private static final String NAME_SPACE = "lacool:member:verify:product";
-    private IQHandlerInfo info;
+public class IQPayPurchaseHandler extends IQBaseHandler {
+    protected String namespace = "lacool:member:verify:product";
     private PayManager payManager;
 
     public IQPayPurchaseHandler() {
-        super(null);
-        this.info = new IQHandlerInfo("lacool", NAME_SPACE);
-    }
-
-    @Override
-    public IQHandlerInfo getInfo() {
-        return info;
+        super();
+        this.info = new IQHandlerInfo("lacool", namespace);
     }
 
     @Override
@@ -40,8 +34,6 @@ public class IQPayPurchaseHandler extends IQHandler {
             return result;
         }
 
-        IQ reply;
-
         // xml reader
         Element lacoolElement = packet.getChildElement();
         String iapId = PayPurchaseXmlReader.getIapId(lacoolElement);
@@ -52,26 +44,13 @@ public class IQPayPurchaseHandler extends IQHandler {
         try {
             payManager.purchase(username, receipt, iapId);
         } catch (ReceiptAlreadyExistsException e) {
-            reply = IQ.createResultIQ(packet);
-            reply.setType(IQ.Type.error);
-            reply.setChildElement(IQError.getError(packet.getChildElement().createCopy(), IQError.Condition.receipt_exist));
-
-            return reply;
+            return error(packet, IQError.Condition.receipt_exist);
         } catch (ReceiptIAPValidFailException e) {
-            reply = IQ.createResultIQ(packet);
-            reply.setType(IQ.Type.error);
-            reply.setChildElement(IQError.getError(packet.getChildElement().createCopy(), IQError.Condition.receipt_iap_valid_fail));
-
-            return reply;
+            return error(packet, IQError.Condition.receipt_iap_valid_fail);
         }
 
         // output
-        reply = IQ.createResultIQ(packet);
-        reply.setType(IQ.Type.result);
-        Element reasonElement = PayPurchaseXmlWriter.write(NAME_SPACE);
-        reply.setChildElement(reasonElement);
-
-        return reply;
+        return result(packet, PayPurchaseXmlWriter.write(namespace));
     }
 
     @Override
