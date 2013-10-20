@@ -7,6 +7,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import wetodo.dao.PayDAO;
+import wetodo.exception.ReceiptAlreadyExistsException;
 import wetodo.model.Pay;
 
 import java.io.IOException;
@@ -35,9 +36,10 @@ public class PayManager {
         return writer.toString();
     }
 
-    public void purchase(String username, String receipt, String iapId) {
+    public void purchase(String username, String receipt, String iapId) throws ReceiptAlreadyExistsException {
         Pay pay = PayDAO.findByReceipt(receipt);
         if (pay != null) {
+            throw new ReceiptAlreadyExistsException();
         } else {
             String response = null;
             try {
