@@ -13,6 +13,7 @@ import wetodo.model.Pay;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
 
 public class PayManager {
@@ -41,14 +42,10 @@ public class PayManager {
         if (pay != null) {
             throw new ReceiptAlreadyExistsException();
         } else {
-            String response = null;
-            try {
-                response = this.request();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            String response = this.request();
             System.out.println(response);
             if (response != null) {
+                // TODO
                 Pay payNew = new Pay();
                 payNew.setUsername(username);
                 payNew.setReceipt(receipt);
@@ -63,27 +60,30 @@ public class PayManager {
         }
     }
 
-    public String request() throws IOException {
+    public String request() {
         DefaultHttpClient httpClient = new DefaultHttpClient();
         HttpPost postRequest = new HttpPost(
                 PayManager.IAP_API_URL);
 
-        StringEntity input = new StringEntity("{\"receipt-data\":\"eyJpdGVtX2lkIjoiMzcxMjM1IiwgIm9yaWdpbmFsX3RyYW5zYWN0aW9uX2lkIjoiMTAxMjMwNyIsICJidnJzIjoiMS4wIiwgInByb2R1Y3RfaWQiOiJjb20uZm9vLmN1cCIsICJwdXJjaGFzZV9kYXRlIjoiMjAxMC0wNS0yNSAyMTowNTozNiBFdGMvR01UIiwgInF1YW50aXR5IjoiMSIsICJiaWQiOiJjb20uZm9vLm1lc3NlbmdlciIsICJvcmlnaW5hbF9wdXJjaGFzZV9kYXRlIjoiMjAxMC0wNS0yNSAyMTowNTozNiBFdGMvR01UIiwgInRyYW5zYWN0aW9uX2lkIjoiMTEyMzcifQ==\"}");
-        input.setContentType("application/json");
-        postRequest.setEntity(input);
-
-        HttpResponse response = httpClient.execute(postRequest);
-        HttpEntity entity = response.getEntity();
-        if (entity != null) {
-            InputStream inputstream = entity.getContent();
-            try {
+        InputStream inputstream = null;
+        try {
+            StringEntity input = new StringEntity("{\"receipt-data\":\"eyJpdGVtX2lkIjoiMzcxMjM1IiwgIm9yaWdpbmFsX3RyYW5zYWN0aW9uX2lkIjoiMTAxMjMwNyIsICJidnJzIjoiMS4wIiwgInByb2R1Y3RfaWQiOiJjb20uZm9vLmN1cCIsICJwdXJjaGFzZV9kYXRlIjoiMjAxMC0wNS0yNSAyMTowNTozNiBFdGMvR01UIiwgInF1YW50aXR5IjoiMSIsICJiaWQiOiJjb20uZm9vLm1lc3NlbmdlciIsICJvcmlnaW5hbF9wdXJjaGFzZV9kYXRlIjoiMjAxMC0wNS0yNSAyMTowNTozNiBFdGMvR01UIiwgInRyYW5zYWN0aW9uX2lkIjoiMTEyMzcifQ==\"}");
+            input.setContentType("application/json");
+            postRequest.setEntity(input);
+            HttpResponse response = httpClient.execute(postRequest);
+            HttpEntity entity = response.getEntity();
+            if (entity != null) {
+                inputstream = entity.getContent();
                 String responseBody = PayManager.inputStreamToString(inputstream);
                 return responseBody;
-            } finally {
-                inputstream.close();
             }
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            IOUtils.closeQuietly(inputstream);
         }
         return null;
     }
-
 }
