@@ -26,10 +26,7 @@ public class IQPayPurchaseHandler extends IQBaseHandler {
 
         // valid
         if (!packet.getType().equals(IQ.Type.get)) {
-            IQ result = IQ.createResultIQ(packet);
-            result.setChildElement(packet.getChildElement().createCopy());
-            result.setError(PacketError.Condition.bad_request);
-            return result;
+            return systemError(packet, PacketError.Condition.bad_request);
         }
 
         // xml reader

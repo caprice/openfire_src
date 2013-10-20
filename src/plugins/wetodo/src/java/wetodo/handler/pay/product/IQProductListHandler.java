@@ -24,11 +24,7 @@ public class IQProductListHandler extends IQBaseHandler {
 
         // valid
         if (!packet.getType().equals(IQ.Type.set)) {
-            IQ result = IQ.createResultIQ(packet);
-            result.setChildElement(packet.getChildElement().createCopy());
-            result.setError(PacketError.Condition.bad_request);
-
-            return result;
+            return systemError(packet, PacketError.Condition.bad_request);
         }
 
         // xml reader
@@ -39,5 +35,4 @@ public class IQProductListHandler extends IQBaseHandler {
         // output
         return result(packet, ProductListXmlWriter.write(list, namespace));
     }
-
 }
