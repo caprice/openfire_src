@@ -2,7 +2,6 @@ package wetodo.handler.pay;
 
 import org.dom4j.Element;
 import org.jivesoftware.openfire.IQHandlerInfo;
-import org.jivesoftware.openfire.XMPPServer;
 import org.xmpp.packet.IQ;
 import org.xmpp.packet.PacketError;
 import wetodo.error.IQError;
@@ -15,7 +14,6 @@ import wetodo.xml.pay.PayPurchaseXmlWriter;
 
 public class IQPayPurchaseHandler extends IQBaseHandler {
     protected String namespace = "lacool:member:verify:product";
-    private PayManager payManager;
 
     public IQPayPurchaseHandler() {
         super();
@@ -42,7 +40,7 @@ public class IQPayPurchaseHandler extends IQBaseHandler {
 
         // persistent to db
         try {
-            payManager.purchase(username, receipt, iapId);
+            PayManager.getInstance().purchase(username, receipt, iapId);
         } catch (ReceiptAlreadyExistsException e) {
             return error(packet, IQError.Condition.receipt_exist);
         } catch (ReceiptIAPValidFailException e) {
@@ -51,11 +49,5 @@ public class IQPayPurchaseHandler extends IQBaseHandler {
 
         // output
         return result(packet, PayPurchaseXmlWriter.write(namespace));
-    }
-
-    @Override
-    public void initialize(XMPPServer server) {
-        super.initialize(server);
-        payManager = new PayManager();
     }
 }

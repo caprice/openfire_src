@@ -1,30 +1,21 @@
 package wetodo.handler.pay.product;
 
-import org.dom4j.Element;
 import org.jivesoftware.openfire.IQHandlerInfo;
-import org.jivesoftware.openfire.XMPPServer;
-import org.jivesoftware.openfire.handler.IQHandler;
 import org.xmpp.packet.IQ;
 import org.xmpp.packet.PacketError;
+import wetodo.handler.IQBaseHandler;
 import wetodo.manager.ProductManager;
 import wetodo.model.Product;
 import wetodo.xml.pay.product.ProductListXmlWriter;
 
 import java.util.List;
 
-public class IQProductListHandler extends IQHandler {
-    private static final String NAME_SPACE = "lacool:member:query:product";
-    private IQHandlerInfo info;
-    private ProductManager productManager;
+public class IQProductListHandler extends IQBaseHandler {
+    protected String namespace = "lacool:member:query:product";
 
     public IQProductListHandler() {
-        super(null);
-        this.info = new IQHandlerInfo("lacool", NAME_SPACE);
-    }
-
-    @Override
-    public IQHandlerInfo getInfo() {
-        return info;
+        super();
+        this.info = new IQHandlerInfo("lacool", namespace);
     }
 
     @Override
@@ -43,20 +34,10 @@ public class IQProductListHandler extends IQHandler {
         // xml reader
 
         // persistent to db
-        List<Product> list = productManager.list();
+        List<Product> list = ProductManager.getInstance().list();
 
         // output
-        IQ reply = IQ.createResultIQ(packet);
-        reply.setType(IQ.Type.result);
-        Element reasonElement = ProductListXmlWriter.write(list, NAME_SPACE);
-        reply.setChildElement(reasonElement);
-
-        return reply;
+        return result(packet, ProductListXmlWriter.write(list, namespace));
     }
 
-    @Override
-    public void initialize(XMPPServer server) {
-        super.initialize(server);
-        productManager = new ProductManager();
-    }
 }
