@@ -23,7 +23,7 @@ public class IQProductListHandler extends IQBaseHandler {
         System.out.println("===lacool:member:query:product===");
 
         // valid
-        if (!packet.getType().equals(IQ.Type.set)) {
+        if (!packet.getType().equals(IQ.Type.get)) {
             return systemError(packet, PacketError.Condition.bad_request);
         }
 
