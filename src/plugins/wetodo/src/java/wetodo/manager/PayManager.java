@@ -46,7 +46,7 @@ public class PayManager {
         if (pay != null) {
             throw new ReceiptAlreadyExistsException();
         } else {
-            String response = this.request();
+            String response = this.request(receipt);
             System.out.println(response);
 
             JSONObject json = JSON.parseObject(response);
@@ -66,14 +66,14 @@ public class PayManager {
         }
     }
 
-    public String request() {
+    public String request(String receipt) {
         DefaultHttpClient httpClient = new DefaultHttpClient();
         HttpPost postRequest = new HttpPost(
                 PayManager.IAP_API_URL);
 
         InputStream inputstream = null;
         try {
-            StringEntity input = new StringEntity("{\"receipt-data\":\"eyJpdGVtX2lkIjoiMzcxMjM1IiwgIm9yaWdpbmFsX3RyYW5zYWN0aW9uX2lkIjoiMTAxMjMwNyIsICJidnJzIjoiMS4wIiwgInByb2R1Y3RfaWQiOiJjb20uZm9vLmN1cCIsICJwdXJjaGFzZV9kYXRlIjoiMjAxMC0wNS0yNSAyMTowNTozNiBFdGMvR01UIiwgInF1YW50aXR5IjoiMSIsICJiaWQiOiJjb20uZm9vLm1lc3NlbmdlciIsICJvcmlnaW5hbF9wdXJjaGFzZV9kYXRlIjoiMjAxMC0wNS0yNSAyMTowNTozNiBFdGMvR01UIiwgInRyYW5zYWN0aW9uX2lkIjoiMTEyMzcifQ==\"}");
+            StringEntity input = new StringEntity("{\"receipt-data\":\"" + receipt + "\"}");
             input.setContentType("application/json");
             postRequest.setEntity(input);
             HttpResponse response = httpClient.execute(postRequest);

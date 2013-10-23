@@ -3,7 +3,7 @@ package wetodo.error;
 public class IAPError {
 
     public enum Condition {
-        success("success", 21002),
+        success("success", 0),
 
         json_error("json_error", 21000),
         receipt_error("receipt_error", 21002),
