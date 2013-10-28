@@ -10,7 +10,7 @@ public class AccountInfoXmlWriter {
         Element lacoolElement = DocumentHelper.createElement("lacool");
 
         Element memberElement = lacoolElement.addElement("member", namespace);
-        memberElement.addAttribute("left", String.valueOf(user.getVip_expire()));
+        memberElement.addAttribute("left", String.valueOf(user.getVip_expire().getTime()));
 
         return lacoolElement;
     }

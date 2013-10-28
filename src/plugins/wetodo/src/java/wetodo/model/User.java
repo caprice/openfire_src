@@ -1,5 +1,7 @@
 package wetodo.model;
 
+import java.sql.Timestamp;
+
 public class User {
     private String username;
     private String plainPassword;
@@ -8,7 +10,7 @@ public class User {
     private String email;
     private long creationDate;
     private long modificationDate;
-    private int vip_expire;
+    private Timestamp vip_expire;
     private int vip;
     // other field
     private String JID;
@@ -70,11 +72,11 @@ public class User {
         this.modificationDate = modificationDate;
     }
 
-    public int getVip_expire() {
+    public Timestamp getVip_expire() {
         return vip_expire;
     }
 
-    public void setVip_expire(int vip_expire) {
+    public void setVip_expire(Timestamp vip_expire) {
         this.vip_expire = vip_expire;
     }
 
