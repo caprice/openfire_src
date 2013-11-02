@@ -23,7 +23,9 @@ public class UserDAO {
                     FIND_BY_USERNAME,
                     new BeanHandler(Class.forName("wetodo.model.User")),
                     new Object[]{username});
-            user.setJID(user.getUsername() + "@" + MucConf.SERVER);
+            if (user != null) {
+                user.setJID(user.getUsername() + "@" + MucConf.SERVER);
+            }
             return user;
         } catch (Exception e) {
             e.printStackTrace();

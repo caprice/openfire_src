@@ -1,5 +1,11 @@
 package wetodo.manager;
 
+import com.twilio.sdk.TwilioRestException;
+import org.jivesoftware.openfire.user.UserAlreadyExistsException;
+import wetodo.dao.UserDAO;
+import wetodo.model.User;
+import wetodo.sms.SMS;
+
 public class CodeManager {
     /**
      * Singleton: keep a static reference to teh only instance
@@ -16,7 +22,12 @@ public class CodeManager {
         return instance;
     }
 
-    public static boolean send(String phone) {
+    public static boolean send(String phone, String countryCode) throws TwilioRestException, UserAlreadyExistsException {
+        User user = UserDAO.findByUsername(phone);
+        if (user != null) {
+            throw new UserAlreadyExistsException();
+        }
+        SMS.send(phone, countryCode);
         return true;
     }
 
