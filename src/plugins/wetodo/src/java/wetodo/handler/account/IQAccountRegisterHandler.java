@@ -8,6 +8,7 @@ import org.jivesoftware.openfire.session.ClientSession;
 import org.jivesoftware.openfire.user.UserAlreadyExistsException;
 import org.xmpp.packet.IQ;
 import org.xmpp.packet.PacketError;
+import wetodo.dao.UserDAO;
 import wetodo.error.IQError;
 import wetodo.manager.AccountManager;
 import wetodo.xml.account.AccountRegisterXmlReader;
@@ -55,6 +56,8 @@ public class IQAccountRegisterHandler extends IQHandler {
         // persistent to db
         try {
             accountManager.register(username, password, nickname, phone, authCode);
+            int registGiveVipDays = 15;
+            UserDAO.increaseVip(username, registGiveVipDays);
         } catch (UserAlreadyExistsException e) {
             IQ result = IQ.createResultIQ(packet);
             result.setType(IQ.Type.error);
