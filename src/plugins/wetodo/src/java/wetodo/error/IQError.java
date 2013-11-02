@@ -14,6 +14,7 @@ public class IQError {
 
     public enum Condition {
         username_exist("username-exist", 100),
+        auth_code_error("auth-code-error", 102),
         receipt_exist("receipt-exist", 400),
         receipt_iap_valid_fail("receipt_iap_valid_fail", 401),
         iapid_not_exist("iapid_not_exist", 402);

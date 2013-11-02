@@ -7,6 +7,7 @@ import org.jivesoftware.openfire.handler.IQHandler;
 import org.jivesoftware.openfire.session.ClientSession;
 import org.xmpp.packet.IQ;
 import org.xmpp.packet.PacketError;
+import wetodo.error.IQError;
 import wetodo.manager.CodeManager;
 import wetodo.xml.account.code.CodeValidateXmlReader;
 import wetodo.xml.account.code.CodeValidateXmlWriter;
@@ -46,7 +47,15 @@ public class IQCodeValidateHandler extends IQHandler {
         String authCode = CodeValidateXmlReader.getAuthCode(lacoolElement);
 
         // persistent to db
-        codeManager.validate(phone, authCode);
+        boolean ret = codeManager.validate(phone, authCode);
+        if (!ret) {
+            IQ result = IQ.createResultIQ(packet);
+            result.setType(IQ.Type.error);
+            result.setChildElement(IQError.getError(packet.getChildElement().createCopy(), IQError.Condition.auth_code_error));
+
+            session.process(result);
+            return result;
+        }
 
         // output
         IQ reply = IQ.createResultIQ(packet);

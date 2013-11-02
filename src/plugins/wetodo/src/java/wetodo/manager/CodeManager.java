@@ -34,7 +34,11 @@ public class CodeManager {
     }
 
     public static boolean validate(String phone, String authCode) {
-        return true;
+        try {
+            return Code.validate(phone, Long.parseLong(authCode));
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
 }
