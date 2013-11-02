@@ -8,10 +8,11 @@ import wetodo.conf.MucConf;
 import wetodo.model.User;
 
 import java.sql.Connection;
+import java.sql.Timestamp;
 
 public class UserDAO {
     private static final String FIND_BY_USERNAME = "select * from ofUser where username = ?";
-    private static final String UPDATE = "update ofUser set vip_expire = vip_expire + ?, vip = ? where username = ?";
+    private static final String UPDATE = "update ofUser set vip_expire = ?, vip = ? where username = ?";
 
     public static User findByUsername(String username) {
         Connection conn = null;
@@ -32,18 +33,27 @@ public class UserDAO {
         return null;
     }
 
-    public static User increaseVip(String username, String increase) {
+    public static void increaseVip(String username, int increaseDays) {
+        long increaseMillis = (long) increaseDays * 3600 * 24 * 1000;
+        Timestamp expireNew;
         Connection conn = null;
         try {
             conn = DbConnectionManager.getConnection();
             QueryRunner qRunner = new QueryRunner();
             User user = UserDAO.findByUsername(username);
             if (user == null) {
-                return null;
+                return;
+            }
+            long vipExpire = user.getVip_expire().getTime();
+            long now = System.currentTimeMillis();
+            if (now > vipExpire) {
+                expireNew = new Timestamp(now + increaseMillis);
+            } else {
+                expireNew = new Timestamp(vipExpire + increaseMillis);
             }
 
             qRunner.update(conn, UPDATE, new Object[]{
-                    increase,
+                    expireNew,
                     1,
                     username
             });
@@ -52,7 +62,6 @@ public class UserDAO {
         } finally {
             DbUtils.closeQuietly(conn);
         }
-        return null;
     }
 
 }

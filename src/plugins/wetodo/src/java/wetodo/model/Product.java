@@ -7,7 +7,7 @@ public class Product {
     private int id;
     private String iap_id;
     private String name;
-    private int month;
+    private int day;
     private Timestamp create_date;
     private Timestamp modify_date;
 
@@ -51,12 +51,12 @@ public class Product {
         this.name = name;
     }
 
-    public int getMonth() {
-        return month;
+    public int getDay() {
+        return day;
     }
 
-    public void setMonth(int month) {
-        this.month = month;
+    public void setDay(int day) {
+        this.day = day;
     }
 
 }

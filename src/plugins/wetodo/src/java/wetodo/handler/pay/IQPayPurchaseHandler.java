@@ -6,6 +6,7 @@ import org.xmpp.packet.IQ;
 import org.xmpp.packet.PacketError;
 import wetodo.dao.UserDAO;
 import wetodo.error.IQError;
+import wetodo.exception.IapIdNotExistsException;
 import wetodo.exception.ReceiptAlreadyExistsException;
 import wetodo.exception.ReceiptIAPValidFailException;
 import wetodo.handler.IQBaseHandler;
@@ -44,6 +45,8 @@ public class IQPayPurchaseHandler extends IQBaseHandler {
             return error(packet, IQError.Condition.receipt_exist);
         } catch (ReceiptIAPValidFailException e) {
             return error(packet, IQError.Condition.receipt_iap_valid_fail);
+        } catch (IapIdNotExistsException e) {
+            return error(packet, IQError.Condition.iapid_not_exist);
         }
         User user = UserDAO.findByUsername(username);
 

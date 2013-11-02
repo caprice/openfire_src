@@ -9,10 +9,14 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import wetodo.dao.PayDAO;
+import wetodo.dao.ProductDAO;
+import wetodo.dao.UserDAO;
 import wetodo.error.IAPError;
+import wetodo.exception.IapIdNotExistsException;
 import wetodo.exception.ReceiptAlreadyExistsException;
 import wetodo.exception.ReceiptIAPValidFailException;
 import wetodo.model.Pay;
+import wetodo.model.Product;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -41,7 +45,7 @@ public class PayManager {
         return writer.toString();
     }
 
-    public void purchase(String username, String receipt, String iapId) throws ReceiptAlreadyExistsException, ReceiptIAPValidFailException {
+    public void purchase(String username, String receipt, String iapId) throws ReceiptAlreadyExistsException, ReceiptIAPValidFailException, IapIdNotExistsException {
         Pay pay = PayDAO.findByReceipt(receipt);
         if (pay != null) {
             throw new ReceiptAlreadyExistsException();
@@ -60,6 +64,12 @@ public class PayManager {
                 payNew.setModify_date(now);
 
                 PayDAO.create(payNew);
+
+                Product product = ProductDAO.findByIapId(iapId);
+                if (product == null) {
+                    throw new IapIdNotExistsException();
+                }
+                UserDAO.increaseVip(username, product.getDay());
             } else {
                 throw new ReceiptIAPValidFailException();
             }
