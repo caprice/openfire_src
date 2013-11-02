@@ -10,7 +10,12 @@ public class PayPurchaseXmlWriter {
         Element lacoolElement = DocumentHelper.createElement("lacool");
 
         Element memberElement = lacoolElement.addElement("member", namespace);
-        memberElement.addAttribute("left", String.valueOf(user.getVip_expire().getTime()));
+        long now = System.currentTimeMillis();
+        long left = 0;
+        if (user.getVip_expire().getTime() > now) {
+            left = user.getVip_expire().getTime() - now;
+        }
+        memberElement.addAttribute("left", String.valueOf(left));
 
         return lacoolElement;
     }
