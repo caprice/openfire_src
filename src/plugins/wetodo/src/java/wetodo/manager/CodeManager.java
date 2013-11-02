@@ -3,8 +3,10 @@ package wetodo.manager;
 import com.twilio.sdk.TwilioRestException;
 import org.jivesoftware.openfire.user.UserAlreadyExistsException;
 import wetodo.dao.UserDAO;
+import wetodo.exception.AuthCodeOverloadException;
 import wetodo.model.User;
 import wetodo.sms.Code;
+import wetodo.sms.GuardHelper;
 import wetodo.sms.SMS;
 
 public class CodeManager {
@@ -23,13 +25,17 @@ public class CodeManager {
         return instance;
     }
 
-    public static boolean send(String phone, String countryCode) throws TwilioRestException, UserAlreadyExistsException {
+    public static boolean send(String phone, String countryCode) throws TwilioRestException, UserAlreadyExistsException, AuthCodeOverloadException {
         User user = UserDAO.findByUsername(phone);
         if (user != null) {
             throw new UserAlreadyExistsException();
         }
+        if (GuardHelper.isOverload(phone)) {
+            throw new AuthCodeOverloadException();
+        }
         long code = Code.get(phone);
         SMS.send(phone, countryCode, code);
+        GuardHelper.fill(phone);
         return true;
     }
 

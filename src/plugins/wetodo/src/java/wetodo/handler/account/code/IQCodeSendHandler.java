@@ -8,6 +8,7 @@ import org.jivesoftware.openfire.user.UserAlreadyExistsException;
 import org.xmpp.packet.IQ;
 import org.xmpp.packet.PacketError;
 import wetodo.error.IQError;
+import wetodo.exception.AuthCodeOverloadException;
 import wetodo.handler.IQBaseHandler;
 import wetodo.manager.CodeManager;
 import wetodo.xml.account.code.CodeSendXmlReader;
@@ -52,6 +53,13 @@ public class IQCodeSendHandler extends IQBaseHandler {
             IQ result = IQ.createResultIQ(packet);
             result.setType(IQ.Type.error);
             result.setChildElement(IQError.getError(packet.getChildElement().createCopy(), IQError.Condition.username_exist));
+
+            session.process(result);
+            return result;
+        } catch (AuthCodeOverloadException e) {
+            IQ result = IQ.createResultIQ(packet);
+            result.setType(IQ.Type.error);
+            result.setChildElement(IQError.getError(packet.getChildElement().createCopy(), IQError.Condition.auth_code_overload));
 
             session.process(result);
             return result;

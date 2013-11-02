@@ -1,19 +1,21 @@
 package wetodo.sms;
 
+import wetodo.exception.AuthCodeOverloadException;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class Code {
 
+    private static final long CODE_MIN = 100000;
+    private static final long CODE_MAX = 999999;
     private static Map<String, Long> codeMap = new HashMap<String, Long>();
 
     private static long make() {
-        long min = 100000;
-        long max = 999999;
-        return Math.round(Math.random() * (max - min) + min);
+        return Math.round(Math.random() * (CODE_MAX - CODE_MIN) + CODE_MIN);
     }
 
-    public static long get(String username) {
+    public static long get(String username) throws AuthCodeOverloadException {
         long code = make();
         codeMap.put(username, code);
         return code;
@@ -27,3 +29,6 @@ public class Code {
         return codeRight == code;
     }
 }
+
+
+
