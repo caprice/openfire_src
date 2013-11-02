@@ -4,6 +4,7 @@ import com.twilio.sdk.TwilioRestException;
 import org.jivesoftware.openfire.user.UserAlreadyExistsException;
 import wetodo.dao.UserDAO;
 import wetodo.model.User;
+import wetodo.sms.Code;
 import wetodo.sms.SMS;
 
 public class CodeManager {
@@ -27,7 +28,8 @@ public class CodeManager {
         if (user != null) {
             throw new UserAlreadyExistsException();
         }
-        SMS.send(phone, countryCode);
+        long code = Code.get(phone);
+        SMS.send(phone, countryCode, code);
         return true;
     }
 

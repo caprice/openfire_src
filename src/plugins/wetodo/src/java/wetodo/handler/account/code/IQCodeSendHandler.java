@@ -55,6 +55,8 @@ public class IQCodeSendHandler extends IQBaseHandler {
 
             session.process(result);
             return result;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         // output
