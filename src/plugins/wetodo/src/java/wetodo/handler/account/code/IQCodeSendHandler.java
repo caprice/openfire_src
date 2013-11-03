@@ -3,7 +3,6 @@ package wetodo.handler.account.code;
 import com.twilio.sdk.TwilioRestException;
 import org.dom4j.Element;
 import org.jivesoftware.openfire.IQHandlerInfo;
-import org.jivesoftware.openfire.session.ClientSession;
 import org.jivesoftware.openfire.user.UserAlreadyExistsException;
 import org.xmpp.packet.IQ;
 import org.xmpp.packet.PacketError;
@@ -26,17 +25,9 @@ public class IQCodeSendHandler extends IQBaseHandler {
     public IQ handleIQ(IQ packet) {
         System.out.println("===lacool:register:query:auth_code===");
 
-        ClientSession session = sessionManager.getSession(packet.getFrom());
-
         // valid
         if (!packet.getType().equals(IQ.Type.get)) {
-            IQ result = IQ.createResultIQ(packet);
-            result.setChildElement(packet.getChildElement().createCopy());
-            result.setError(PacketError.Condition.bad_request);
-
-            // difference, need invoke session.process() method
-            session.process(result);
-            return result;
+            return systemError(packet, PacketError.Condition.bad_request, true);
         }
 
         // xml reader
@@ -48,33 +39,16 @@ public class IQCodeSendHandler extends IQBaseHandler {
         try {
             CodeManager.getInstance().send(phone, countryCode);
         } catch (TwilioRestException e) {
-            e.printStackTrace();
+            return error(packet, IQError.Condition.sms_server_error, true);
         } catch (UserAlreadyExistsException e) {
-            IQ result = IQ.createResultIQ(packet);
-            result.setType(IQ.Type.error);
-            result.setChildElement(IQError.getError(packet.getChildElement().createCopy(), IQError.Condition.username_exist));
-
-            session.process(result);
-            return result;
+            return error(packet, IQError.Condition.username_exist, true);
         } catch (AuthCodeOverloadException e) {
-            IQ result = IQ.createResultIQ(packet);
-            result.setType(IQ.Type.error);
-            result.setChildElement(IQError.getError(packet.getChildElement().createCopy(), IQError.Condition.auth_code_overload));
-
-            session.process(result);
-            return result;
+            return error(packet, IQError.Condition.auth_code_overload, true);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         // output
-        IQ reply = IQ.createResultIQ(packet);
-        reply.setType(IQ.Type.result);
-        Element reasonElement = CodeSendXmlWriter.write(namespace);
-        reply.setChildElement(reasonElement);
-
-        // difference, need invoke session.process() method
-        session.process(reply);
-        return reply;
+        return result(packet, CodeSendXmlWriter.write(namespace), true);
     }
 }
