@@ -10,6 +10,7 @@ import org.xmpp.packet.IQ;
 import org.xmpp.packet.PacketError;
 import wetodo.dao.UserDAO;
 import wetodo.error.IQError;
+import wetodo.exception.AuthCodeErrorException;
 import wetodo.manager.AccountManager;
 import wetodo.xml.account.AccountRegisterXmlReader;
 import wetodo.xml.account.AccountRegisterXmlWriter;
@@ -51,6 +52,7 @@ public class IQAccountRegisterHandler extends IQHandler {
         String password = AccountRegisterXmlReader.getPassword(lacoolElement);
         String nickname = AccountRegisterXmlReader.getNickname(lacoolElement);
         String phone = AccountRegisterXmlReader.getPhone(lacoolElement);
+        String countryCode = AccountRegisterXmlReader.getCountryCode(lacoolElement);
         String authCode = AccountRegisterXmlReader.getAuthCode(lacoolElement);
 
         // persistent to db
@@ -62,6 +64,13 @@ public class IQAccountRegisterHandler extends IQHandler {
             IQ result = IQ.createResultIQ(packet);
             result.setType(IQ.Type.error);
             result.setChildElement(IQError.getError(packet.getChildElement().createCopy(), IQError.Condition.username_exist));
+
+            session.process(result);
+            return result;
+        } catch (AuthCodeErrorException e) {
+            IQ result = IQ.createResultIQ(packet);
+            result.setType(IQ.Type.error);
+            result.setChildElement(IQError.getError(packet.getChildElement().createCopy(), IQError.Condition.auth_code_error));
 
             session.process(result);
             return result;

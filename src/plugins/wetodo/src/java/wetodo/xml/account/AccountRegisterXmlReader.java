@@ -5,8 +5,13 @@ import org.dom4j.Element;
 public class AccountRegisterXmlReader {
 
     public static String getPhone(Element lacoolElement) {
-        Element phoneNumberElement = lacoolElement.element("phone_number");
-        return phoneNumberElement.getStringValue();
+        Element phoneElement = lacoolElement.element("phone");
+        return phoneElement.getStringValue();
+    }
+
+    public static String getCountryCode(Element lacoolElement) {
+        Element countryCodeElement = lacoolElement.element("country_code");
+        return countryCodeElement.getStringValue();
     }
 
     public static String getAuthCode(Element lacoolElement) {

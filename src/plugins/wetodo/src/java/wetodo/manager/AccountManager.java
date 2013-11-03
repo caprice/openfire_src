@@ -2,6 +2,7 @@ package wetodo.manager;
 
 import org.jivesoftware.openfire.user.UserAlreadyExistsException;
 import org.jivesoftware.openfire.user.UserManager;
+import wetodo.exception.AuthCodeErrorException;
 
 public class AccountManager {
     /**
@@ -19,7 +20,10 @@ public class AccountManager {
         return instance;
     }
 
-    public static boolean register(String username, String password, String nickname, String phone, String authCode) throws UserAlreadyExistsException {
+    public static boolean register(String username, String password, String nickname, String phone, String authCode) throws UserAlreadyExistsException, AuthCodeErrorException {
+        if (!CodeManager.validate(phone, authCode)) {
+            throw new AuthCodeErrorException();
+        }
         UserManager userManager = UserManager.getInstance();
         userManager.createUser(username, password, nickname, null);
         return true;
